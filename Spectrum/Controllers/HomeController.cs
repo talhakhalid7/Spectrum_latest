@@ -91,7 +91,7 @@ namespace WebApplication2.Controllers
                 Perc_UniquePatients_EscriptNonRecCon();
                 connectionString.Close();
 
-                return Json(new { ESrx = new[] { new { ERxs1 = a, ERxs2 = b, ERxs3 = c, ERxs4 = d } }, Total = new[] { new { Total1 = e, Total2 = f, Total3 = g, Total4 = h + "%", Total5 = i + "%" } }, PatientProfile = new[] { new { pp1 = UPER, pp2 = UPERCP, pp3 = result_UPER_float, pp4 = percent_UPER + "%", pp5 = percent_UPERNCP + "%" } } }, JsonRequestBehavior.AllowGet);
+                return Json(new { ESrx = new[] { new { ERxs1 = String.Format("{0:n0}", a) , ERxs2 = String.Format("{0:n0}", b), ERxs3 = String.Format("{0:n0}", c), ERxs4 = String.Format("{0:n0}", d) } }, Total = new[] { new { Total1 = String.Format("{0:n0}", e), Total2 = String.Format("{0:n0}", f), Total3 = String.Format("{0:n0}", g), Total4 = String.Format("{0:n0}", h) + "%", Total5 = String.Format("{0:n0}", i) + "%" } }, PatientProfile = new[] { new { pp1 = String.Format("{0:n0}", UPER), pp2 = String.Format("{0:n0}", UPERCP), pp3 = String.Format("{0:n0}", result_UPER_float), pp4 = percent_UPER + "%", pp5 = percent_UPERNCP + "%" } } }, JsonRequestBehavior.AllowGet);
             }
             else if (opts.Equals("2"))
             {
@@ -125,7 +125,7 @@ namespace WebApplication2.Controllers
 
                 connectionString.Close();
 
-                return Json(new { EP = new[] { new { EP1 = SecRep, EP2 = SecRep1, EP3 = SecRep2, EP4 = Math.Round(SecRep3_float, 2) + "%", EP5 = Math.Round(SecRep4_float, 2) + "%" } }, EIC = new[] { new { EIC1 = SecRep, EIC2 = SecRep2a1, EIC3 = Math.Round(SecRep2a2, 2) + "%", EIC4 = SecRep2a3, EIC5 = Math.Round(SecRep2a4, 2) + "%", EIC6 = SecRep2a5, EIC7 = Math.Round(SecRep2a6, 2) + "%", EIC8 = SecRep2a7, EIC9 = Math.Round(SecRep2a8, 2) + "%", EIC10 = SecRep2a9, EIC11 = Math.Round(SecRep2a10, 2) + "%" } }, MCO = new[] { new { MCO1 = j, MCO2 = k, MCO3 = l, MCO4 = m + "%", MCO5 = n + "%", MCO6 = o, MCO7 = p + "%" } } });
+                return Json(new { EP = new[] { new { EP1 = String.Format("{0:n0}", SecRep), EP2 = String.Format("{0:n0}", SecRep1), EP3 = String.Format("{0:n0}", SecRep2), EP4 = Math.Round(SecRep3_float, 2) + "%", EP5 = Math.Round(SecRep4_float, 2) + "%" } }, EIC = new[] { new { EIC1 = String.Format("{0:n0}", SecRep), EIC2 = String.Format("{0:n0}", SecRep2a1), EIC3 = Math.Round(SecRep2a2, 2) + "%", EIC4 = String.Format("{0:n0}", SecRep2a3), EIC5 = Math.Round(SecRep2a4, 2) + "%", EIC6 = String.Format("{0:n0}", SecRep2a5), EIC7 = Math.Round(SecRep2a6, 2) + "%", EIC8 = String.Format("{0:n0}", SecRep2a7), EIC9 = Math.Round(SecRep2a8, 2) + "%", EIC10 = String.Format("{0:n0}", SecRep2a9), EIC11 = Math.Round(SecRep2a10, 2) + "%" } }, MCO = new[] { new { MCO1 = String.Format("{0:n0}", j), MCO2 = String.Format("{0:n0}", k), MCO3 = String.Format("{0:n0}", l), MCO4 = Math.Round(m,2) + "%", MCO5 = Math.Round(n,2) + "%", MCO6 = String.Format("{0:n0}", o), MCO7 = Math.Round(p,2) + "%" } } });
             }
             else if (opts.Equals("3"))
             {
@@ -145,7 +145,7 @@ namespace WebApplication2.Controllers
 
                 connectionString.Close();
 
-                return Json(new { TTD = new[] { new { TTD1 = ThirdRep1a, TTD2 = ThirdRep1b, TTD3 = ThirdRep1c, TTD4 = Math.Round(ThirdRep1d, 2) + "%", TTD5 = Math.Round(ThirdRep1e, 2) + "%", TTD6 = ThirdRep1f, TTD7 = ThirdRep1g, TTD8 = ThirdRep1h, TTD9 = Math.Round(ThirdRep1i, 2) + "%", TTD10 = Math.Round(ThirdRep1j, 2) + "%" } }, TDMC = new[] { new { TDMC1 = ThirdRepMedicaid3a, TDMC2 = Math.Round(ThirdRepMedicaid3b, 2) + "%" } } });
+                return Json(new { TTD = new[] { new { TTD1 = String.Format("{0:n0}", ThirdRep1a), TTD2 = String.Format("{0:n0}", ThirdRep1b), TTD3 = String.Format("{0:n0}", ThirdRep1c), TTD4 = Math.Round(ThirdRep1d, 2) + "%", TTD5 = Math.Round(ThirdRep1e, 2) + "%", TTD6 = String.Format("{0:n0}", ThirdRep1f), TTD7 = String.Format("{0:n0}", ThirdRep1g), TTD8 = String.Format("{0:n0}", ThirdRep1h), TTD9 = Math.Round(ThirdRep1i, 2) + "%", TTD10 = Math.Round(ThirdRep1j, 2) + "%" } }, TDMC = new[] { new { TDMC1 = String.Format("{0:n0}", ThirdRepMedicaid3a), TDMC2 = Math.Round(ThirdRepMedicaid3b, 2) + "%" } } });
 
             }
             else if (opts.Equals("4"))
@@ -166,7 +166,7 @@ namespace WebApplication2.Controllers
 
                 connectionString.Close();
 
-                return Json(new { HIV = new[] { new { HIV1 = FourRep1a, HIV2 = FourRep1b, HIV3 = FourRep1c, HIV4 = Math.Round(FourRep1d, 2) + "%", HIV5 = Math.Round(FourRep1e, 2) + "%", HIV6 = FourRep1f, HIV7 = FourRep1g, HIV8 = FourRep1h, HIV9 = Math.Round(FourRep1i, 2) + "%", HIV10 = Math.Round(FourRep1j, 2) + "%" } }, HDMC = new[] { new { HDMC1 = FourRepMedicaid4a, HDMC2 = Math.Round(FourRepMedicaid4b, 2) + "%" } } });
+                return Json(new { HIV = new[] { new { HIV1 = String.Format("{0:n0}", FourRep1a), HIV2 = String.Format("{0:n0}", FourRep1b), HIV3 = String.Format("{0:n0}", FourRep1c), HIV4 = Math.Round(FourRep1d, 2) + "%", HIV5 = Math.Round(FourRep1e, 2) + "%", HIV6 = String.Format("{0:n0}", FourRep1f), HIV7 = String.Format("{0:n0}", FourRep1g), HIV8 = String.Format("{0:n0}", FourRep1h), HIV9 = Math.Round(FourRep1i, 2) + "%", HIV10 = Math.Round(FourRep1j, 2) + "%" } }, HDMC = new[] { new { HDMC1 = String.Format("{0:n0}", FourRepMedicaid4a), HDMC2 = Math.Round(FourRepMedicaid4b, 2) + "%" } } });
 
             }
             else if (opts.Equals("5"))
@@ -187,7 +187,7 @@ namespace WebApplication2.Controllers
 
                 connectionString.Close();
 
-                return Json(new { DDR = new[] { new { DDR1 = FiveRep1a, DDR2 = FiveRep1b, DDR3 = FiveRep1c, DDR4 = Math.Round(FiveRep1d, 2) + "%", DDR5 = Math.Round(FiveRep1e, 2) + "%", DDR6 = FiveRep1f, DDR7 = FiveRep1g, DDR8 = FiveRep1h, DDR9 = Math.Round(FiveRep1i, 2) + "%", DDR10 = Math.Round(FiveRep1j, 2) + "%" } }, TDMCDDR = new[] { new { TDMC1 = FiveRepMedicaid5b, TDMC2 = Math.Round(FiveRepMedicaid5b, 2) + "%" } } });
+                return Json(new { DDR = new[] { new { DDR1 = String.Format("{0:n0}", FiveRep1a), DDR2 = String.Format("{0:n0}", FiveRep1b), DDR3 = String.Format("{0:n0}", FiveRep1c), DDR4 = Math.Round(FiveRep1d, 2) + "%", DDR5 = Math.Round(FiveRep1e, 2) + "%", DDR6 = String.Format("{0:n0}", FiveRep1f), DDR7 = String.Format("{0:n0}", FiveRep1g), DDR8 = String.Format("{0:n0}", FiveRep1h), DDR9 = Math.Round(FiveRep1i, 2) + "%", DDR10 = Math.Round(FiveRep1j, 2) + "%" } }, TDMCDDR = new[] { new { TDMC1 = String.Format("{0:n0}", FiveRepMedicaid5b), TDMC2 = Math.Round(FiveRepMedicaid5b, 2) + "%" } } });
 
             }
             else

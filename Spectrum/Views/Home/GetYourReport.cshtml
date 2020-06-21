@@ -977,7 +977,7 @@
                     $('.box_content4').hide("slide");
 
                     $('.box_content5').hide("slide");
-                    for (var opt in data) {
+                   
 
                         if (function_called == 1) {
 
@@ -987,8 +987,8 @@
                             $('#table_1 tbody').html(html3);
                             //$('#table_2 thead').html(html3);
                             $('#table_pp tbody').html(html_pp);
-                            createPie_hiv22();
-                            //createPie(graphData);
+                            
+                            createPie(graphData);
                             createPie2(piedata);
                             createPie_pp(chart_pp);
                             $('.box_content').show("slide");
@@ -1023,7 +1023,7 @@
                             createPie_tdmcddr(tdmcddrdata);
                             $('.box_content5').show("slide");
                         }
-                    }
+                   
 
                 }, 'json');
 
@@ -1037,41 +1037,198 @@
 
 
         function createPie(chartData) {
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                    'Total Unique # of Pharmacies Filling ERxs',
+                    'Total # of Unique non-Contracted Pharmacies Filling ERxs',
+                    'Total # of Contracted Pharmacies',
+                    'Total # of Contracted Pharmacies'
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
+                    borderWidth: 1,
+                    data: [
                             chartData[0],
                             chartData[1],
                             chartData[2],
                             chartData[3],
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            //window.chartColors.blue,
-                        ],
-                        label: 'Pharmacies Filling ERxs'
-                    }],
-                    labels: [
-                        'Total Unique # of Pharmacies Filling ERxs',
-                        'Total # of Unique non-Contracted Pharmacies Filling ERxs',
-                        'Total # of Contracted Pharmacies',
-                        'Total # of Contracted Pharmacies',
-
                     ]
-                },
-                options: {
-                    responsive: true
-                }
+                }]
+
             };
-            var ctx = document.getElementById('chart-area').getContext('2d');
-            window.myPie = new Chart(ctx, config);
+
+            var Ctx = document.getElementById('chart-area').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pharmacies Filling ERxs'
+                    },
+                }
+            });
+
+
+
+
+
+            //var config = {
+            //    type: 'bar',
+            //    data: {
+            //        datasets: [{
+            //            data: [
+            //                chartData[0],
+            //                chartData[1],
+            //                chartData[2],
+            //                chartData[3],
+            //            ],
+            //            backgroundColor: [
+            //                window.chartColors.red,
+            //                window.chartColors.orange,
+            //                window.chartColors.yellow,
+            //                window.chartColors.green,
+            //                //window.chartColors.blue,
+            //            ],
+            //            label: 'Pharmacies Filling ERxs'
+            //        }],
+            //        labels: [
+            //            'Total Unique # of Pharmacies Filling ERxs',
+            //            'Total # of Unique non-Contracted Pharmacies Filling ERxs',
+            //            'Total # of Contracted Pharmacies',
+            //            'Total # of Contracted Pharmacies',
+
+            //        ]
+            //    },
+            //    options: {
+            //        responsive: true
+            //    }
+            //};
+            //var ctx = document.getElementById('chart-area').getContext('2d');
+            //window.myPie = new Chart(ctx, config);
         }
         function createPie2(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                        'Total ERxs',
+                        'Total ERxs Filled at Non - Contracted Pharmacies',
+                        'Total ERxs Filled at Contracted Pharmacies',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
+                    borderWidth: 1,
+                    data: [
+                            chartData[4],
+                            chartData[5],
+                            chartData[6],
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_1').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'E-Rx Profile'
+                    },
+                }
+            });
+
+
+
+/*
             var config = {
                 type: 'bar',
                 data: {
@@ -1104,9 +1261,89 @@
             };
             var ctx = document.getElementById('chart-area_1').getContext('2d');
             window.myPie = new Chart(ctx, config);
+            */
         }
 
         function createPie3(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                        'Total MCO Medicaid ERxs',
+                        'Total MCO Medicaid ERxs Filled at Contracted Pharmacies',
+                        'Total ERxs Filled at non- Contracted Pharmacies',
+                        'Total MCO Medicaid ERxs Filled at Contracted Chain Pharmacies (excluding Walgreens)',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
+                    borderWidth: 1,
+                    data: [
+                            chartData[16],
+                            chartData[17],
+                            chartData[18],
+                            chartData[21],
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_2').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'E-Rx Insurance Category'
+                    },
+                }
+            });
+
+
+
+            /*
             var config = {
                 type: 'bar',
                 data: {
@@ -1147,10 +1384,90 @@
             };
             var ctx = document.getElementById('chart-area_2').getContext('2d');
             window.myPie = new Chart(ctx, config);
+            */
         }
 
 
         function createPie_pp(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                        'Total Unique Patients Received an ERxs',
+                        'Total Unique Patients ERxs Filled at Contracted Pharmacies',
+                        'Total Unique Patients ERxs Filled at Non-Contracted Pharmacies',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
+                    borderWidth: 1,
+                    data: [
+                            chartData[9],
+                            chartData[10],
+                            chartData[11],
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_pp').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Patient Profile'
+                    },
+                }
+            });
+
+
+
+
+/*
+
             var config = {
                 type: 'bar',
                 data: {
@@ -1167,7 +1484,7 @@
                             window.chartColors.yellow,
 
                         ],
-                        label: 'Total ERxs'
+                        label: 'Patient Profile'
                     }],
                     labels: [
                         'Total Unique Patients Received an ERxs',
@@ -1182,11 +1499,94 @@
                 }
             };
             var ctx = document.getElementById('chart-area_pp').getContext('2d');
-            window.myPie = new Chart(ctx, config);
+            window.myPie = new Chart(ctx, config); */
         }
 
         function createPie_ep(chartData) {
-            var config = {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                        '# of ERxs',
+                        'ERxs Insurance Covered',
+                        'ERxs Cash Covered',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
+                    borderWidth: 1,
+                    data: [
+
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            //chartData[3],
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_ep').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'E-Rx Profile'
+                    },
+                }
+            });
+
+
+
+
+
+        /*    var config = {
                 type: 'bar',
                 data: {
                     datasets: [{
@@ -1216,10 +1616,97 @@
                 }
             };
             var ctx = document.getElementById('chart-area_ep').getContext('2d');
-            window.myPie = new Chart(ctx, config);
+            window.myPie = new Chart(ctx, config);*/
         }
         function createPie_eci(chartData) {
-            var config = {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                        'Total ERxs',
+                        'Total Medicaid ERxs',
+                        'Total Commercial ERxs',
+                        'Total Medicare ERx',
+                        'Total Tricare ERxs',
+                        'Total Cash',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString(), color(window.chartColors.yellow).alpha(0.5).rgbString(), color(window.chartColors.grey).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
+                    borderWidth: 1,
+                    data: [chartData[5],
+                            chartData[6],
+                            //chartData[7],
+                            chartData[8],
+                            // chartData[9],
+                            chartData[10],
+                            //chartData[11],
+                            chartData[12],
+                            //chartData[13],
+                            chartData[14],
+                            //chartData[15],
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_eci').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'E-Rx Medicaid View'
+                    },
+                }
+            });
+
+
+
+           /* var config = {
                 type: 'bar',
                 data: {
                     datasets: [{
@@ -1244,7 +1731,7 @@
                             window.chartColors.blue,
                             window.chartColors.pink,
                         ],
-                        label: 'E-Rx Insurance Category'
+                        label: 'piechartegory'
                     }],
                     labels: [
                         'Total ERxs',
@@ -1260,10 +1747,95 @@
                 }
             };
             var ctx = document.getElementById('chart-area_eci').getContext('2d');
-            window.myPie = new Chart(ctx, config);
+            window.myPie = new Chart(ctx, config);*/
         }
 
         function createPie_ttd(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                        'Total Unique Patients Has Escript for a Target Drug',
+                        'Total Patients on Target Drug Filled at Contracted Pharmacies ',
+                        'Total Patients on Target Meds filled at Non-Contracted Pharmacies',
+                        'Total Target ERxs Count',
+                        'Total Target ERxs Sent to Contracted Pharmacies',
+                        'Total Target ERxs Sent to non- Contracted Pharmacies',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString(), color(window.chartColors.yellow).alpha(0.5).rgbString(), color(window.chartColors.grey).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
+                    borderWidth: 1,
+                    data: [
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            chartData[5],
+                            chartData[7],
+                            chartData[8],
+
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_TTD').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Targeted Drug View (HIV & Brand Diabetic Meds)'
+                    },
+                }
+            });
+
+            /*
             var config = {
                 type: 'bar',
                 data: {
@@ -1285,7 +1857,7 @@
                             window.chartColors.blue,
                             window.chartColors.pink,
                         ],
-                        label: 'Targeted Drug View'
+                        label: 'Targeted Drug View (HIV & Brand Diabetic Meds)'
                     }],
                     labels: [
                         'Total Unique Patients Has Escript for a Target Drug',
@@ -1302,9 +1874,84 @@
                 }
             };
             var ctx = document.getElementById('chart-area_TTD').getContext('2d');
-            window.myPie = new Chart(ctx, config);
+            window.myPie = new Chart(ctx, config);*/
         }
         function createPie_tdmc(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
+
+
+            var color = Chart.helpers.color;
+            var mydata = {
+                labels: [
+                    'Number of Target Med ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+                ],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString(), color(window.chartColors.yellow).alpha(0.5).rgbString(), color(window.chartColors.grey).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
+                    borderWidth: 1,
+                    data: [
+
+                            chartData[10],
+                            // chartData[11],
+
+                    ]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area_TTD').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'bar',
+                data: mydata,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Targeted Drug View (HIV & Brand Diabetic Meds)'
+                    },
+                }
+            });
+
+
+
             var config = {
                 type: 'bar',
                 data: {
@@ -1333,7 +1980,7 @@
                     responsive: true
                 }
             };
-            var ctx = document.getElementById('chart-area_TDMC').getContext('2d');
+            var ctx = document.getElementById('chart-area_HDMC').getContext('2d');
             window.myPie = new Chart(ctx, config);
         }
 
@@ -1341,6 +1988,17 @@
 
 
         function createPie_hdmc(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
             var config = {
                 type: 'bar',
                 data: {
@@ -1373,6 +2031,17 @@
         }
 
         function createPie_ddr(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
             var config = {
                 type: 'bar',
                 data: {
@@ -1419,6 +2088,17 @@
         }
 
         function createPie_tdmcddr(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
             var config = {
                 type: 'bar',
                 data: {
@@ -1448,6 +2128,17 @@
         }
 
         function createPie_hiv(chartData) {
+            for (var i = 0; i < chartData.length; i++) {
+                if (!chartData[i])
+                    continue;
+                var str = chartData[i];
+                if (str.indexOf("%") == -1) {
+                    var a = chartData[i];
+                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
+                    a = parseInt(a);
+                    chartData[i] = a;
+                }
+            }
             var config = {
                 type: 'bar',
                 data: {

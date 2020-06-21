@@ -562,23 +562,23 @@
                 labels: ['29 Sep 2019', '30 Sep 2019', '01 Oct 2019', '02 Oct 2019', '03 Oct 2019', '04 Oct 2019', '05 Oct 2019'],
                 datasets: [{
                     label: 'Users',
-                    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-                    borderColor: window.chartColors.red,
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [53, 117, 79, 56, 45, 89, 61]
                 }]
 
             };
 
-            var UserVsMyAppsCtx = document.getElementById('chart-area').getContext('2d');
-            var UserVsMyApps = new Chart(UserVsMyAppsCtx, {
+            var Ctx = document.getElementById('chart-area').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
                 type: 'bar',
                 data: UserVsMyAppsData,
                 options: {
                     responsive: true,
                     legend: {
-                        position: 'bottom',
-                        display: true,
+                        position: 'top',
+                        display: false,
 
                     },
                     "hover": {
@@ -604,8 +604,8 @@
                         }
                     },
                     title: {
-                        display: false,
-                        text: ''
+                        display: true,
+                        text: 'This is Title'
                     },
                 }
             });
