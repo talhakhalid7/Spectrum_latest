@@ -1,0 +1,1503 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spectrum Health Services, Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/Content/custom_css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="/Content/custom_css/sidemenu.css">
+    <link rel="stylesheet" type="text/css" href="/Content/custom_css/media.css">
+    <script src="/Content/bootstrap/js/bootstrap.js"></script>
+    <script src="/Content/custom_js/main.js"></script>
+    <script src="/Content/custom_js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="/Content/custom_js/Chart.min.js"></script>
+    <script src="/Content/custom_js/utils.js"></script>
+    <script src="/Content/custom_js/jQuery-v3.3.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link href="~/Content/custom_css/loader.css" rel="stylesheet" />
+    <style>
+
+        .select2-search--dropdown {
+            display: none;
+        }
+
+        #wrapper {
+            overflow: hidden;
+            padding-left: 50px;
+            min-height: 100vh;
+        }
+
+        #header {
+            background: #fff;
+            overflow: hidden;
+            padding: 5px 20px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            float: left;
+            width: 170px;
+            height: auto;
+            margin: -5px;
+        }
+
+            .logo a {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        #nav {
+            text-align: right;
+            padding: 25px 0 0;
+            float: right;
+        }
+
+            #nav ul {
+                margin: 0;
+            }
+
+            #nav li {
+                display: inline-block;
+                vertical-align: middle;
+                font-family: 'Avian';
+            }
+
+                #nav li a {
+                    color: #7b7d81;
+                    /*font-size: 25px;*/
+                    padding-right: 20px;
+                    font-weight: 500;
+                }
+
+                    #nav li a:hover {
+                        color: #00293f;
+                        text-decoration: none;
+                    }
+
+                    #nav li a.btn-signout {
+                        color: #fff;
+                        padding: 5px 10px;
+                        font-weight: 500;
+                        font-size: 15px;
+                        border-radius: 4px;
+                    }
+
+        .filter-form {
+            width: 420px;
+            background: #fff;
+            position: absolute;
+            top: 30%;
+            left: 30px;
+            right: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+        }
+
+            .filter-form h2 {
+                margin: 0 0 20px;
+                font-weight: bold;
+                font-size: 40px;
+            }
+
+            .filter-form .btn-primary {
+                border-radius: 4px;
+                font-weight: 500;
+                font-size: 16px;
+                min-width: 140px;
+            }
+
+                .filter-form .btn-primary:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+
+        .visual {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            height: calc(79vh - 102px);
+            background-image: url("../Content/images/Report-Page-Graphic.png");
+            background-repeat: no-repeat;
+            background-position: right;
+            background-size: 70%;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #ccc !important;
+        }
+
+        .table-bordered th {
+            font-weight: 500;
+            background: #d9e2f3;
+        }
+
+        .table-bordered td {
+            background: #fff2cc;
+            min-width: 80px;
+            font-size: 20px;
+        }
+
+        .PageContent {
+            margin: 40px 30px 0;
+            border-top: 2px solid black;
+        }
+
+        .ContentHeading {
+            padding: 60px 0;
+        }
+
+            .ContentHeading h2 {
+                font-size: 40px;
+                color: black;
+                padding-bottom: 0;
+            }
+
+        .BottomBorder {
+            background-image: url(../Content/images/sp3.png);
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            width: 100%;
+            height: 2px;
+            border: transparent;
+            margin: 40px 0 0;
+        }
+        /*.BottomBorder {
+            background-image: url(../Content/images/sp1.png);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            width: 100%;
+            height: 80px;
+            border: transparent;
+            margin: 40px 0 0;
+        }*/
+        /*.BottomBorder {
+            background-image: url(../Content/images/sp2.png);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            width: 100%;
+            height: 80px;
+            border: transparent;
+            margin: 40px 0 0;
+        }*/
+        .replicate {
+            padding-bottom: 30px;
+        }
+
+        .BottomPadding {
+            padding-bottom: 350px;
+        }
+    </style>
+</head>
+<body>
+    <!--<div class="se-pre-con"></div>--> <div class="lds-ring" style="width: 100%;height: 100vh; top: 0px; background: rgba(0, 0, 0, 0.1); position:absolute; z-index:2; display:none"><div class="lds-ring"></div></div>
+    <div class="primary-nav">
+        <button href="#" class="hamburger open-panel nav-toggle">
+            <span class="screen-reader-text">Menu</span>
+        </button>
+        <nav role="navigation" class="menu">
+            <div class="overflow-container">
+                <ul class="menu-dropdown">
+                    <li><a href="#">Dashboard</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
+                    <li class="menu-hasdropdown">
+                        <a href="#">Settings</a><span class="icon"><i class="fa fa-gear"></i></span>
+                        <label title="toggle menu" for="settings">
+                            <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+                        </label>
+                        <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+                        <ul class="sub-menu-dropdown">
+                            <li><a href="">Profile</a></li>
+                            <li><a href="">Security</a></li>
+                            <li><a href="">Account</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Favourites</a><span class="icon"><i class="fa fa-heart"></i></span></li>
+                    <li><a href="#">Messages</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <header id="header">
+            <div class="logo">
+                <a href="index.html">
+                    <img class="img-fluid" style="max-width:50%;" src="/Content/resources/images/apovia.png" alt="logo description">
+                </a>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#">Sabrina Testbot</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#" class="btn-signout btn btn-primary">Sign Out</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="visual">
+            <form action="#" class="filter-form">
+                <h2>Get Your Report</h2>
+                <div class="row">
+                    <div class="col-12"><label>Select Category:</label></div>
+                    <div class="col-12">
+                        <select name="select_1" id="select_1" class="js-example-basic-single">
+                            <option value="1">Pharmacy Escript Profile Report</option>
+                            <option value="2">Escript Payer Profile Report</option>
+                            <option value="3">Escript All Target Drug Utilization Report</option>
+                            <option value="4">Escript HIV Target Drug Report</option>
+                            <option value="5">Escript Diabetic Target Drug Report</option>
+                            <!--<option value="6">Escript Quarterly Performance Tracking Report</option>-->
+                        </select>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ReportListBox" style="display:none !important">
+                        <label>Select Report:</label>
+                        <select name="select_2" id="select_2" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="ERxs1" data-value="1">Total Unique Number of Pharmacies Filling ERxs</option>
+                            <option value="ERxs2" data-value="1">Total Number of Unique non-Contracted Pharmacies Filling ERxs</option>
+                            <option value="ERxs3" data-value="1">Total Number of Contracted Pharmacies</option>
+                            <option value="ERxs4" data-value="1">Total Number of Unique Contracted Pharmacies Filling ERxs</option>
+                        </select>
+                        <select name="select_3" id="select_3" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="Total1" data-value="2">Total ERxs</option>
+                            <option value="Total2" data-value="2">Total ERxs Filled at Non-Contracted Pharmacies</option>
+                            <option value="Total3" data-value="2">Total ERxs Filled at Contracted Pharmacies</option>
+                            <option value="Total4" data-value="2">Percentage ERxs Filled at Non-Contracted Pharmacies</option>
+                            <option value="Total5" data-value="2">Percentage of ERxs Filled at Contracted Pharmacies </option>
+                        </select>
+                        <select name="select_4" id="select_4" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="MCO1" data-value="3">Total MCO Medicaid ERxs</option>
+                            <option value="MCO2" data-value="3">Total MCO Medicaid ERxs Filled at Contracted Pharmacy </option>
+                            <option value="MCO3" data-value="3">Total ERxs Filled at non- Contracted Pharmacies</option>
+                            <option value="MCO4" data-value="3">Percentage MCO Medicaid ERxs Filled at Contracted Pharmacies</option>
+                            <option value="MCO5" data-value="3">Percentage of ERxs Filled at non-Contracted Pharmacies</option>
+                            <option value="MCO6" data-value="3">Total MCO Medicaid ERxs Filled at Contracted Chain Pharmacies (excluding Walgreens)</option>
+                            <option value="MCO7" data-value="3">Percentage of ERxs Filled at non-Contracted PharmaciePercentage MCO Medicaid ERxs Filled at Contracted Chain Pharmacy (excluding Walgreens)</option>
+                        </select>
+                        <select name="pp" id="pp" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="pp1" data-value="4">Total Unique Patients Received an ERxs</option>
+                            <option value="pp2" data-value="4">Total Unique Patients ERxs Filled at Contracted Pharmacies</option>
+                            <option value="pp3" data-value="4">Total Unique Patients ERxs Filled at Non-Contracted Pharmacies</option>
+                            <option value="pp4" data-value="4">Percentage of Patients ERxs Filled at Contracted Pharmacies </option>
+                            <option value="pp5" data-value="4">Percentage of Patients ERxs Filled at Non- Contracted Pharmacies</option>
+
+                        </select>
+                        <select name="EP" id="EP" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="EP1" data-value="5">Total ERxs</option>
+                            <option value="EP2" data-value="5">Total Number of ERxs Insurance Covered </option>
+                            <option value="EP3" data-value="5">Total Number of ERxs Cash Covered</option>
+                            <option value="EP4" data-value="5">Percentage ERxs Insurance Covered </option>
+                            <option value="EP5" data-value="5">Percentage ERxs Cash or Other Covered</option>
+
+                        </select>
+                        <select name="EIC" id="EIC" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="EIC1" data-value="6">Total ERxs</option>
+                            <option value="EIC2" data-value="6">Total Medicaid ERxs</option>
+                            <option value="EIC3" data-value="6">Percentage Of ERxs Medicaid</option>
+                            <option value="EIC4" data-value="6">Total Commercial ERxs </option>
+                            <option value="EIC5" data-value="6">Percentage of ERxs Commercial</option>
+                            <option value="EIC6" data-value="6">Total Medicare ERxs</option>
+                            <option value="EIC7" data-value="6">Percentage of ERxs Medicare</option>
+                            <option value="EIC8" data-value="6">Total Tricare ERxs</option>
+                            <option value="EIC9" data-value="6">Percentage of ERxs Tricare </option>
+                            <option value="EIC10" data-value="6">Total Cash</option>
+                            <option value="EIC11" data-value="6">Percentage ERxs Cash</option>
+                        </select>
+
+                        <select name="TTD" id="TTD" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="TTD1" data-value="7">Total Unique Patients Has Escript for a Target Drug</option>
+                            <option value="TTD2" data-value="7">Total Patients on Target Drug Filled at Contracted Pharmacies </option>
+                            <option value="TTD3" data-value="7">Total Patients on Target Meds filled at Non-Contracted Pharmacies</option>
+                            <option value="TTD4" data-value="7">Percentage of Patients Target Meds Filled at Contracted Pharmacies</option>
+                            <option value="TTD5" data-value="7">Percentage of Patients Target Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="TTD6" data-value="7">Total Target ERxs Count</option>
+                            <option value="TTD7" data-value="7">Total Target ERxs Sent to Contracted Pharmacies</option>
+                            <option value="TTD8" data-value="7">Total Target ERxs Sent to non- Contracted Pharmacies</option>
+                            <option value="TTD9" data-value="7">Percentage Target ERxs Sent to Contracted Pharmacies</option>
+                            <option value="TTD10" data-value="7">Percentage of Target ERxs Sent to non-Contracted Pharmacies</option>
+                        </select>
+                        <select name="TDMC" id="TDMC" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="TDMC1" data-value="6">Number of Target Med ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in</option>
+                            <option value="TDMC2" data-value="6">% of Target Med ERxs Filled at Contracted Chain Not Doing MCO Medicaid Carve in</option>
+                        </select>
+
+                        <select name="HIV" id="HIV" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="HIV1" data-value="8">Total Unique HIV Patients</option>
+                            <option value="HIV2" data-value="8">Total Patients HIV Meds ERxs filled at Contracted Pharmacies </option>
+                            <option value="HIV3" data-value="8">Total Patients HIV Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="HIV4" data-value="8">Percentage of Patients HIV Meds Filled at Contracted Pharmacies</option>
+                            <option value="HIV5" data-value="8">Percentage of Patients HIV Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="HIV6" data-value="8">Total HIV ERxs Count</option>
+                            <option value="HIV7" data-value="8">Total HIV ERxs Sent to Contracted Pharmacies</option>
+                            <option value="HIV8" data-value="8">Total HIV ERxs Sent to non-Contracted Pharmacies</option>
+                            <option value="HIV9" data-value="8">Percentage HIV ERxs Sent to Contracted Pharmacies</option>
+                            <option value="HIV10" data-value="8">Percentage of HIV ERxs Sent to non- Contracted Pharmacies</option>
+                        </select>
+                        <select name="HDMC" id="HDMC" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="HDMC1" data-value="9">Number of HIV Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.</option>
+                            <option value="HDMC2" data-value="9">% of HIV Drug ERxs Filled at Contracted Chain Not Doing MCO Medicaid Carve in.</option>
+                        </select>
+
+                        <select name="DDR" id="DDR" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="DDR1" data-value="10">Total Unique Patients on Diabetic Brand Meds</option>
+                            <option value="DDR2" data-value="10">Total Patients Diabetic Brand Meds Filled at Contracted Pharmacies </option>
+                            <option value="DDR3" data-value="10">Total Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="DDR4" data-value="10">Percentage of Patients Diabetic Brand Meds Filled at Contracted Pharmacies</option>
+                            <option value="DDR5" data-value="10">Percentage of Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="DDR6" data-value="10">Total Diabetic Brand Escripts Count</option>
+                            <option value="DDR7" data-value="10">Total Diabetic Brand ERxs Sent to contracted Pharmacies</option>
+                            <option value="DDR8" data-value="10">Total Diabetic Brand ERxs Sent non-Contracted Pharmacy</option>
+                            <option value="DDR9" data-value="10">Percentage Diabetic Brand ERxs Sent to Contracted Pharmacies</option>
+                            <option value="DDR10" data-value="10">Percentage of Diabetic Brand ERxs Sent to non-Contracted Pharmacies</option>
+                        </select>
+                        <select name="TDMCDDR" id="TDMCDDR" class="js-example-basic-single multipleSelect2" multiple="true">
+                            <option value="TDMCDDR1" data-value="11">Number of Diabetic Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.</option>
+                            <option value="TDMCDDR2" data-value="11">% of HIV Drug ERxs Filled at Contracted Chain Not Doing MCO Medicaid Carve in.</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button id="showdiv" type="button" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div style="display: none;" class="row box_content">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Pharmacy Profile</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Profile</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_1" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_1" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Patient Profile</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_pp" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_pp" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Page Content End Here-->
+        <div style="display: none;" class="row box_content2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Profile</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_ep" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_ep" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Insurance Category</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_2" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_2" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Medicaid View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_eci" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_eci" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+
+        <div style="display: none;" class="row box_content3">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Targeted Drug Medicaid Carve In</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TDMC" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TDMC" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Targeted Drug View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TTD" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TTD" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+
+        <div style="display: none;" class="row box_content4">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>HIV Targeted Drug View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_HIV" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_HIV" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>HIV Targeted Drug View for Medicaid</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_HDMC" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_HDMC" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+
+        <div style="display: none;" class="row box_content5">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Diabetic Target Drug View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_DDR" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_DDR" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Diabetic Targeted Drug View for Medicaid</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TDMCDDR" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TDMCDDR" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+    </div>
+    <script>
+        $('.nav-toggle').click(function (e) {
+
+            e.preventDefault();
+            $("html").toggleClass("openNav");
+            $(".nav-toggle").toggleClass("active");
+
+        });
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+            //Select2
+            $(".multipleSelect2").select2({
+                placeholder: "Select Multiple Reports" //placeholder
+            });
+
+
+            var $select1 = $('#select_1'),
+                $select2 = $('#select_2'),
+                $options = $select2.find('option');
+
+            $select1.on('change', function () {
+                $select2.html($options.filter('[data-value="' + this.value + '"]'));
+            }).trigger('change');
+        });
+
+        $(document).ready(function () {
+
+            $('#showdiv').click(function () {
+                $(".lds-ring").css('display', 'block');
+                $.post('./result', { opts: $('#select_1').val() }, function (data) {
+                    $(".lds-ring").css('display', 'none');
+                    $('.box_content').hide("slide");
+                    var graphData = [];
+                    var piedata = [];
+                    var bardata = [];
+                    var chart_pp = [];
+                    var epdata = [];
+                    var ecidata = [];
+                    var tdmcdata = [];
+                    var ttddata = [];
+                    var hdmcdata = [];
+                    var hivdata = [];
+                    var ddrdata = [];
+                    var tdmcddrdata = [];
+
+                    //console.log(data);
+                    iCount = 0;
+                    var html1 = '';
+                    var html3 = '';
+                    var html5 = '';
+                    var html_pp = '';
+                    var html_ep = '';
+                    var html_eci = '';
+                    var html_ttd = '';
+                    var html_tdmc = '';
+                    var html_hdmc = '';
+                    var html_hiv = '';
+                    var html_ddr = '';
+                    var html_tdmcddr = '';
+
+                    var function_called = $('#select_1').val();
+                    $.each(data, function (key, value) {
+                        //first cat
+                        if (key == 'ESrx') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html1 += '<tr>'
+                                    html1 += '<th>' + $('#select_2 option[value="' + key2 + '"]').text() + '</th>';
+                                    html1 += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html1);
+                                    graphData[iCount++] = value[0][key2];
+                                    html1 += '</tr>';
+                                }
+                            }
+
+
+                        }
+                        if (key == 'Total') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html3 += '<tr>';
+                                    html3 += '<th>' + $('#select_3 option[value="' + key2 + '"]').text() + '</th>';
+                                    html3 += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    piedata[iCount++] = value[0][key2];
+                                    html3 += '</tr>';
+                                }
+                            }
+
+                        }
+                        if (key == 'PatientProfile') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_pp += '<tr>';
+                                    html_pp += '<th>' + $('#pp option[value="' + key2 + '"]').text() + '</th>';
+                                    html_pp += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html5);
+                                    chart_pp[iCount++] = value[0][key2];
+                                    html_pp += '</tr>';
+                                }
+                            }
+
+
+                        }
+                        //2nd cat
+                        if (key == 'MCO') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html5 += '<tr>';
+                                    html5 += '<th>' + $('#select_4 option[value="' + key2 + '"]').text() + '</th>';
+                                    html5 += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html5);
+                                    bardata[iCount++] = value[0][key2];
+                                    html5 += '</tr>';
+                                }
+                            }
+
+                        }
+                        if (key == 'EP') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_ep += '<tr>';
+                                    html_ep += '<th>' + $('#EP option[value="' + key2 + '"]').text() + '</th>';
+                                    html_ep += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    epdata[iCount++] = value[0][key2];
+                                    html_ep += '</tr>';
+                                }
+                            }
+
+                        }
+                        if (key == 'EIC') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_eci += '<tr>';
+                                    html_eci += '<th>' + $('#EIC option[value="' + key2 + '"]').text() + '</th>';
+                                    html_eci += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    ecidata[iCount++] = value[0][key2];
+                                    html_eci += '</tr>';
+                                }
+                            }
+
+                        }
+                        //3rd cat
+                        if (key == 'TTD') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_ttd += '<tr>';
+                                    html_ttd += '<th>' + $('#TTD option[value="' + key2 + '"]').text() + '</th>';
+                                    html_ttd += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    ttddata[iCount++] = value[0][key2];
+                                    html_ttd += '</tr>';
+                                }
+                            }
+
+                        }
+                        if (key == 'TDMC') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_tdmc += '<tr>';
+                                    html_tdmc += '<th>' + $('#TDMC option[value="' + key2 + '"]').text() + '</th>';
+                                    html_tdmc += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    tdmcdata[iCount++] = value[0][key2];
+                                    html_tdmc += '</tr>';
+                                }
+                            }
+
+                        }
+                        //cat 4
+                        if (key == 'HDMC') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_hdmc += '<tr>';
+                                    html_hdmc += '<th>' + $('#HDMC option[value="' + key2 + '"]').text() + '</th>';
+                                    html_hdmc += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    hdmcdata[iCount++] = value[0][key2];
+                                    html_hdmc += '</tr>';
+                                }
+                            }
+
+                        }
+                        if (key == 'HIV') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_hiv += '<tr>';
+                                    html_hiv += '<th>' + $('#HIV option[value="' + key2 + '"]').text() + '</th>';
+                                    html_hiv += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    hivdata[iCount++] = value[0][key2];
+                                    html_hiv += '</tr>';
+                                }
+                            }
+
+                        }
+                        //cat 5
+                        if (key == 'DDR') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_ddr += '<tr>';
+                                    html_ddr += '<th>' + $('#DDR option[value="' + key2 + '"]').text() + '</th>';
+                                    html_ddr += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    ddrdata[iCount++] = value[0][key2];
+                                    html_ddr += '</tr>';
+                                }
+                            }
+
+                        }
+                        if (key == 'TDMCDDR') {
+                            for (key2 in value[0]) {
+                                if (value[0].hasOwnProperty(key2)) {
+                                    //alert(value[0][key2]);
+                                    html_tdmcddr += '<tr>';
+                                    html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
+                                    html_tdmcddr += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    tdmcddrdata[iCount++] = value[0][key2];
+                                    html_tdmcddr += '</tr>';
+                                }
+                            }
+
+                        }
+
+
+                    });
+                    $('.box_content').hide("slide");
+
+                    $('.box_content2').hide("slide");
+
+                    $('.box_content3').hide("slide");
+
+                    $('.box_content4').hide("slide");
+
+                    $('.box_content5').hide("slide");
+                    for (var opt in data) {
+
+                        if (function_called == 1) {
+
+                            //$('#table thead').html(html1);
+                            $('#table tbody').html(html1);
+                            //$('#table_1 thead').html(html3);
+                            $('#table_1 tbody').html(html3);
+                            //$('#table_2 thead').html(html3);
+                            $('#table_pp tbody').html(html_pp);
+                            createPie_hiv22();
+                            //createPie(graphData);
+                            createPie2(piedata);
+                            createPie_pp(chart_pp);
+                            $('.box_content').show("slide");
+                        }
+                        if (function_called == 2) {
+                            $('#table_ep tbody').html(html_ep);
+                            $('#table_2 tbody').html(html5);
+                            $('#table_eci tbody').html(html_eci);
+                            createPie_ep(epdata);
+                            createPie3(bardata);
+                            createPie_eci(ecidata);
+                            $('.box_content2').show("slide");
+                        }
+                        if (function_called == 3) {
+                            $('#table_TTD tbody').html(html_ttd);
+                            $('#table_TDMC tbody').html(html_tdmc);
+                            createPie_ttd(ttddata);
+                            createPie_tdmc(tdmcdata);
+                            $('.box_content3').show("slide");
+                        }
+                        if (function_called == 4) {
+                            $('#table_HIV tbody').html(html_hiv);
+                            $('#table_HDMC tbody').html(html_hdmc);
+                            createPie_hiv(hivdata);
+                            createPie_hdmc(hdmcdata);
+                            $('.box_content4').show("slide");
+                        }
+                        if (function_called == 5) {
+                            $('#table_DDR tbody').html(html_ddr);
+                            $('#table_TDMCDDR tbody').html(html_tdmcddr);
+                            createPie_ddr(ddrdata);
+                            createPie_tdmcddr(tdmcddrdata);
+                            $('.box_content5').show("slide");
+                        }
+                    }
+
+                }, 'json');
+
+
+            });
+        });
+    </script>
+    <script>
+
+
+
+
+        function createPie(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            chartData[3],
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            //window.chartColors.blue,
+                        ],
+                        label: 'Pharmacies Filling ERxs'
+                    }],
+                    labels: [
+                        'Total Unique # of Pharmacies Filling ERxs',
+                        'Total # of Unique non-Contracted Pharmacies Filling ERxs',
+                        'Total # of Contracted Pharmacies',
+                        'Total # of Contracted Pharmacies',
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+        function createPie2(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[4],
+                            chartData[5],
+                            chartData[6],
+
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+
+                        ],
+                        label: 'Total ERxs'
+                    }],
+                    labels: [
+                        'Total ERxs',
+                        'Total ERxs Filled at Non - Contracted Pharmacies',
+                        'Total ERxs Filled at Contracted Pharmacies',
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_1').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        function createPie3(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[16],
+                            chartData[17],
+                            chartData[18],
+                            chartData[21],
+
+
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                            window.chartColors.grey,
+                        ],
+                        label: 'MCO Medicaid'
+                    }],
+                    labels: [
+                        'Total MCO Medicaid ERxs',
+                        'Total MCO Medicaid ERxs Filled at Contracted Pharmacies',
+                        'Total ERxs Filled at non- Contracted Pharmacies',
+
+                        'Total MCO Medicaid ERxs Filled at Contracted Chain Pharmacies (excluding Walgreens)',
+
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_2').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+
+        function createPie_pp(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[9],
+                            chartData[10],
+                            chartData[11],
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+
+                        ],
+                        label: 'Total ERxs'
+                    }],
+                    labels: [
+                        'Total Unique Patients Received an ERxs',
+                        'Total Unique Patients ERxs Filled at Contracted Pharmacies',
+                        'Total Unique Patients ERxs Filled at Non-Contracted Pharmacies',
+
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_pp').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        function createPie_ep(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            //chartData[3],
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            //window.chartColors.green,
+                            //window.chartColors.blue,
+                        ],
+                        label: 'E-Rx Profile'
+                    }],
+                    labels: [
+                        '# of ERxs',
+                        'ERxs Insurance Covered',
+                        'ERxs Cash Covered',
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_ep').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+        function createPie_eci(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[5],
+                            chartData[6],
+                            //chartData[7],
+                            chartData[8],
+                            // chartData[9],
+                            chartData[10],
+                            //chartData[11],
+                            chartData[12],
+                            //chartData[13],
+                            chartData[14],
+                            //chartData[15],
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'E-Rx Insurance Category'
+                    }],
+                    labels: [
+                        'Total ERxs',
+                        'Total Medicaid ERxs',
+                        'Total Commercial ERxs',
+                        'Total Medicare ERx',
+                        'Total Tricare ERxs',
+                        'Total Cash',
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_eci').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        function createPie_ttd(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            chartData[5],
+                            chartData[7],
+                            chartData[8],
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'Targeted Drug View'
+                    }],
+                    labels: [
+                        'Total Unique Patients Has Escript for a Target Drug',
+                        'Total Patients on Target Drug Filled at Contracted Pharmacies ',
+                        'Total Patients on Target Meds filled at Non-Contracted Pharmacies',
+                        'Total Target ERxs Count',
+                        'Total Target ERxs Sent to Contracted Pharmacies',
+                        'Total Target ERxs Sent to non- Contracted Pharmacies',
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_TTD').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+        function createPie_tdmc(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[10],
+                            // chartData[11],
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'HIV Targeted Drug View'
+                    }],
+                    labels: [
+                        'Number of Target Med ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_TDMC').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+
+
+
+        function createPie_hdmc(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[10],
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'Targeted Drug Medicaid Carve In'
+                    }],
+                    labels: [
+                        'Number of HIV Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_HDMC').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        function createPie_ddr(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            chartData[5],
+                            chartData[6],
+                            chartData[7],
+
+
+                            // chartData[11],
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'Diabetic Target Drug View'
+                    }],
+                    labels: [
+
+                        'Total Unique Patients on Diabetic Brand Meds',
+                        'Total Patients Diabetic Brand Meds Filled at Contracted Pharmacies ',
+                        'Total Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies ',
+                        'Total Diabetic Brand Escripts Count',
+                        'Total Diabetic Brand ERxs Sent to contracted Pharmacies',
+                        'Total Diabetic Brand ERxs Sent non-Contracted Pharmacy',
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_DDR').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        function createPie_tdmcddr(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+                            chartData[10],
+                        ],
+                        backgroundColor: [
+
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'Diabetic Targeted Drug View for Medicaid'
+                    }],
+                    labels: [
+                        'Number of Diabetic Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+
+
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_TDMCDDR').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        function createPie_hiv(chartData) {
+            var config = {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [
+
+                            chartData[0],
+                            chartData[1],
+                            chartData[2],
+                            chartData[5],
+                            chartData[6],
+                            chartData[7],
+
+
+                            // chartData[11],
+
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                            window.chartColors.pink,
+                        ],
+                        label: 'HIV Targeted Drug View for Medicaid'
+                    }],
+                    labels: [
+
+                        'Total Unique HIV Patients',
+                        'Total Patients HIV Meds ERxs filled at Contracted Pharmacies ',
+                        'Total Patients HIV Meds Filled at non-Contracted Pharmacies',
+                        'Total HIV ERxs Count',
+                        'Total HIV ERxs Sent to Contracted Pharmacies',
+                        'Total HIV ERxs Sent to non-Contracted Pharmacies',
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+            var ctx = document.getElementById('chart-area_HIV').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        }
+
+        $(window).on("load", function () {
+            // Animate loader off screen
+            $("lds-ring").style.display = "none";
+
+        });
+    </script>
+</body>
+</html>

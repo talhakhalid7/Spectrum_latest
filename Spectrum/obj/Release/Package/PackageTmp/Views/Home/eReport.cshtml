@@ -1,0 +1,280 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spectrum Health Services, Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/resources/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/resources/custom_css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/resources/custom_css/sidemenu.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/resources/custom_css/media.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="~/Content/resources/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/resources/custom_js/main.js"></script>
+    <script src="~/Content/resources/custom_js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="~/Content/resources/custom_js/jQuery-v3.3.1.js"></script>
+</head>
+<body>
+    <div class="primary-nav">
+        <button href="#" class="hamburger open-panel nav-toggle">
+            <span class="screen-reader-text">Menu</span>
+        </button>
+        <nav role="navigation" class="menu">
+            <div class="overflow-container">
+                <ul class="menu-dropdown">
+                    <li><a href="#">Dashboard</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
+                    <li class="menu-hasdropdown">
+                        <a href="#">Settings</a><span class="icon"><i class="fa fa-gear"></i></span>
+                        <label title="toggle menu" for="settings">
+                            <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+                        </label>
+                        <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+                        <ul class="sub-menu-dropdown">
+                            <li><a href="">Profile</a></li>
+                            <li><a href="">Security</a></li>
+                            <li><a href="">Account</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Favourites</a><span class="icon"><i class="fa fa-heart"></i></span></li>
+                    <li><a href="#">Messages</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid PL-100">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="LandingTopMenu">
+                    <a href="#">Sabrina Testbot</a>
+                    <a href="#">Settings</a>
+                    <button type="button" class="btn btn-primary btn-lg TopButton">Sign Out</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <a href="Home/Index"><img class="img-fluid" src="~/Content/resources/images/logo.jpg" alt=""></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">Total Unique Number of Pharmacies Filling ERxss.</h1>
+
+
+                        <!-- Content Row -->
+                        <div class="row">
+                            <!-- Donut Chart -->
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Contracted Pharmacies</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4">
+                                            <canvas id="myPieChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Total Contracted Pharmacies
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Filling E-Script Pharmacies
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Non-Filling E-Script Pharmacies
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div id="demoTable" class="card shadow mb-4" style="display:block !important;">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Contract Pharmacies Filling Exs Details</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                            <div class="col-sm-12">
+                                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                                    <thead>
+                                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 1181px;">Listing</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 100px;align-content:center;">Selection</th></tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <form>
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">BEST CARE PHARMACY  #2 (ERX): 269 SOUTH 52ND STREET, PHILADELPHIA, PA 19139, Ph (267) 292-4114, Fax (267) 292-4152</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">BEST CARE PHARMACY #3 (ERX): 4931 NORTH BROAD STREET, PHILADELPHIA, PA 19141, Ph (215) 842-5620, Fax (215) 842-5624</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">BEST CARE PHARMACY (ERX): 257 NORTH 52ND STREET, PHILADELPHIA, PA 19139, Ph (267) 292-5011, Fax (267) 292-5403</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">COORDINATED CARE NETWORK (ERX): 300 PENN CENTER BLVD SUITE 505, PITTSBURGH, PA 15235, Ph (877) 349-6337, Fax (412) 825-3525</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">COORDINATED CARE NETWORK: 300 PENN CENTER BLVD, PITTSBURGH, PA 15235, Ph (877) 349-6330, Fax (412) 825-3525</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITECHOICE PHARMACY V (ERX): 5201 HAVERFORD AVE FIRST FLOOR, PHILADELPHIA, PA 19139, Ph (215) 472-9100, Fax (215) 472-9200</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">SUNRAY DRUGS PROGRESS PLAZA (ERX): 1501 NORTH BROAD STREET, PHILADELPHIA, PA 19122, Ph (215) 235-4000, Fax (267) 324-5875</td>
+                                                                <td>
+                                                                    No
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">CVS/PHARMACY #2704 (ERX): 4849 MARKET ST, PHILADELPHIA, PA 19139, Ph (215) 474-4801, Fax (215) 748-7762</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">RITE AID-1528 N BROAD ST. (ERX): 1528 NORTH BROAD STREET, PHILADELPHIA, PA 191214311, Ph (215) 765-9332, Fax (215) 769-5496</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-2131-59 N BROAD ST. (ERX): 2131-59 NORTH BROAD STREET, PHILADELPHIA, PA 191221105, Ph (215) 236-2297, Fax (215) 236-7216</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-3000-02 REED ST. (ERX): 3000-02 REED STREET, PHILADELPHIA, PA 191463520, Ph (215) 467-7920, Fax (215) 467-2256</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-4055-89 MARKET STREE (ERX): 4055-89 MARKET STREET, PHILADELPHIA, PA 191043031, Ph (215) 382-4260, Fax (215) 382-5603</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-4641-51 CHESTNUT ST. (ERX): 4641-51 CHESTNUT STREET, PHILADELPHIA, PA 191394612, Ph (215) 474-5447, Fax (215) 474-5429</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr><tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-5214-30 BALTIMORE AV (ERX): 5214-30 BALTIMORE AVENUE, PHILADELPHIA, PA 191433240, Ph (215) 476-1724, Fax (215) 474-8354</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-5440 LANSDOWNE AVE (ERX): 5440 LANSDOWNE AVENUE, PHILADELPHIA, PA 191313935, Ph (215) 877-1506, Fax (215) 877-8361</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr role="row" class="even">
+                                                                <td class="sorting_1">RITE AID-5627-99 CHESTNUT ST (ERX): 5627-99 CHESTNUT STREET, PHILADELPHIA, PA 191393201, Ph (215) 474-1163, Fax (215) 474-1487</td>
+                                                                <td>
+                                                                    Yes
+                                                                </td>
+
+                                                            </tr>
+
+
+                                                        </form>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="PoweredBy">
+                    <h4>Powered By: <img src="~/Content/resources/images/apovia.png" alt=""></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.nav-toggle').click(function (e) {
+
+            e.preventDefault();
+            $("html").toggleClass("openNav");
+            $(".nav-toggle").toggleClass("active");
+
+        });
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/Content/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Content/js/demo/chart-area-demo.js"></script>
+    <script src="~/Content/js/demo/chart-pie-demo.js"></script>
+    <script src="~/Content/js/demo/chart-bar-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿  .wrap{
+            min-height: 100vh;
+        }
+        .logo{
+            background-image: url("../images/landing_right.png");
+            background-repeat: no-repeat;
+            background-position: bottom left;
+            padding: 10px 0;
+        }
+        .compassIMG{
+            padding: 20px 0;
+        }
+        .WelcomeMSG h2{
+            font-size: 65px;
+            text-transform: uppercase;
+            margin-bottom: 0;
+            color: #1b1464;
+        }
+        .WelcomeMSG h1{
+            font-size: 75px;
+            font-weight: bold;
+            margin-bottom: 0;
+            color: #1b1464;
+        }
+        .WelcomeMSG h3{
+            font-size: 40px;
+            margin-bottom: 0;
+            color: #676767;
+            max-width: 650px;
+        }
+        .Loginview h4{
+            font-size: 20px;
+            margin-bottom: 0;
+            color: #676767;
+            padding: 15px 0;
+        }
+        .LandingBG{
+            background-image: url("../images/landing_bg.png");
+            background-repeat: no-repeat;
+            background-position: right;
+        }
+        .WelcomeMSG_Border{
+            background-image: url("../images/landing_left.png");
+            background-repeat: no-repeat;
+            background-position: bottom left;
+            padding: 40px 0;
+        }
+        .ButtonDefault{
+            background: #1b1464;
+            color: white;
+            border: 0;
+            border-radius: 20px;
+        }
+        .ButtonDefault:hover{
+            background: #110164;
+        }
+        @media screen and (max-width: 1366px) {
+            .LandingBG {
+                background-size: 45%;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .LandingBG {
+                background-image: none !important;
+            }
+        }

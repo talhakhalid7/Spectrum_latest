@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap/css/bootstrap.css">
+    <link href="~/Content/custom_css/landing.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/custom_css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/custom_css/media.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/custom_js/main.js"></script>
+    <script src="~/Content/custom_js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="~/Content/custom_js/jQuery-v3.3.1.js"></script>
+
+</head>
+<body>
+    <div class="wrap LandingBG">
+        <div class="container-fluid">
+            <div class="row pl-5">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="logo">
+                        <a href="index.html"><img class="img-fluid" style="max-width: 85px;" src="~/Content/images/apovia.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="WelcomeMSG WelcomeMSG_Border">
+                        <h2>Welcome To</h2>
+                        <img class="img-fluid compassIMG" src="~/Content/images/compass.png" alt="">
+                        <h3>Your Home for Prior Authorizations & Advanced Analytics</h3>
+                    </div>
+                    <div class="pt-4">
+                        <button type="button" class="btn btn-primary btn-lg ButtonDefault">PRIOR AUTHORIZATIONS</button>
+                        <button type="button" class="btn btn-primary btn-lg ButtonDefault" onclick="location.href='@Url.Action("GetYourReport", "Home")'">Q-LOG</button>
+                    </div>
+                    <div class="pt-4">
+                        <button type="button" class="btn btn-primary btn-lg ButtonDefault" onclick="location.href='@Url.Action("GetYourChart", "Home")'">Charts</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
