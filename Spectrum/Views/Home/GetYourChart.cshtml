@@ -572,7 +572,7 @@
 
             var Ctx = document.getElementById('chart-area').getContext('2d');
             var UserVsMyApps = new Chart(Ctx, {
-                type: 'bar',
+                type: 'line',
                 data: UserVsMyAppsData,
                 options: {
                     responsive: true,
@@ -675,7 +675,11 @@
                 chart.draw(dataTable, options);
 
             }
-            //createPie_hiv23();
+
+
+
+
+            
         });
 
     </script>

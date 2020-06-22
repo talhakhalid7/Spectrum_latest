@@ -1,4 +1,5 @@
 ﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -12,24 +13,24 @@ namespace WebApplication2.Controllers
     {
         int a, b, c, d, e, f, g, j, k, l, o, UPER, UPERCP, result_UPER = 0,
         SecRep = 0, SecRep1 = 0, SecRep2 = 0, /*SecRep3, SecRep4,*/ SecRep2a1 = 0, SecRep2a3 = 0, SecRep2a5 = 0, SecRep2a7 = 0, SecRep2a9 = 0;
-        float SecRep2a2 = 0, SecRep2a4 = 0, SecRep2a6 = 0, SecRep2a8 = 0, SecRep2a10 = 0;
+        decimal SecRep2a2 = 0, SecRep2a4 = 0, SecRep2a6 = 0, SecRep2a8 = 0, SecRep2a10 = 0;
         int ThirdRep1a, ThirdRep1b, ThirdRep1c, ThirdRep1f, ThirdRep1g, ThirdRep1h;
-        float ThirdRep1d, ThirdRep1e, ThirdRep1i, ThirdRep1j;
+        decimal ThirdRep1d, ThirdRep1e, ThirdRep1i, ThirdRep1j;
         int ThirdRepMedicaid3a;
-        float ThirdRepMedicaid3b;
+        decimal ThirdRepMedicaid3b;
         int FourRep1a, FourRep1b, FourRep1c, FourRep1f, FourRep1g, FourRep1h;
-        float FourRep1d, FourRep1e, FourRep1i, FourRep1j;
+        decimal FourRep1d, FourRep1e, FourRep1i, FourRep1j;
         int FourRepMedicaid4a;
-        float FourRepMedicaid4b;
+        decimal FourRepMedicaid4b;
 
         int FiveRep1a, FiveRep1b, FiveRep1c, FiveRep1f, FiveRep1g, FiveRep1h;
-        float FiveRep1d, FiveRep1e, FiveRep1i, FiveRep1j;
+        decimal FiveRep1d, FiveRep1e, FiveRep1i, FiveRep1j;
         int FiveRepMedicaid5a;
-        float FiveRepMedicaid5b;
+        decimal FiveRepMedicaid5b;
 
 
-        float h, i, n, m, p, percent_UPERNCP, uper_float, upercp_float, result_UPER_float, percent_UPER = 0, SecRep1_float = 0, SecRep3_float = 0, SecRep4_float = 0;
-        SqlConnection connectionString = new SqlConnection(@"Data Source=talhaserver.database.windows.net;Initial Catalog=spectrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
+        decimal h, i, n, m, p, percent_UPERNCP, uper_float, upercp_float, result_UPER_float, percent_UPER = 0, SecRep1_float = 0, SecRep3_float = 0, SecRep4_float = 0;
+        SqlConnection connectionString = new SqlConnection(@"Data Source=talhaserver.database.windows.net;Initial Catalog=sperctrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
         //SqlConnection connectionString = new SqlConnection(@"Data Source =.; Initial Catalog = spectrum; Integrated Security = True");
         public ActionResult Index()
         {
@@ -62,6 +63,7 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
+
         public ActionResult eReport()
         {
             return View("");
@@ -129,6 +131,25 @@ namespace WebApplication2.Controllers
             }
             else if (opts.Equals("3"))
             {
+                SqlDataReader Result = fetch3rdReport();
+                if(Result.Read())
+                {
+                    ThirdRep1a = (int)Result[0];
+                    ThirdRep1b = (int)Result[1];
+                    ThirdRep1c = (int)Result[2];
+                    ThirdRep1f = (int)Result[5];
+                    ThirdRep1g = (int)Result[6];
+                    ThirdRep1h = (int)Result[7];
+                    ThirdRep1d = (decimal)Result[3];
+                    ThirdRep1e = (decimal)Result[4];
+                    ThirdRep1i = (decimal)Result[8];
+                    ThirdRep1j = (decimal)Result[9];
+                    ThirdRepMedicaid3a = (int)Result[10];
+                    ThirdRepMedicaid3b = (decimal)Result[11];
+
+                }
+                Result.Close();
+                /*
                 TotalTargetDrugsReport3a();
                 TotalTargetDrugsReport3b();
                 TotalTargetDrugsReport3c();
@@ -142,7 +163,7 @@ namespace WebApplication2.Controllers
 
                 TargetDrugMedicaidReport3a();
                 TargetDrugMedicaidReport3b();
-
+                */
                 connectionString.Close();
 
                 return Json(new { TTD = new[] { new { TTD1 = String.Format("{0:n0}", ThirdRep1a), TTD2 = String.Format("{0:n0}", ThirdRep1b), TTD3 = String.Format("{0:n0}", ThirdRep1c), TTD4 = Math.Round(ThirdRep1d, 2) + "%", TTD5 = Math.Round(ThirdRep1e, 2) + "%", TTD6 = String.Format("{0:n0}", ThirdRep1f), TTD7 = String.Format("{0:n0}", ThirdRep1g), TTD8 = String.Format("{0:n0}", ThirdRep1h), TTD9 = Math.Round(ThirdRep1i, 2) + "%", TTD10 = Math.Round(ThirdRep1j, 2) + "%" } }, TDMC = new[] { new { TDMC1 = String.Format("{0:n0}", ThirdRepMedicaid3a), TDMC2 = Math.Round(ThirdRepMedicaid3b, 2) + "%" } } });
@@ -150,19 +171,39 @@ namespace WebApplication2.Controllers
             }
             else if (opts.Equals("4"))
             {
-                HivTargetDrugsReport3a();
-                HivTargetDrugsReport3b();
-                HivTargetDrugsReport3c();
-                HivTargetDrugsReport3d();
-                HivTargetDrugsReport3e();
-                HivTargetDrugsReport3f();
-                HivTargetDrugsReport3g();
-                HivTargetDrugsReport3h();
-                HivTargetDrugsReport3i();
-                HivTargetDrugsReport3j();
+                /*
+                                HivTargetDrugsReport3a();
+                                HivTargetDrugsReport3b();
+                                HivTargetDrugsReport3c();
+                                HivTargetDrugsReport3d();
+                                HivTargetDrugsReport3e();
+                                HivTargetDrugsReport3f();
+                                HivTargetDrugsReport3g();
+                                HivTargetDrugsReport3h();
+                                HivTargetDrugsReport3i();
+                                HivTargetDrugsReport3j();
 
-                HivDrugMedicaidReport4a();
-                HivDrugMedicaidReport4b();
+                                HivDrugMedicaidReport4a();
+                                HivDrugMedicaidReport4b();
+                */
+                SqlDataReader Result = fetch4thReport();
+                if (Result.Read())
+                {
+                    FourRep1a = (int)Result[0];
+                    FourRep1b = (int)Result[1];
+                    FourRep1c = (int)Result[2];
+                    FourRep1f = (int)Result[5];
+                    FourRep1g = (int)Result[6];
+                    FourRep1h = (int)Result[7];
+                    FourRep1d = (decimal)Result[3];
+                    FourRep1e = (decimal)Result[4];
+                    FourRep1i = (decimal)Result[8];
+                    FourRep1j = (decimal)Result[9];
+                    FourRepMedicaid4a = (int)Result[10];
+                    FourRepMedicaid4b = (decimal)Result[11];
+
+                }
+                Result.Close();
 
                 connectionString.Close();
 
@@ -171,24 +212,59 @@ namespace WebApplication2.Controllers
             }
             else if (opts.Equals("5"))
             {
-                DibTargetDrugsReport3a();
-                DibTargetDrugsReport3b();
-                DibTargetDrugsReport3c();
-                DibTargetDrugsReport3d();
-                DibTargetDrugsReport3e();
-                DibTargetDrugsReport3f();
-                DibTargetDrugsReport3g();
-                DibTargetDrugsReport3h();
-                DibTargetDrugsReport3i();
-                DibTargetDrugsReport3j();
+                /*
+                                DibTargetDrugsReport3a();
+                                DibTargetDrugsReport3b();
+                                DibTargetDrugsReport3c();
+                                DibTargetDrugsReport3d();
+                                DibTargetDrugsReport3e();
+                                DibTargetDrugsReport3f();
+                                DibTargetDrugsReport3g();
+                                DibTargetDrugsReport3h();
+                                DibTargetDrugsReport3i();
+                                DibTargetDrugsReport3j();
 
-                DibDrugMedicaidReport4a();
-                DibDrugMedicaidReport4b();
+                                DibDrugMedicaidReport4a();
+                                DibDrugMedicaidReport4b();
+                */
+                SqlDataReader Result = fetch5thReport();
+                if (Result.Read())
+                {
+                    FiveRep1a = (int)Result[0];
+                    FiveRep1b = (int)Result[1];
+                    FiveRep1c = (int)Result[2];
+                    FiveRep1f = (int)Result[5];
+                    FiveRep1g = (int)Result[6];
+                    FiveRep1h = (int)Result[7];
+                    FiveRep1d = (decimal)Result[3];
+                    FiveRep1e = (decimal)Result[4];
+                    FiveRep1i = (decimal)Result[8];
+                    FiveRep1j = (decimal)Result[9];
+                    FiveRepMedicaid5a = (int)Result[10];
+                    FiveRepMedicaid5b = (decimal)Result[11];
 
+                }
+                Result.Close();
                 connectionString.Close();
 
-                return Json(new { DDR = new[] { new { DDR1 = String.Format("{0:n0}", FiveRep1a), DDR2 = String.Format("{0:n0}", FiveRep1b), DDR3 = String.Format("{0:n0}", FiveRep1c), DDR4 = Math.Round(FiveRep1d, 2) + "%", DDR5 = Math.Round(FiveRep1e, 2) + "%", DDR6 = String.Format("{0:n0}", FiveRep1f), DDR7 = String.Format("{0:n0}", FiveRep1g), DDR8 = String.Format("{0:n0}", FiveRep1h), DDR9 = Math.Round(FiveRep1i, 2) + "%", DDR10 = Math.Round(FiveRep1j, 2) + "%" } }, TDMCDDR = new[] { new { TDMC1 = String.Format("{0:n0}", FiveRepMedicaid5b), TDMC2 = Math.Round(FiveRepMedicaid5b, 2) + "%" } } });
+                return Json(new { DDR = new[] { new { DDR1 = String.Format("{0:n0}", FiveRep1a), DDR2 = String.Format("{0:n0}", FiveRep1b), DDR3 = String.Format("{0:n0}", FiveRep1c), DDR4 = Math.Round(FiveRep1d, 2) + "%", DDR5 = Math.Round(FiveRep1e, 2) + "%", DDR6 = String.Format("{0:n0}", FiveRep1f), DDR7 = String.Format("{0:n0}", FiveRep1g), DDR8 = String.Format("{0:n0}", FiveRep1h), DDR9 = Math.Round(FiveRep1i, 2) + "%", DDR10 = Math.Round(FiveRep1j, 2) + "%" } }, TDMCDDR = new[] { new { TDMCDDR1 = String.Format("{0:n0}", FiveRepMedicaid5a), TDMCDDR2 = Math.Round(FiveRepMedicaid5b, 2) + "%" } } });
 
+            }
+            else if (opts.Equals("6"))
+            {
+                return Json(new {EQPTR = "True" });
+            }
+            else if (opts.Equals("7"))
+            {
+                var result =  PDCR_Detail();
+                var result2 = PDCR_sum();
+                return Json( new { PD = new[] { new { Patient_Detail = result } } , PS = new[] { new {PS = result2 } } });
+            }
+            else if (opts.Equals("9"))
+            {
+                var result = ORM_Details();
+                var result2 = ORM_sum();
+                return Json(new { ORMD = new[] { new { ORM_Detail = result } }, ORMS = new[] { new { ORMS = result2 } } });
             }
             else
             {
@@ -292,8 +368,8 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            float perNonContracted = ((float)B / (float)A) * 100;
-            h = (float)Math.Round(perNonContracted, 2);
+            decimal perNonContracted = ((decimal)B / (decimal)A) * 100;
+            h = (decimal)Math.Round(perNonContracted, 2);
 
             return Json(new { Perc_nonCon = perNonContracted }, JsonRequestBehavior.AllowGet);
 
@@ -312,8 +388,8 @@ namespace WebApplication2.Controllers
             //int B = (int)command_B.ExecuteScalar();
 
             //
-            float perContracted = ((float)C / (float)A) * 100;
-            i = (float)Math.Round(perContracted, 2);
+            decimal perContracted = ((decimal)C / (decimal)A) * 100;
+            i = (decimal)Math.Round(perContracted, 2);
             return Json(new { Perc_Con = perContracted }, JsonRequestBehavior.AllowGet);
         }
         int D = 0;
@@ -367,8 +443,8 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            float perMCOContracted = ((float)E / (float)D) * 100;
-            m = (float)Math.Round(perMCOContracted, 2);
+            decimal perMCOContracted = ((decimal)E / (decimal)D) * 100;
+            m = (decimal)Math.Round(perMCOContracted, 2);
             return Json(new { PercMCO_Con = perMCOContracted }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -383,8 +459,8 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            float perMCO_nonContracted = ((float)F / (float)D) * 100;
-            n = (float)Math.Round(perMCO_nonContracted, 2);
+            decimal perMCO_nonContracted = ((decimal)F / (decimal)D) * 100;
+            n = (decimal)Math.Round(perMCO_nonContracted, 2);
             return Json(new { PercMCO_nonCon = perMCO_nonContracted }, JsonRequestBehavior.AllowGet);
         }
         int G = 0;
@@ -413,8 +489,8 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            float perMCO_excWalgreen = ((float)G / (float)D) * 100;
-            p = (float)Math.Round(perMCO_excWalgreen, 2);
+            decimal perMCO_excWalgreen = ((decimal)G / (decimal)D) * 100;
+            p = (decimal)Math.Round(perMCO_excWalgreen, 2);
             return Json(new { perMCO_Walgreen = perMCO_excWalgreen }, JsonRequestBehavior.AllowGet);
         }
 
@@ -426,7 +502,7 @@ namespace WebApplication2.Controllers
             string query = "select Count(Distinct patientid) from SpectrumEscriptData";
             var command = new SqlCommand(query, connectionString);
             UPER = (int)command.ExecuteScalar();
-            uper_float = (float)UPER;
+            uper_float = (decimal)UPER;
 
             return Json(new { uper = UPER }, JsonRequestBehavior.AllowGet);
         }
@@ -439,7 +515,7 @@ namespace WebApplication2.Controllers
             string query = "select Count(Distinct patientid) from SpectrumEscriptData, ContractPharmaciesFillingExs where pharmacy = ActiveContractedPharmacies and filling like '%y%'";
             var command = new SqlCommand(query, connectionString);
             UPERCP = (int)command.ExecuteScalar();
-            upercp_float = (float)UPERCP;
+            upercp_float = (decimal)UPERCP;
 
             return Json(new { uper = UPERCP }, JsonRequestBehavior.AllowGet);
         }
@@ -449,23 +525,23 @@ namespace WebApplication2.Controllers
         public object UniquePatients_EscriptRecNonConPharma()
         {   //A-B
             result_UPER = UPER - UPERCP;
-            result_UPER_float = (float)result_UPER;
+            result_UPER_float = (decimal)result_UPER;
             return Json(new { uper_result = result_UPER }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public object Perc_UniquePatients_EscriptRecCon()
         {   //(B/A)*100
-            float res_uper = (upercp_float / uper_float) * 100;
-            percent_UPER = (float)Math.Round(res_uper, 2);
+            decimal res_uper = (upercp_float / uper_float) * 100;
+            percent_UPER = (decimal)Math.Round(res_uper, 2);
             return Json(new { uper_percentage = percent_UPER }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public object Perc_UniquePatients_EscriptNonRecCon()
         {   //(C/A)*100
-            float res_uoer = (result_UPER_float / uper_float) * 100;
-            percent_UPERNCP = (float)Math.Round(res_uoer, 2);
+            decimal res_uoer = (result_UPER_float / uper_float) * 100;
+            percent_UPERNCP = (decimal)Math.Round(res_uoer, 2);
             return Json(new { uper_percentage = percent_UPERNCP }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -475,7 +551,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Cash'";
             var command = new SqlCommand(query, connectionString);
             SecRep1 = (int)command.ExecuteScalar();
-            SecRep1_float = (float)SecRep1;
+            SecRep1_float = (decimal)SecRep1;
 
             return Json(new { uper = SecRep1 }, JsonRequestBehavior.AllowGet);
         }
@@ -490,14 +566,14 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object totalEscriptInsuranceCoveredPer()
         {
-            SecRep3_float = ((float)SecRep1 / (float)A) * 100;
+            SecRep3_float = ((decimal)SecRep1 / (decimal)A) * 100;
             return Json(new { uper = SecRep3_float }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public object totalEscriptInsuranceCashCoveredPer()
         {
-            SecRep4_float = (float)100.00 - SecRep3_float;
+            SecRep4_float = (decimal)100.00 - SecRep3_float;
             return Json(new { uper = SecRep4_float }, JsonRequestBehavior.AllowGet);
         }
 
@@ -507,7 +583,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Medicaid'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a1 = (int)command.ExecuteScalar();
-            //SecRep2a1_float = (float)SecRep2a1;
+            //SecRep2a1_float = (decimal)SecRep2a1;
 
             return Json(new { uper = SecRep2a1 }, JsonRequestBehavior.AllowGet);
         }
@@ -518,7 +594,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Commercial'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a3 = (int)command.ExecuteScalar();
-            //SecRep2a3_float = (float)SecRep2a3;
+            //SecRep2a3_float = (decimal)SecRep2a3;
 
             return Json(new { uper = SecRep2a3 }, JsonRequestBehavior.AllowGet);
         }
@@ -529,7 +605,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Medicare'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a5 = (int)command.ExecuteScalar();
-            //SecRep2a5_float = (float)SecRep2a5;
+            //SecRep2a5_float = (decimal)SecRep2a5;
 
             return Json(new { uper = SecRep2a5 }, JsonRequestBehavior.AllowGet);
         }
@@ -540,7 +616,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Tricare'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a7 = (int)command.ExecuteScalar();
-            //SecRep2a7_float = (float)SecRep2a7;
+            //SecRep2a7_float = (decimal)SecRep2a7;
 
             return Json(new { uper = SecRep2a7 }, JsonRequestBehavior.AllowGet);
         }
@@ -551,36 +627,36 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Cash'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a9 = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (float)SecRep2a9;
+            //SecRep2a9_float = (decimal)SecRep2a9;
 
             return Json(new { uper = SecRep2a9 }, JsonRequestBehavior.AllowGet);
         }
         public object totalERxSecReport2MediacaidPer()
         {
-            SecRep2a2 = ((float)SecRep2a1 / (float)A) * 100;
+            SecRep2a2 = ((decimal)SecRep2a1 / (decimal)A) * 100;
             return Json(new { uper = SecRep2a2 }, JsonRequestBehavior.AllowGet);
         }
         public object totalERxSecReport2CommercialPer()
         {
-            SecRep2a4 = ((float)SecRep2a3 / (float)A) * 100;
+            SecRep2a4 = ((decimal)SecRep2a3 / (decimal)A) * 100;
             return Json(new { uper = SecRep2a4 }, JsonRequestBehavior.AllowGet);
 
         }
         public object totalERxSecReport2MedicarePer()
         {
-            SecRep2a6 = ((float)SecRep2a5 / (float)A) * 100;
+            SecRep2a6 = ((decimal)SecRep2a5 / (decimal)A) * 100;
             return Json(new { uper = SecRep2a6 }, JsonRequestBehavior.AllowGet);
 
         }
         public object totalERxSecReport2TricarePer()
         {
-            SecRep2a8 = ((float)SecRep2a7 / (float)A) * 100;
+            SecRep2a8 = ((decimal)SecRep2a7 / (decimal)A) * 100;
             return Json(new { uper = SecRep2a8 }, JsonRequestBehavior.AllowGet);
 
         }
         public object totalERxSecReport2CashPer()
         {
-            SecRep2a10 = ((float)SecRep2a9 / (float)A) * 100;
+            SecRep2a10 = ((decimal)SecRep2a9 / (decimal)A) * 100;
             return Json(new { uper = SecRep2a10 }, JsonRequestBehavior.AllowGet);
 
         }
@@ -601,7 +677,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs  where[Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies";
             var command = new SqlCommand(query, connectionString);
             ThirdRep1b = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (float)SecRep2a9;
+            //SecRep2a9_float = (decimal)SecRep2a9;
             B = ThirdRep1b;
 
             return Json(new { uper = ThirdRep1b }, JsonRequestBehavior.AllowGet);
@@ -615,13 +691,13 @@ namespace WebApplication2.Controllers
         }
         public object TotalTargetDrugsReport3d()
         {
-            ThirdRep1d = ((float)B / (float)A) * 100;
+            ThirdRep1d = ((decimal)B / (decimal)A) * 100;
             return Json(new { uper = ThirdRep1d }, JsonRequestBehavior.AllowGet);
         }
 
         public object TotalTargetDrugsReport3e()
         {
-            ThirdRep1e = ((float)C / (float)A) * 100;
+            ThirdRep1e = ((decimal)C / (decimal)A) * 100;
             return Json(new { uper = ThirdRep1e }, JsonRequestBehavior.AllowGet);
         }
 
@@ -655,13 +731,13 @@ namespace WebApplication2.Controllers
         }
         public object TotalTargetDrugsReport3i()
         {
-            ThirdRep1i = ((float)G / (float)F) * 100;
+            ThirdRep1i = ((decimal)G / (decimal)F) * 100;
             return Json(new { uper = ThirdRep1i }, JsonRequestBehavior.AllowGet);
         }
 
         public object TotalTargetDrugsReport3j()
         {
-            ThirdRep1j = ((float)H / (float)F) * 100;
+            ThirdRep1j = ((decimal)H / (decimal)F) * 100;
             return Json(new { uper = ThirdRep1j }, JsonRequestBehavior.AllowGet);
         }
 
@@ -683,7 +759,7 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             ThirdRepMedicaid3b = (int)command.ExecuteScalar();
             //G = ThirdRep1g;
-            ThirdRepMedicaid3b = ((float)A / (float)ThirdRepMedicaid3b) / 100;
+            ThirdRepMedicaid3b = ((decimal)A / (decimal)ThirdRepMedicaid3b) / 100;
 
             return Json(new { uper = ThirdRepMedicaid3b }, JsonRequestBehavior.AllowGet);
         }
@@ -706,7 +782,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs  where TargetDrugList.Type = 'HIV' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies";
             var command = new SqlCommand(query, connectionString);
             FourRep1b = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (float)SecRep2a9;
+            //SecRep2a9_float = (decimal)SecRep2a9;
             B = FourRep1b;
 
             return Json(new { uper = FourRep1b }, JsonRequestBehavior.AllowGet);
@@ -720,13 +796,13 @@ namespace WebApplication2.Controllers
         }
         public object HivTargetDrugsReport3d()
         {
-            FourRep1d = ((float)B / (float)A) * 100;
+            FourRep1d = ((decimal)B / (decimal)A) * 100;
             return Json(new { uper = FourRep1d }, JsonRequestBehavior.AllowGet);
         }
 
         public object HivTargetDrugsReport3e()
         {
-            FourRep1e = ((float)C / (float)A) * 100;
+            FourRep1e = ((decimal)C / (decimal)A) * 100;
             return Json(new { uper = FourRep1e }, JsonRequestBehavior.AllowGet);
         }
 
@@ -760,13 +836,13 @@ namespace WebApplication2.Controllers
         }
         public object HivTargetDrugsReport3i()
         {
-            FourRep1i = ((float)G / (float)F) * 100;
+            FourRep1i = ((decimal)G / (decimal)F) * 100;
             return Json(new { uper = FourRep1i }, JsonRequestBehavior.AllowGet);
         }
 
         public object HivTargetDrugsReport3j()
         {
-            FourRep1j = ((float)H / (float)F) * 100;
+            FourRep1j = ((decimal)H / (decimal)F) * 100;
             return Json(new { uper = FourRep1j }, JsonRequestBehavior.AllowGet);
         }
 
@@ -788,7 +864,7 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FourRepMedicaid4b = (int)command.ExecuteScalar();
             //G = FourRep1g;
-            FourRepMedicaid4b = ((float)A / (float)FourRepMedicaid4b) * 100;
+            FourRepMedicaid4b = ((decimal)A / (decimal)FourRepMedicaid4b) * 100;
 
             return Json(new { uper = FourRepMedicaid4b }, JsonRequestBehavior.AllowGet);
         }
@@ -815,7 +891,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs  where TargetDrugList.Type = 'DIB' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies";
             var command = new SqlCommand(query, connectionString);
             FiveRep1b = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (float)SecRep2a9;
+            //SecRep2a9_float = (decimal)SecRep2a9;
             B = FiveRep1b;
 
             return Json(new { uper = FiveRep1b }, JsonRequestBehavior.AllowGet);
@@ -829,13 +905,13 @@ namespace WebApplication2.Controllers
         }
         public object DibTargetDrugsReport3d()
         {
-            FiveRep1d = ((float)B / (float)A) * 100;
+            FiveRep1d = ((decimal)B / (decimal)A) * 100;
             return Json(new { uper = FiveRep1d }, JsonRequestBehavior.AllowGet);
         }
 
         public object DibTargetDrugsReport3e()
         {
-            FiveRep1e = ((float)C / (float)A) * 100;
+            FiveRep1e = ((decimal)C / (decimal)A) * 100;
             return Json(new { uper = FiveRep1e }, JsonRequestBehavior.AllowGet);
         }
 
@@ -869,13 +945,13 @@ namespace WebApplication2.Controllers
         }
         public object DibTargetDrugsReport3i()
         {
-            FiveRep1i = ((float)G / (float)F) * 100;
+            FiveRep1i = ((decimal)G / (decimal)F) * 100;
             return Json(new { uper = FiveRep1i }, JsonRequestBehavior.AllowGet);
         }
 
         public object DibTargetDrugsReport3j()
         {
-            FiveRep1j = ((float)H / (float)F) * 100;
+            FiveRep1j = ((decimal)H / (decimal)F) * 100;
             return Json(new { uper = FiveRep1j }, JsonRequestBehavior.AllowGet);
         }
 
@@ -897,7 +973,7 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FiveRepMedicaid5b = (int)command.ExecuteScalar();
             //G = FiveRep1g;
-            FiveRepMedicaid5b = ((float)A / (float)FiveRepMedicaid5b) * 100;
+            FiveRepMedicaid5b = ((decimal)A / (decimal)FiveRepMedicaid5b) * 100;
 
             return Json(new { uper = FiveRepMedicaid5b }, JsonRequestBehavior.AllowGet);
         }
@@ -905,7 +981,107 @@ namespace WebApplication2.Controllers
 
 
         //end of 5th report
+        //New function for 3rd Report
+        public SqlDataReader fetch3rdReport()
+        {
 
+            string query = "select [FirstCol],[SecondCol],[ThirdCol],[FourCol],[FiveCol],[SixCol],[SevenCol],[EightCol],[NineCol],[TenCol],[ElevenCol],[TwelveCol] from Drugs_Reports where ReportType= 'Total'";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader ThirdReport = command.ExecuteReader();
+            //F = FiveRep1f;
+            return ThirdReport;
+        }
+        //New function for 4rd Report
+        public SqlDataReader fetch4thReport()
+        {
+
+            string query = "select [FirstCol],[SecondCol],[ThirdCol],[FourCol],[FiveCol],[SixCol],[SevenCol],[EightCol],[NineCol],[TenCol],[ElevenCol],[TwelveCol] from Drugs_Reports where ReportType= 'HIV'";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader ThirdReport = command.ExecuteReader();
+            //F = FiveRep1f;
+            return ThirdReport;
+        }
+        //New function for 5th Report
+        public SqlDataReader fetch5thReport()
+        {
+
+            string query = "select [FirstCol],[SecondCol],[ThirdCol],[FourCol],[FiveCol],[SixCol],[SevenCol],[EightCol],[NineCol],[TenCol],[ElevenCol],[TwelveCol] from Drugs_Reports where ReportType= 'DIB'";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader ThirdReport = command.ExecuteReader();
+            //F = FiveRep1f;
+            return ThirdReport;
+        }
+        //report-7 Pharmacy Diagnosis Code Report
+        public IEnumerable<Dictionary<string, object>> Serialize(SqlDataReader reader)
+        {
+            var results = new List<Dictionary<string, object>>();
+            var cols = new List<string>();
+            for (var i = 0; i < reader.FieldCount; i++)
+                cols.Add(reader.GetName(i));
+
+            while (reader.Read())
+                results.Add(SerializeRow(cols, reader));
+
+            return results;
+        }
+        private Dictionary<string, object> SerializeRow(IEnumerable<string> cols,
+                                                SqlDataReader reader)
+        {
+            var result = new Dictionary<string, object>();
+            foreach (var col in cols)
+                result.Add(col, reader[col]);
+            return result;
+        }
+        public object PDCR_Detail()
+        {
+
+            string query = "select * FROM PharmacyDiagnosisCodeReport";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader SEVENTHREPORT_DETAILS = command.ExecuteReader();
+            var result = Serialize(SEVENTHREPORT_DETAILS);
+            SEVENTHREPORT_DETAILS.Close();
+            string json = JsonConvert.SerializeObject(result, Formatting.Indented);
+            json = json.Replace("\r\n", string.Empty);
+            return json;
+        }
+        public object PDCR_sum()
+        {
+
+            string query = "SELECT [ICD10CodeDec], count(*)  as patient FROM PharmacyDiagnosisCodeReport group by [ICD10CodeDec] order by count(*) desc";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader SEVENTHREPORT_Sum = command.ExecuteReader();
+            var result2 = Serialize(SEVENTHREPORT_Sum);
+            SEVENTHREPORT_Sum.Close();
+            string json = JsonConvert.SerializeObject(result2, Formatting.Indented);
+            json = json.Replace("\r\n", string.Empty);
+            return json;
+        }
+
+        public object ORM_Details()
+        {
+
+            string query = "Select * from UniqueMatch";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader SEVENTHREPORT_Sum = command.ExecuteReader();
+            var result2 = Serialize(SEVENTHREPORT_Sum);
+            SEVENTHREPORT_Sum.Close();
+            string json = JsonConvert.SerializeObject(result2, Formatting.Indented);
+            json = json.Replace("\r\n", string.Empty);
+            return json;
+        }
+
+        public object ORM_sum()
+        {
+
+            string query = "select Category ,sum(RXCount) as RXCount, sum(OppourtunityofRevenue) as OpportunityRev from UniqueMatch where Category is not NULL group by Category";
+            var command = new SqlCommand(query, connectionString);
+            SqlDataReader SEVENTHREPORT_Sum = command.ExecuteReader();
+            var result2 = Serialize(SEVENTHREPORT_Sum);
+            SEVENTHREPORT_Sum.Close();
+            string json = JsonConvert.SerializeObject(result2, Formatting.Indented);
+            json = json.Replace("\r\n", string.Empty);
+            return json;
+        }
 
     }
 }
