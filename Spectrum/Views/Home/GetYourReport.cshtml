@@ -25,10 +25,28 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
-
     <link href="~/Content/custom_css/loader.css" rel="stylesheet" />
+    
+    <script src="~/Content/custom_js/script.js"></script>
     <style>
+        .filter{
+  position:absolute;
+  border: solid 1px;
+  top : 20px;
+  background-color : white;
+  width:100px;
+  right:0;
+  display:none;
+}
+        .my-custom-scrollbar {
+            position: relative;
+            height: 600px;
+            overflow: auto;
+            }
+        .table-wrapper-scroll-y {
+            display: block;
+            }
+
 
         .select2-search--dropdown {
             display: none;
@@ -202,6 +220,24 @@
         .BottomPadding {
             padding-bottom: 350px;
         }
+
+        .SPHeading h3 {
+            font-size: 50px;
+            text-align: left;
+            font-weight: normal;
+            padding-top: 50px;
+            padding-left: 30px;
+        }
+
+        .ButtonDefault {
+            background: #1b1464;
+            color: white;
+            border: 0;
+        }
+
+            .ButtonDefault:hover {
+                background: #87b6ff;
+            }
     </style>
 </head>
 <body>
@@ -235,7 +271,7 @@
     <div id="wrapper">
         <header id="header">
             <div class="logo">
-                <a href="index.html">
+                <a href="http://spect.azurewebsites.net/">
                     <img class="img-fluid" style="max-width:50%;" src="/Content/resources/images/apovia.png" alt="logo description">
                 </a>
             </div>
@@ -243,10 +279,15 @@
                 <ul>
                     <li><a href="#">Admin</a></li>
                     <li><a href="#">Settings</a></li>
-                    <li><a href="#" class="btn-signout btn btn-primary">Sign Out</a></li>
+                    <li><a href="#" class="btn-signout btn btn-primary ButtonDefault">Sign Out</a></li>
                 </ul>
             </nav>
         </header>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 SPHeading">
+                <h3>Welcome to the Spectrum Dashboard</h3>
+            </div>
+        </div>
         <div class="visual">
             <form action="#" class="filter-form">
                 <h2>Get Your Report</h2>
@@ -269,66 +310,66 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ReportListBox" style="display:none !important">
                         <label>Select Report:</label>
                         <select name="select_2" id="select_2" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="ERxs1" data-value="1">UNPF|Total Unique Number of Pharmacies Filling ERxs</option>
-                            <option value="ERxs2" data-value="1">UNCP|Total Number of Unique non-Contracted Pharmacies Filling ERxs</option>
-                            <option value="ERxs3" data-value="1">UCP|Total Number of Contracted Pharmacies</option>
-                            <option value="ERxs4" data-value="1">UCPF|Total Number of Unique Contracted Pharmacies Filling ERxs</option>
+                            <option value="ERxs1" data-value="1">  Unique Number of Pharmacies Filling ERxs</option>
+                            <option value="ERxs2" data-value="1">  Number of Unique non-Contracted Pharmacies Filling ERxs</option>
+                            <option value="ERxs3" data-value="1">  Number of Contracted Pharmacies</option>
+                            <option value="ERxs4" data-value="1">  Number of Unique Contracted Pharmacies Filling ERxs</option>
                         </select>
                         <select name="select_3" id="select_3" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="Total1" data-value="2">Total ERxs</option>
-                            <option value="Total2" data-value="2">Total ERxs Filled at Non-Contracted Pharmacies</option>
-                            <option value="Total3" data-value="2">Total ERxs Filled at Contracted Pharmacies</option>
+                            <option value="Total1" data-value="2">  ERxs</option>
+                            <option value="Total2" data-value="2">  ERxs Filled at Non-Contracted Pharmacies</option>
+                            <option value="Total3" data-value="2">  ERxs Filled at Contracted Pharmacies</option>
                             <option value="Total4" data-value="2">Percentage ERxs Filled at Non-Contracted Pharmacies</option>
                             <option value="Total5" data-value="2">Percentage of ERxs Filled at Contracted Pharmacies </option>
                         </select>
                         <select name="select_4" id="select_4" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="MCO1" data-value="3">Total MCO Medicaid ERxs</option>
-                            <option value="MCO2" data-value="3">Total MCO Medicaid ERxs Filled at Contracted Pharmacy </option>
-                            <option value="MCO3" data-value="3">Total ERxs Filled at non- Contracted Pharmacies</option>
+                            <option value="MCO1" data-value="3">  MCO Medicaid ERxs</option>
+                            <option value="MCO2" data-value="3">  MCO Medicaid ERxs Filled at Contracted Pharmacy </option>
+                            <option value="MCO3" data-value="3">  ERxs Filled at non- Contracted Pharmacies</option>
                             <option value="MCO4" data-value="3">Percentage MCO Medicaid ERxs Filled at Contracted Pharmacies</option>
                             <option value="MCO5" data-value="3">Percentage of ERxs Filled at non-Contracted Pharmacies</option>
-                            <option value="MCO6" data-value="3">Total MCO Medicaid ERxs Filled at Contracted Chain Pharmacies</option>
+                            <option value="MCO6" data-value="3">  MCO Medicaid ERxs Filled at Contracted Chain Pharmacies</option>
                             <option value="MCO7" data-value="3">Percentage of ERxs Filled at non-Contracted PharmaciePercentage MCO Medicaid ERxs Filled at Contracted Chain Pharmacy</option>
                         </select>
                         <select name="pp" id="pp" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="pp1" data-value="4">Total Unique Patients Received an ERxs</option>
-                            <option value="pp2" data-value="4">Total Unique Patients ERxs Filled at Contracted Pharmacies</option>
-                            <option value="pp3" data-value="4">Total Unique Patients ERxs Filled at Non-Contracted Pharmacies</option>
+                            <option value="pp1" data-value="4">  Unique Patients Received an ERxs</option>
+                            <option value="pp2" data-value="4">  Unique Patients ERxs Filled at Contracted Pharmacies</option>
+                            <option value="pp3" data-value="4">  Unique Patients ERxs Filled at Non-Contracted Pharmacies</option>
                             <option value="pp4" data-value="4">Percentage of Patients ERxs Filled at Contracted Pharmacies </option>
                             <option value="pp5" data-value="4">Percentage of Patients ERxs Filled at Non- Contracted Pharmacies</option>
 
                         </select>
                         <select name="EP" id="EP" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="EP1" data-value="5">Total ERxs</option>
-                            <option value="EP2" data-value="5">Total Number of ERxs Insurance Covered </option>
-                            <option value="EP3" data-value="5">Total Number of ERxs Cash Covered</option>
+                            <option value="EP1" data-value="5">  ERxs</option>
+                            <option value="EP2" data-value="5">  Number of ERxs Insurance Covered </option>
+                            <option value="EP3" data-value="5">  Number of ERxs Cash Covered</option>
                             <option value="EP4" data-value="5">Percentage ERxs Insurance Covered </option>
                             <option value="EP5" data-value="5">Percentage ERxs Cash or Other Covered</option>
 
                         </select>
                         <select name="EIC" id="EIC" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="EIC1" data-value="6">Total ERxs</option>
-                            <option value="EIC2" data-value="6">Total Medicaid ERxs</option>
+                            <option value="EIC1" data-value="6">  ERxs</option>
+                            <option value="EIC2" data-value="6">  Medicaid ERxs</option>
                             <option value="EIC3" data-value="6">Percentage Of ERxs Medicaid</option>
-                            <option value="EIC4" data-value="6">Total Commercial ERxs </option>
+                            <option value="EIC4" data-value="6">  Commercial ERxs </option>
                             <option value="EIC5" data-value="6">Percentage of ERxs Commercial</option>
-                            <option value="EIC6" data-value="6">Total Medicare ERxs</option>
+                            <option value="EIC6" data-value="6">  Medicare ERxs</option>
                             <option value="EIC7" data-value="6">Percentage of ERxs Medicare</option>
-                            <option value="EIC8" data-value="6">Total Tricare ERxs</option>
+                            <option value="EIC8" data-value="6">  Tricare ERxs</option>
                             <option value="EIC9" data-value="6">Percentage of ERxs Tricare </option>
-                            <option value="EIC10" data-value="6">Total Cash</option>
+                            <option value="EIC10" data-value="6">  Cash</option>
                             <option value="EIC11" data-value="6">Percentage ERxs Cash</option>
                         </select>
 
                         <select name="TTD" id="TTD" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="TTD1" data-value="7">Total Unique Patients Has Escript for a Target Drug</option>
-                            <option value="TTD2" data-value="7">Total Patients on Target Drug Filled at Contracted Pharmacies </option>
-                            <option value="TTD3" data-value="7">Total Patients on Target Meds filled at Non-Contracted Pharmacies</option>
+                            <option value="TTD1" data-value="7">  Unique Patients Has Escript for a Target Drug</option>
+                            <option value="TTD2" data-value="7">  Patients on Target Drug Filled at Contracted Pharmacies </option>
+                            <option value="TTD3" data-value="7">  Patients on Target Meds filled at Non-Contracted Pharmacies</option>
                             <option value="TTD4" data-value="7">Percentage of Patients Target Meds Filled at Contracted Pharmacies</option>
                             <option value="TTD5" data-value="7">Percentage of Patients Target Meds Filled at non-Contracted Pharmacies</option>
-                            <option value="TTD6" data-value="7">Total Target ERxs Count</option>
-                            <option value="TTD7" data-value="7">Total Target ERxs Sent to Contracted Pharmacies</option>
-                            <option value="TTD8" data-value="7">Total Target ERxs Sent to non- Contracted Pharmacies</option>
+                            <option value="TTD6" data-value="7">  Target ERxs Count</option>
+                            <option value="TTD7" data-value="7">  Target ERxs Sent to Contracted Pharmacies</option>
+                            <option value="TTD8" data-value="7">  Target ERxs Sent to non- Contracted Pharmacies</option>
                             <option value="TTD9" data-value="7">Percentage Target ERxs Sent to Contracted Pharmacies</option>
                             <option value="TTD10" data-value="7">Percentage of Target ERxs Sent to non-Contracted Pharmacies</option>
                         </select>
@@ -338,14 +379,14 @@
                         </select>
 
                         <select name="HIV" id="HIV" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="HIV1" data-value="8">Total Unique HIV Patients</option>
-                            <option value="HIV2" data-value="8">Total Patients HIV Meds ERxs filled at Contracted Pharmacies </option>
-                            <option value="HIV3" data-value="8">Total Patients HIV Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="HIV1" data-value="8">  Unique HIV Patients</option>
+                            <option value="HIV2" data-value="8">  Patients HIV Meds ERxs filled at Contracted Pharmacies </option>
+                            <option value="HIV3" data-value="8">  Patients HIV Meds Filled at non-Contracted Pharmacies</option>
                             <option value="HIV4" data-value="8">Percentage of Patients HIV Meds Filled at Contracted Pharmacies</option>
                             <option value="HIV5" data-value="8">Percentage of Patients HIV Meds Filled at non-Contracted Pharmacies</option>
-                            <option value="HIV6" data-value="8">Total HIV ERxs Count</option>
-                            <option value="HIV7" data-value="8">Total HIV ERxs Sent to Contracted Pharmacies</option>
-                            <option value="HIV8" data-value="8">Total HIV ERxs Sent to non-Contracted Pharmacies</option>
+                            <option value="HIV6" data-value="8">  HIV ERxs Count</option>
+                            <option value="HIV7" data-value="8">  HIV ERxs Sent to Contracted Pharmacies</option>
+                            <option value="HIV8" data-value="8">  HIV ERxs Sent to non-Contracted Pharmacies</option>
                             <option value="HIV9" data-value="8">Percentage HIV ERxs Sent to Contracted Pharmacies</option>
                             <option value="HIV10" data-value="8">Percentage of HIV ERxs Sent to non- Contracted Pharmacies</option>
                         </select>
@@ -355,14 +396,14 @@
                         </select>
 
                         <select name="DDR" id="DDR" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="DDR1" data-value="10">Total Unique Patients on Diabetic Brand Meds</option>
-                            <option value="DDR2" data-value="10">Total Patients Diabetic Brand Meds Filled at Contracted Pharmacies </option>
-                            <option value="DDR3" data-value="10">Total Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="DDR1" data-value="10">  Unique Patients on Diabetic Brand Meds</option>
+                            <option value="DDR2" data-value="10">  Patients Diabetic Brand Meds Filled at Contracted Pharmacies </option>
+                            <option value="DDR3" data-value="10">  Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
                             <option value="DDR4" data-value="10">Percentage of Patients Diabetic Brand Meds Filled at Contracted Pharmacies</option>
                             <option value="DDR5" data-value="10">Percentage of Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
-                            <option value="DDR6" data-value="10">Total Diabetic Brand Escripts Count</option>
-                            <option value="DDR7" data-value="10">Total Diabetic Brand ERxs Sent to contracted Pharmacies</option>
-                            <option value="DDR8" data-value="10">Total Diabetic Brand ERxs Sent non-Contracted Pharmacy</option>
+                            <option value="DDR6" data-value="10">  Diabetic Brand Escripts Count</option>
+                            <option value="DDR7" data-value="10">  Diabetic Brand ERxs Sent to contracted Pharmacies</option>
+                            <option value="DDR8" data-value="10">  Diabetic Brand ERxs Sent non-Contracted Pharmacy</option>
                             <option value="DDR9" data-value="10">Percentage Diabetic Brand ERxs Sent to Contracted Pharmacies</option>
                             <option value="DDR10" data-value="10">Percentage of Diabetic Brand ERxs Sent to non-Contracted Pharmacies</option>
                         </select>
@@ -372,7 +413,7 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <button id="showdiv" type="button" class="btn btn-primary btn-lg">Submit</button>
+                        <button id="showdiv" type="button" class="btn btn-primary btn-lg ButtonDefault">Submit</button>
                     </div>
                 </div>
             </form>
@@ -585,7 +626,7 @@
                                     <div class="piechart">
                                         <div id="canvas-holder">
                                             <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="chart-area_TTD" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                            <canvas id="chart-area_TTD" style="display: block; width: 515px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -819,9 +860,9 @@
                                         </tbody>
                                     </table>
                                 </div>
-                               <!-- <hr class="BottomBorder">-->
+                                <!-- <hr class="BottomBorder">-->
 
-                               
+
 
                             </div>
                         </div>
@@ -833,7 +874,7 @@
         <!--Page Content End Here-->
 
 
-        
+
         <div style="display: none;" class="row box_content7">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
                 <div class="PageContent">
@@ -841,60 +882,60 @@
                     <div class="replicate">
                         <div style="overflow: hidden;">
                             <div class="row BottomPadding">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="ContentHeading">
-                                        <h2>Diabetic Target Drug View</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="piechart">
-                                        <div id="canvas-holder">
-                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="chart-area_PS" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_PS" class="table table-bordered DataTable">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ICD10 Code</th>
-                                                <th scope="col">Patients Count</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <hr class="BottomBorder">
+                               @* <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="ContentHeading">
+            <h2>Diabetic Target Drug View</h2>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="piechart">
+            <div id="canvas-holder">
+                <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="chart-area_PS" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <table id="table_PS" class="table table-bordered DataTable">
+            <thead>
+                <tr>
+                    <th scope="col">ICD10 Code</th>
+                    <th scope="col">Patients Count</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <hr class="BottomBorder">*@
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="ContentHeading">
                                         <h2>Target Diagnosis Code Report</h2>
                                     </div>
                                 </div>
-                               
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_EQPTR" class="table table-bordered DataTable QLOTable">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Patient Name</th>
-                                                <th scope="col">DOB</th>
-                                                <th scope="col">ICD10 Code</th>
-                                                @*<th scope="col">ICD10 Code Description</th>
-                                                <th scope="col">Patient ID</th>*@
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                               <!-- <hr class="BottomBorder">-->
 
-                               
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                        <table id="table_EQPTR" class="table table-bordered DataTable QLOTable grid">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" index=0>Patient Name<div class="filter"></div></th>
+                                                    <th scope="col" index=1>DOB<div class="filter"></div></th>
+                                                    <th scope="col" index=2>ICD10 Code<div class="filter"></div></th>
+                                                    @*<th scope="col">ICD10 Code Description</th>
+                                                    <th scope="col">Patient ID</th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+
+                                    </div>
+                                    
+                                   
+                                </div>
+                                <!-- <hr class="BottomBorder">-->
+
+
 
                             </div>
                         </div>
@@ -946,7 +987,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <table id="table_ORMD" class="table table-bordered DataTable QLOTable">
                                         <thead>
                                             <tr>
@@ -954,7 +995,7 @@
                                                 <th scope="col">RX-Count</th>
                                                 <th scope="col">340B Price</th>
                                                 <th scope="col">Paid Claim Price</th>
-                                                <th scope="col">OppourtunityofRevenue</th>
+                                                <th scope="col">Opportunity of Revenue</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -1042,17 +1083,17 @@
                     var function_called = $('#select_1').val();
                     if (function_called == 7) {
                         //PS
-                        var jsonData = JSON.stringify(data.PS[0]);
-                        var json2 = JSON.parse(jsonData);
-                        var json3 = JSON.parse(json2.PS);
-                        //var jsonData = JSON.parse(message);
-                        for (var i in json3) {
-                            html_PS += '<tr>';
-                            html_PS += '<td>' + json3[i].ICD10CodeDec + '</td>';
-                            html_PS += '<td>' + json3[i].patient + '</td>';
-                            PSdata[iCount++] = json3[i].patient;
-                            html_PS += '</tr>';
-                        }
+                        //var jsonData = JSON.stringify(data.PS[0]);
+                        //var json2 = JSON.parse(jsonData);
+                        //var json3 = JSON.parse(json2.PS);
+                        ////var jsonData = JSON.parse(message);
+                        //for (var i in json3) {
+                        //    html_PS += '<tr>';
+                        //    html_PS += '<td>' + json3[i].ICD10CodeDec + '</td>';
+                        //    html_PS += '<td>' + json3[i].patient + '</td>';
+                        //    PSdata[iCount++] = json3[i].patient;
+                        //    html_PS += '</tr>';
+                        //}
 
 
                         //PD
@@ -1062,17 +1103,17 @@
                         //var jsonData = JSON.parse(message);
                         for (var i in json3) {
                             html_PD += '<tr>';
-                            
+
                             html_PD += '<td>' + json3[i].PatientFirstName +' '+json3[i].PatientLastName +'</td>';
                             html_PD += '<td>' + json3[i].dob + '</td>';
-                            html_PD += '<td>' + json3[i].ICD10CodeDec + '</td>';
+                            html_PD += '<td>' + json3[i].ICD10code + '</td>';
                             //tdmcddrdata[iCount++] = value[0][key2];
                             html_PD += '</tr>';
+
                         }
 
-                       
                     }
-                   
+
                     if (function_called == 9) {
                         //PS
                         var jsonData = JSON.stringify(data.ORMS[0]);
@@ -1084,11 +1125,7 @@
                             html_ORMS += '<td>' + json3[i].Category + '</td>';
                             html_ORMS += '<td>' + json3[i].RXCount + '</td>';
                             html_ORMS += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(json3[i].OpportunityRev) + '</td>';
-                           
-
-
-
-
+                            //ORMSdata[iCount++] = json3[i].RXCount;
                             ORMSdata2[iCount++] = json3[i].OpportunityRev;
                             html_ORMS += '</tr>';
                         }
@@ -1106,7 +1143,7 @@
                             html_ORMD += '<td>' + json3[i].RXCount + '</td>';
                             html_ORMD += '<td>' + json3[i].Price340B+'</td>';
                             html_ORMD += '<td>' + json3[i].PaidClaimPrice + '</td>';
-                            html_ORMD += '<td>' + json3[i].OppourtunityofRevenue + '</td>';
+                            html_ORMD += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(json3[i].OppourtunityofRevenue) + '</td>';
                             //html_ORMD += '<td>' + json3[i].PatientFirstName + '</td>';
                             //html_ORMD += '<td>' + json3[i].PatientFirstName + '</td>';
                             //alert(html3);
@@ -1122,29 +1159,29 @@
                         if (key == 'ESrx') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if ($('#select_2 option[value="' + key2 + '"]').text().indexOf('|') != -1) {
+                                    // if ($('#select_2 option[value="' + key2 + '"]').text().indexOf('|') != -1) {
+                                    //     //alert(value[0][key2]);
+                                    //     var headings = $('#select_2 option[value="' + key2 + '"]').text();
+                                    //         headings = headings.split("|");
+                                    //     html1 += '<tr>'
+                                    //     html1 += '<td>'+headings[0]+ '</td>'
+                                    //     html1 += '<td style="background: #d9e2f3;">' + headings[1] + '</td>';
+                                    //     html1 += '<td>' + value[0][key2] + '</td>';
+                                    //     //alert(html1);
+                                    //     graphData[iCount++] = value[0][key2];
+                                    //     html1 += '</tr>';
+                                    // }
+                                    // else {
                                         //alert(value[0][key2]);
-                                        var headings = $('#select_2 option[value="' + key2 + '"]').text();
-                                            headings = headings.split("|");
                                         html1 += '<tr>'
-                                        html1 += '<td>'+headings[0]+ '</td>'
-                                        html1 += '<td style="background: #d9e2f3;">' + headings[1] + '</td>';
+
+                                        html1 += '<td style="background: #d9e2f3;">' + $('#select_2 option[value="' + key2 + '"]').text() + '</td>';
                                         html1 += '<td>' + value[0][key2] + '</td>';
                                         //alert(html1);
                                         graphData[iCount++] = value[0][key2];
                                         html1 += '</tr>';
-                                    }
-                                    else {
-                                        //alert(value[0][key2]);
-                                        html1 += '<tr>'
-                                        html1 += '<td> </td>'
-                                        html1 += '<td>' + $('#select_2 option[value="' + key2 + '"]').text() + '</td>';
-                                        html1 += '<td>' + value[0][key2] + '</td>';
-                                        //alert(html1);
-                                        graphData[iCount++] = value[0][key2];
-                                        html1 += '</tr>';
-                                    }
-                                   
+                                    // }
+
                                 }
                             }
 
@@ -1310,7 +1347,7 @@
 
                         }
                         if (key == 'PD') {
-                          
+
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
                                     //alert(value[0][key2]);
@@ -1335,7 +1372,7 @@
                     $('.box_content4').hide("slide");
 
                     $('.box_content5').hide("slide");
-                   
+
                     $('.box_content6').hide("slide");
 
                     $('.box_content7').hide("slide");
@@ -1349,7 +1386,7 @@
                             $('#table_1 tbody').html(html3);
                             //$('#table_2 thead').html(html3);
                             $('#table_pp tbody').html(html_pp);
-                            
+
                             createPie(graphData);
                             createPie2(piedata);
                             createPie_pp(chart_pp);
@@ -1391,9 +1428,9 @@
                             createchart6();
                         }
                         if (function_called == 7) {
-                            $('#table_PS tbody').html(html_PS);
+                            //$('#table_PS tbody').html(html_PS);
                             $('#table_EQPTR tbody').html(html_PD);
-                            createchart7(PSdata);
+                            //createchart7(PSdata);
                             $('.box_content7').show("slide");
                         }
                         if (function_called == 9) {
@@ -1431,10 +1468,10 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                    'UNPF',
-                    'UNCP',
-                    'UCP',
-                    'UCPF',
+                    ['Unique Number', 'of Pharmacies', 'Filling ERxs'],
+                    ['Number of ','Unique ','non-Contracted ', 'Pharmacies Filling',' ERxs'],
+                    ['Number of ','Contracted',' Pharmacies'],
+                    ['Number of ','Unique Contracted',' Pharmacies Filling',' ERxs'],
                 ],
                 datasets: [{
                     label: '',
@@ -1493,6 +1530,12 @@
                             ticks: {
                                 beginAtZero: true
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -1553,9 +1596,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        'Total ERxs',
-                        'Total ERxs Filled at Non - Contracted Pharmacies',
-                        'Total ERxs Filled at Contracted Pharmacies',
+                        ['ERxs'],
+                        ['ERxs', 'Filled at ','Non - Contracted', 'Pharmacies'],
+                        ['ERxs', 'Filled at ','Contracted Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -1613,6 +1656,12 @@
                             ticks: {
                                 beginAtZero: true
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -1673,10 +1722,10 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        'Total MCO Medicaid ERxs',
-                        'Total MCO Medicaid ERxs Filled at Contracted Pharmacies',
-                        'Total ERxs Filled at non- Contracted Pharmacies',
-                        'Total MCO Medicaid ERxs Filled at Contracted Chain Pharmacies',
+                       ['MCO','Medicaid ERxs'] ,
+                        ['MCO',' Medicaid ERxs',' Filled at ','Contracted',' Pharmacies'],
+                        ['ERxs',' Filled at ','non- Contracted',' Pharmacies'],
+                        ['MCO ','Medicaid ERxs',' Filled at',' Contracted',' Chain Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -1733,8 +1782,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 27000
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -1804,9 +1860,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        'Total Unique Patients Received an ERxs',
-                        'Total Unique Patients ERxs Filled at Contracted Pharmacies',
-                        'Total Unique Patients ERxs Filled at Non-Contracted Pharmacies',
+                        ['Unique',' Patients Received',' an ERxs'],
+                        ['Unique',' Patients ERxs','Filled at ','Contracted Pharmacies'],
+                        ['Unique',' Patients ERxs',' Filled at ','Non-Contracted Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -1864,6 +1920,12 @@
                             ticks: {
                                 beginAtZero: true
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -1928,9 +1990,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        '# of ERxs',
-                        'ERxs Insurance Covered',
-                        'ERxs Cash Covered',
+                        ['# of ERxs'],
+                        ['ERxs Insurance',' Covered'],
+                        ['ERxs Cash',' Covered'],
                 ],
                 datasets: [{
                     label: '',
@@ -1988,8 +2050,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 42000
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -2049,12 +2118,12 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        'Total ERxs',
-                        'Total Medicaid ERxs',
-                        'Total Commercial ERxs',
-                        'Total Medicare ERx',
-                        'Total Tricare ERxs',
-                        'Total Cash',
+                        ['ERxs'],
+                        ['Medicaid',' ERxs'],
+                        ['Commercial',' ERxs'],
+                        ['Medicare',' ERx'],
+                        ['Tricare',' ERxs'],
+                        ['Cash'],
                 ],
                 datasets: [{
                     label: '',
@@ -2117,8 +2186,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 42000
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -2190,12 +2266,12 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        'Total Unique Patients Has Escript for a Target Drug',
-                        'Total Patients on Target Drug Filled at Contracted Pharmacies ',
-                        'Total Patients on Target Meds filled at Non-Contracted Pharmacies',
-                        'Total Target ERxs Count',
-                        'Total Target ERxs Sent to Contracted Pharmacies',
-                        'Total Target ERxs Sent to non- Contracted Pharmacies',
+                        ['Unique  Patients',' Has Escript',' for a',' Target Drug'],
+                        ['Patients on',' Target Drug',' Filled at ','Contracted',' Pharmacies '],
+                        ['Patients on',' Target Meds',' filled at ','Non-Contracted ','Pharmacies'],
+                        ['Target ERxs',' Count'],
+                        ['Target ERxs','Sent to ','Contracted',' Pharmacies'],
+                        ['Target ERxs',' Sent to ','Non-Contracted',' Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2255,10 +2331,19 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 1300,
+
                             }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
-                    }
+                    },
                 }
             });
 
@@ -2320,7 +2405,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                    'Number of Target Med ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+                    ['Number of ','Target Med ERxs',' Filled at ','Contract Chain ','Pharmacies Not',' Doing MCO ','Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -2377,8 +2462,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 160
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -2442,7 +2534,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                    'Number of HIV Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+                   [ 'Number of ','HIV Drug ERxs',' Filled at Contract',' Chain Pharmacies',' Not Doing MCO',' Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -2499,8 +2591,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 50
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -2558,12 +2657,12 @@
             var mydata = {
                 labels: [
 
-                        'Total Unique Patients on Diabetic Brand Meds',
-                        'Total Patients Diabetic Brand Meds Filled at Contracted Pharmacies ',
-                        'Total Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies ',
-                        'Total Diabetic Brand Escripts Count',
-                        'Total Diabetic Brand ERxs Sent to contracted Pharmacies',
-                        'Total Diabetic Brand ERxs Sent non-Contracted Pharmacy',
+                        ['Unique Patients',' on Diabetic ','Brand Meds'],
+                        ['Patients ','Diabetic Brand',' Meds Filled ','at Contracted ','Pharmacies'],
+                        ['Patients ','Diabetic',' Brand Meds',' Filled at',' non-Contracted',' Pharmacies'],
+                        ['Diabetic Brand',' Escripts Count'],
+                        ['Diabetic Brand',' ERxs Sent ','to contracted ','Pharmacies'],
+                        ['Diabetic',' Brand',' ERxs ','Sent ','non-Contracted ','Pharmacy'],
                 ],
                 datasets: [{
                     label: '',
@@ -2624,8 +2723,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 1500
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -2699,7 +2805,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                    'Number of Diabetic Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
+                    ['Number of ','Diabetic Drug',' ERxs Filled ','at Contract Chain',' Pharmacies Not',' Doing MCO ','Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -2755,8 +2861,15 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 140
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
                 }
@@ -2809,12 +2922,12 @@
             var mydata = {
                 labels: [
 
-                        'Total Unique HIV Patients',
-                        'Total Patients HIV Meds ERxs filled at Contracted Pharmacies ',
-                        'Total Patients HIV Meds Filled at non-Contracted Pharmacies',
-                        'Total HIV ERxs Count',
-                        'Total HIV ERxs Sent to Contracted Pharmacies',
-                        'Total HIV ERxs Sent to non-Contracted Pharmacies',
+                        ['Unique HIV',' Patients'],
+                        ['Patients',' HIV',' Meds ERxs',' filled',' at ','Contracted',' Pharmacies '],
+                        ['Patients',' HIV',' Meds Filled ','at',' non-Contracted',' Pharmacies'],
+                        ['HIV ERxs ','Count'],
+                        ['HIV ERxs ','Sent to ','Contracted',' Pharmacies'],
+                        ['HIV ERxs',' Sent to ','non-Contracted ','Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2876,11 +2989,18 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 160
                             }
+                        }],xAxes: [{
+                            ticks: {
+                                fontSize: 10
+
+                            }
+
                         }]
                     }
-                   
+
                 }
 
 
@@ -2917,7 +3037,7 @@
                     }],
                     labels: [
 
-                        'Total Unique HIV Patients',
+                        '  Unique HIV Patients',
                         'Total Patients HIV Meds ERxs filled at Contracted Pharmacies ',
                         'Total Patients HIV Meds Filled at non-Contracted Pharmacies',
                         'Total HIV ERxs Count',
@@ -2934,7 +3054,7 @@
         }
         function createchart7(chartData) {
 
-           
+
 
             var color = Chart.helpers.color;
             var mydata = {
@@ -3038,7 +3158,8 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                suggestedMax: 400
                             }
                         }]
                     }
@@ -3056,14 +3177,14 @@
                                         chartData[4],
                                         chartData[5],
                                         chartData[6],
-            
-            
+
+
                                     ],
                                     backgroundColor: [
                                         window.chartColors.red,
                                         window.chartColors.orange,
                                         window.chartColors.yellow,
-            
+
                                     ],
                                     label: 'Total ERxs'
                                 }],
@@ -3071,7 +3192,7 @@
                                     'Total ERxs',
                                     'Total ERxs Filled at Non - Contracted Pharmacies',
                                     'Total ERxs Filled at Contracted Pharmacies',
-            
+
                                 ]
                             },
                             options: {
@@ -3084,75 +3205,83 @@
         }
 
 
-        function createchart9(chartData) {
+        function createchart9(chartData2) {
 
-            var data = [chartData[0], chartData[1]];
-            var labels = ["DIB", "HIV"];
-            var colors = ["#FFDAB9", "#E6E6FA", "#E0FFFF"];
+            var data1 = parseFloat(chartData2[0]).toFixed(2);
+            var data2 = parseFloat(chartData2[1]).toFixed(2);
 
-            function drawSegment(canvas, context, i) {
-                context.save();
-                var centerX = Math.floor(canvas.width / 2);
-                var centerY = Math.floor(canvas.height / 2);
-                radius = Math.floor(canvas.width / 2);
+            var color = Chart.helpers.color;
+            var UserVsMyAppsData = {
+                labels: [''],
+                datasets: [{
+                    label: 'DIB',
+                    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.red,
+                    borderWidth: 1,
+                    data: [
+                        data1 ,
+                            ]
+                }, {
+                    label: 'HIV',
+                    backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.blue,
+                    borderWidth: 1,
+                    data: [data2,
+                    ]
+                }]
 
-                var startingAngle = degreesToRadians(sumTo(data, i));
-                var arcSize = degreesToRadians(data[i]);
-                var endingAngle = startingAngle + arcSize;
+            };
 
-                context.beginPath();
-                context.moveTo(centerX, centerY);
-                context.arc(centerX, centerY, radius,
-                startingAngle, endingAngle, false);
-                context.closePath();
+            var UserVsMyAppsCtx = document.getElementById('chart-area_ORMS').getContext('2d');
+            var UserVsMyApps = new Chart(UserVsMyAppsCtx, {
+                type: 'bar',
+                data: UserVsMyAppsData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        display: true,
 
-                context.fillStyle = colors[i];
-                context.fill();
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                              ctx = chartInstance.ctx;
 
-                context.restore();
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
 
-                drawSegmentLabel(canvas, context, i);
-            }
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: 'true',
+                        text: 'Target Drug Revenue'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                suggestedMax: 750000,
 
-            function degreesToRadians(degrees) {
-                return (degrees * Math.PI) / 180;
-            }
-
-            function sumTo(a, i) {
-                var sum = 0;
-                for (var j = 0; j < i; j++) {
-                    sum += a[j];
+                            }
+                        }]
+                    }
                 }
-                return sum;
-            }
-
-            function drawSegmentLabel(canvas, context, i) {
-                context.save();
-                var x = Math.floor(canvas.width / 5);
-                var y = Math.floor(canvas.height / 5);
-                var angle = degreesToRadians(sumTo(data, i));
-
-                context.translate(x, y);
-                context.rotate(angle);
-                var dx = Math.floor(canvas.width * 0.2) - 10;
-                var dy = Math.floor(canvas.height * 0.02);
-
-                context.textAlign = "right";
-                var fontSize = Math.floor(canvas.height / 35);
-                context.font = fontSize + "pt Helvetica";
-
-                context.fillText(labels[i], dx, dy);
-
-                context.restore();
-            }
-
-            canvas = document.getElementById("chart-area_ORMS");
-            var context = canvas.getContext("2d");
-            for (var i = 0; i < data.length; i++) {
-                drawSegment(canvas, context, i);
-            }
-
+            });
         }
+
 
         function createchart6() {
 
@@ -3201,19 +3330,18 @@
 
             var chartOptions = {
                 title: {
-                    display: true,
-                    text: 'Escript Quarterly Performance Tracking Report'
-                },
-              
+            display: true,
+            text: 'Escript Quarterly Performance Tracking Report',
+        },
                 legend: {
                     display: true,
                     position: 'bottom',
                     labels: {
                         boxWidth: 10,
                         fontColor: 'black',
-
                     }
-                }
+                },
+
             };
 
             var lineChart = new Chart(speedCanvas, {
@@ -3226,10 +3354,10 @@
 
         $(window).on("load", function () {
             // Animate loader off screen
-            $("lds-ring").style.display = "none";
+            $(".lds-ring").css('display', 'none')
 
         });
-        
+
     </script>
 </body>
 </html>

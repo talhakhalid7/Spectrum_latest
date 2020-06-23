@@ -156,6 +156,7 @@
     <Content Include="Content\custom_js\jQuery-v3.3.1.js" />
     <Content Include="Content\custom_js\loader.js" />
     <Content Include="Content\custom_js\main.js" />
+    <Content Include="Content\custom_js\script.js" />
     <Content Include="Content\custom_js\utils.js" />
     <Content Include="Content\images\apovia.png" />
     <Content Include="Content\images\Landing_image.png" />

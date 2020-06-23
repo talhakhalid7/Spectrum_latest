@@ -257,8 +257,8 @@ namespace WebApplication2.Controllers
             else if (opts.Equals("7"))
             {
                 var result =  PDCR_Detail();
-                var result2 = PDCR_sum();
-                return Json( new { PD = new[] { new { Patient_Detail = result } } , PS = new[] { new {PS = result2 } } });
+                //var result2 = PDCR_sum();
+                return Json( new { PD = new[] { new { Patient_Detail = result } }  }); //, PS = new[] { new {PS = result2 } }
             }
             else if (opts.Equals("9"))
             {
