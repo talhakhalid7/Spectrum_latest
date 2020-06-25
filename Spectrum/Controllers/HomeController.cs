@@ -11,7 +11,7 @@ namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
-        int a, b, c, d, e, f, g, j, k, l, o, UPER, UPERCP, result_UPER = 0,
+        int a, b, c, d, e, f, g, j, k, l, o, UPER, UPERCP, result_UPER, notchained = 0,
         SecRep = 0, SecRep1 = 0, SecRep2 = 0, /*SecRep3, SecRep4,*/ SecRep2a1 = 0, SecRep2a3 = 0, SecRep2a5 = 0, SecRep2a7 = 0, SecRep2a9 = 0;
         decimal SecRep2a2 = 0, SecRep2a4 = 0, SecRep2a6 = 0, SecRep2a8 = 0, SecRep2a10 = 0;
         int ThirdRep1a, ThirdRep1b, ThirdRep1c, ThirdRep1f, ThirdRep1g, ThirdRep1h;
@@ -27,10 +27,10 @@ namespace WebApplication2.Controllers
         decimal FiveRep1d, FiveRep1e, FiveRep1i, FiveRep1j;
         int FiveRepMedicaid5a;
         decimal FiveRepMedicaid5b;
-
+        decimal p_notchained;
 
         decimal h, i, n, m, p, percent_UPERNCP, uper_float, upercp_float, result_UPER_float, percent_UPER = 0, SecRep1_float = 0, SecRep3_float = 0, SecRep4_float = 0;
-        SqlConnection connectionString = new SqlConnection(@"Data Source=talhaserver.database.windows.net;Initial Catalog=sperctrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
+        SqlConnection connectionString = new SqlConnection(@"Data Source=talhaserver.database.windows.net;Initial Catalog=spectrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
         //SqlConnection connectionString = new SqlConnection(@"Data Source =.; Initial Catalog = spectrum; Integrated Security = True");
         public ActionResult Index()
         {
@@ -52,6 +52,10 @@ namespace WebApplication2.Controllers
         }
 
         public ActionResult GetYourReport()
+        {
+            return View();
+        }
+        public ActionResult GetYourReport_2()
         {
             return View();
         }
@@ -91,9 +95,21 @@ namespace WebApplication2.Controllers
                 UniquePatients_EscriptRecNonConPharma();
                 Perc_UniquePatients_EscriptRecCon();
                 Perc_UniquePatients_EscriptNonRecCon();
+
+                totalMCOMedicaid();
+                totalMCO_Contracted();
+                totalMCO_ContractedExcWalgreen();
+                totalMCO_notChainPharmacy();
+
+                PerMCo_ExcWalgreen();
+                PerMCo_notchained();
+                //totalMCO_nonContracted();
+                percentMCO_con();
+                percentMCO_noncon();
+
                 connectionString.Close();
 
-                return Json(new { ESrx = new[] { new { ERxs1 = String.Format("{0:n0}", a) , ERxs2 = String.Format("{0:n0}", b), ERxs3 = String.Format("{0:n0}", c), ERxs4 = String.Format("{0:n0}", d) } }, Total = new[] { new { Total1 = String.Format("{0:n0}", e), Total2 = String.Format("{0:n0}", f), Total3 = String.Format("{0:n0}", g), Total4 = String.Format("{0:n0}", h) + "%", Total5 = String.Format("{0:n0}", i) + "%" } }, PatientProfile = new[] { new { pp1 = String.Format("{0:n0}", UPER), pp2 = String.Format("{0:n0}", UPERCP), pp3 = String.Format("{0:n0}", result_UPER_float), pp4 = percent_UPER + "%", pp5 = percent_UPERNCP + "%" } } }, JsonRequestBehavior.AllowGet);
+                return Json(new { ESrx = new[] { new { ERxs1 = String.Format("{0:n0}", a) , ERxs2 = String.Format("{0:n0}", b), ERxs3 = String.Format("{0:n0}", c), ERxs4 = String.Format("{0:n0}", d) } }, Total = new[] { new { Total1 = String.Format("{0:n0}", e) + '|' + "100%", Total2 = String.Format("{0:n0}", f)+'|' + String.Format("{0:n0}", h) + "%", Total3 = String.Format("{0:n0}", g) + '|' + String.Format("{0:n0}", i) + "%"/*, Total4 = String.Format("{0:n0}", h) + "%", Total5 = String.Format("{0:n0}", i) + "%" */ } }, PatientProfile = new[] { new { pp1 = String.Format("{0:n0}", UPER) +'|'+ "100%", pp2 = String.Format("{0:n0}", UPERCP)+'|'+ percent_UPER + "%", pp3 = String.Format("{0:n0}", result_UPER_float) +'|'+ percent_UPERNCP + "%"/*, pp4 = percent_UPER + "%", pp5 = percent_UPERNCP + "%"*/ } }, MCO = new[] { new { MCO1 = String.Format("{0:n0}", j) +'|'+ "N/A", MCO2 = String.Format("{0:n0}", k)+'|'+ "100%", MCO3 = String.Format("{0:n0}", o) + '|' + Math.Round(p, 2) + "%", MCO4 = String.Format("{0:n0}", notchained) + '|' + Math.Round(p_notchained, 2) + "%" /*, MCO4 = Math.Round(m,2) + "%", MCO5 = Math.Round(p, 2) + "%"*/ } } }, JsonRequestBehavior.AllowGet);
             }
             else if (opts.Equals("2"))
             {
@@ -117,17 +133,18 @@ namespace WebApplication2.Controllers
 
 
 
-                totalMCOMedicaid();
-                totalMCO_Contracted();
-                totalMCO_nonContracted();
-                percentMCO_con();
-                percentMCO_noncon();
-                totalMCO_ContractedExcWalgreen();
-                PerMCo_ExcWalgreen();
+                //totalMCOMedicaid();
+                //totalMCO_Contracted();
+                //totalMCO_ContractedExcWalgreen();
+                ////totalMCO_nonContracted();
+                //percentMCO_con();
+                //percentMCO_noncon();
+                
+                //PerMCo_ExcWalgreen();
 
                 connectionString.Close();
 
-                return Json(new { EP = new[] { new { EP1 = String.Format("{0:n0}", SecRep), EP2 = String.Format("{0:n0}", SecRep1), EP3 = String.Format("{0:n0}", SecRep2), EP4 = Math.Round(SecRep3_float, 2) + "%", EP5 = Math.Round(SecRep4_float, 2) + "%" } }, EIC = new[] { new { EIC1 = String.Format("{0:n0}", SecRep), EIC2 = String.Format("{0:n0}", SecRep2a1), EIC3 = Math.Round(SecRep2a2, 2) + "%", EIC4 = String.Format("{0:n0}", SecRep2a3), EIC5 = Math.Round(SecRep2a4, 2) + "%", EIC6 = String.Format("{0:n0}", SecRep2a5), EIC7 = Math.Round(SecRep2a6, 2) + "%", EIC8 = String.Format("{0:n0}", SecRep2a7), EIC9 = Math.Round(SecRep2a8, 2) + "%", EIC10 = String.Format("{0:n0}", SecRep2a9), EIC11 = Math.Round(SecRep2a10, 2) + "%" } }, MCO = new[] { new { MCO1 = String.Format("{0:n0}", j), MCO2 = String.Format("{0:n0}", k), MCO3 = String.Format("{0:n0}", l), MCO4 = Math.Round(m,2) + "%", MCO5 = Math.Round(n,2) + "%", MCO6 = String.Format("{0:n0}", o), MCO7 = Math.Round(p,2) + "%" } } });
+                return Json(new { EP = new[] { new { EP1 = String.Format("{0:n0}", SecRep) + '|' + "100%", EP2 = String.Format("{0:n0}", SecRep2)+'|' + Math.Round(SecRep4_float, 2) + "%", EP3 = String.Format("{0:n0}", SecRep1)+'|'+ Math.Round(SecRep3_float, 2) + "%"/*, EP4 = Math.Round(SecRep4_float, 2) + "%", EP5 = Math.Round(SecRep3_float, 2) + "%"*/ } }, EIC = new[] { new { EIC1 = String.Format("{0:n0}", SecRep) + '|' + "100%", EIC2 = String.Format("{0:n0}", SecRep2a1) +'|'+ Math.Round(SecRep2a2, 2) + "%" /*, EIC3 = Math.Round(SecRep2a2, 2) + "%"*/, EIC4 = String.Format("{0:n0}", SecRep2a3)+'|'+Math.Round(SecRep2a4, 2) + "%"/*, EIC5 = Math.Round(SecRep2a4, 2) + "%"*/, EIC6 = String.Format("{0:n0}", SecRep2a5)+'|' + Math.Round(SecRep2a6, 2) + "%"/*, EIC7 = Math.Round(SecRep2a6, 2) + "%"*/, EIC8 = String.Format("{0:n0}", SecRep2a7)+'|' + Math.Round(SecRep2a8, 2) + "%"/*, EIC9 = Math.Round(SecRep2a8, 2) + "%"*/, EIC10 = String.Format("{0:n0}", SecRep2a9)+'|'+ Math.Round(SecRep2a10, 2) + "%"/*, EIC11 = Math.Round(SecRep2a10, 2) + "%"*/ } } });
             }
             else if (opts.Equals("3"))
             {
@@ -166,7 +183,7 @@ namespace WebApplication2.Controllers
                 */
                 connectionString.Close();
 
-                return Json(new { TTD = new[] { new { TTD1 = String.Format("{0:n0}", ThirdRep1a), TTD2 = String.Format("{0:n0}", ThirdRep1b), TTD3 = String.Format("{0:n0}", ThirdRep1c), TTD4 = Math.Round(ThirdRep1d, 2) + "%", TTD5 = Math.Round(ThirdRep1e, 2) + "%", TTD6 = String.Format("{0:n0}", ThirdRep1f), TTD7 = String.Format("{0:n0}", ThirdRep1g), TTD8 = String.Format("{0:n0}", ThirdRep1h), TTD9 = Math.Round(ThirdRep1i, 2) + "%", TTD10 = Math.Round(ThirdRep1j, 2) + "%" } }, TDMC = new[] { new { TDMC1 = String.Format("{0:n0}", ThirdRepMedicaid3a), TDMC2 = Math.Round(ThirdRepMedicaid3b, 2) + "%" } } });
+                return Json(new { TTD = new[] { new { TTD1 = String.Format("{0:n0}", ThirdRep1a) + '|' + "100%", TTD2 = String.Format("{0:n0}", ThirdRep1b)+'|'+Math.Round(ThirdRep1d, 2) + "%" , TTD3 = String.Format("{0:n0}", ThirdRep1c)+'|'+ Math.Round(ThirdRep1e, 2) + "%" /*, TTD4 = Math.Round(ThirdRep1d, 2) + "%", TTD5 = Math.Round(ThirdRep1e, 2) + "%"*/  } },TTD2 = new[] { new { TTD6 = String.Format("{0:n0}" + '|' + "100%", ThirdRep1f), TTD7 = String.Format("{0:n0}", ThirdRep1g)+'|' + Math.Round(ThirdRep1i, 2) + "%", TTD8 = String.Format("{0:n0}", ThirdRep1h)+'|'+ Math.Round(ThirdRep1j, 2) + "%"/*, TTD9 = Math.Round(ThirdRep1i, 2) + "%", TTD10 = Math.Round(ThirdRep1j, 2) + "%" */} }, TDMC = new[] { new { TDMC1 = String.Format("{0:n0}", ThirdRepMedicaid3a)+'|'+ Math.Round(ThirdRepMedicaid3b, 2) + "%"/*, TDMC2 = Math.Round(ThirdRepMedicaid3b, 2) + "%"*/ } } });
 
             }
             else if (opts.Equals("4"))
@@ -207,7 +224,7 @@ namespace WebApplication2.Controllers
 
                 connectionString.Close();
 
-                return Json(new { HIV = new[] { new { HIV1 = String.Format("{0:n0}", FourRep1a), HIV2 = String.Format("{0:n0}", FourRep1b), HIV3 = String.Format("{0:n0}", FourRep1c), HIV4 = Math.Round(FourRep1d, 2) + "%", HIV5 = Math.Round(FourRep1e, 2) + "%", HIV6 = String.Format("{0:n0}", FourRep1f), HIV7 = String.Format("{0:n0}", FourRep1g), HIV8 = String.Format("{0:n0}", FourRep1h), HIV9 = Math.Round(FourRep1i, 2) + "%", HIV10 = Math.Round(FourRep1j, 2) + "%" } }, HDMC = new[] { new { HDMC1 = String.Format("{0:n0}", FourRepMedicaid4a), HDMC2 = Math.Round(FourRepMedicaid4b, 2) + "%" } } });
+                return Json(new { HIV = new[] { new { HIV1 = String.Format("{0:n0}", FourRep1a) + '|' + "100%", HIV2 = String.Format("{0:n0}", FourRep1b)+'|'+ Math.Round(FourRep1d, 2) + "%", HIV3 = String.Format("{0:n0}", FourRep1c)+'|'+ Math.Round(FourRep1e, 2) + "%" /*, HIV4 = Math.Round(FourRep1d, 2) + "%", HIV5 = Math.Round(FourRep1e, 2) + "%"*/, HIV6 = String.Format("{0:n0}", FourRep1f) + '|' + "100%", HIV7 = String.Format("{0:n0}", FourRep1g)+'|'+ Math.Round(FourRep1i, 2) + "%", HIV8 = String.Format("{0:n0}", FourRep1h)+'|'+ Math.Round(FourRep1j, 2) + "%"/*, HIV9 = Math.Round(FourRep1i, 2) + "%", HIV10 = Math.Round(FourRep1j, 2) + "%"*/ } }, HDMC = new[] { new { HDMC1 = String.Format("{0:n0}", FourRepMedicaid4a)+'|'+ Math.Round(FourRepMedicaid4b, 2) + "%"/*, HDMC2 = Math.Round(FourRepMedicaid4b, 2) + "%"*/ } } });
 
             }
             else if (opts.Equals("5"))
@@ -247,7 +264,7 @@ namespace WebApplication2.Controllers
                 Result.Close();
                 connectionString.Close();
 
-                return Json(new { DDR = new[] { new { DDR1 = String.Format("{0:n0}", FiveRep1a), DDR2 = String.Format("{0:n0}", FiveRep1b), DDR3 = String.Format("{0:n0}", FiveRep1c), DDR4 = Math.Round(FiveRep1d, 2) + "%", DDR5 = Math.Round(FiveRep1e, 2) + "%", DDR6 = String.Format("{0:n0}", FiveRep1f), DDR7 = String.Format("{0:n0}", FiveRep1g), DDR8 = String.Format("{0:n0}", FiveRep1h), DDR9 = Math.Round(FiveRep1i, 2) + "%", DDR10 = Math.Round(FiveRep1j, 2) + "%" } }, TDMCDDR = new[] { new { TDMCDDR1 = String.Format("{0:n0}", FiveRepMedicaid5a), TDMCDDR2 = Math.Round(FiveRepMedicaid5b, 2) + "%" } } });
+                return Json(new { DDR = new[] { new { DDR1 = String.Format("{0:n0}" + '|' + "100%", FiveRep1a), DDR2 = String.Format("{0:n0}", FiveRep1b)+'|'+ Math.Round(FiveRep1d, 2) + "%", DDR3 = String.Format("{0:n0}", FiveRep1c)+'|'+Math.Round(FiveRep1e, 2) + "%"/*, DDR4 = Math.Round(FiveRep1d, 2) + "%", DDR5 = Math.Round(FiveRep1e, 2) + "%"*/, DDR6 = String.Format("{0:n0}", FiveRep1f) + '|' + "100%", DDR7 = String.Format("{0:n0}", FiveRep1g)+'|'+Math.Round(FiveRep1i, 2) + "%", DDR8 = String.Format("{0:n0}", FiveRep1h)+'|'+Math.Round(FiveRep1j, 2) + "%"/*, DDR9 = Math.Round(FiveRep1i, 2) + "%", DDR10 = Math.Round(FiveRep1j, 2) + "%"*/ } }, TDMCDDR = new[] { new { TDMCDDR1 = String.Format("{0:n0}", FiveRepMedicaid5a)+'|'+Math.Round(FiveRepMedicaid5b, 2) + "%"/*, TDMCDDR2 = Math.Round(FiveRepMedicaid5b, 2) + "%"*/ } } });
 
             }
             else if (opts.Equals("6"))
@@ -264,7 +281,7 @@ namespace WebApplication2.Controllers
             {
                 var result = ORM_Details();
                 var result2 = ORM_sum();
-                return Json(new { ORMD = new[] { new { ORM_Detail = result } }, ORMS = new[] { new { ORMS = result2 } } });
+                return Json(new { ORMD = new[] { new { ORM_Detail = result } }, ORMS = new[] { new { ORMS = result2 }} });
             }
             else
             {
@@ -397,12 +414,12 @@ namespace WebApplication2.Controllers
         public object totalMCOMedicaid()
         {
 
-            string query = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid')";
+            string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and pharmacy = ActiveContractedPharmacies";//"select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid')";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid = (int)command.ExecuteScalar();
 
             j = TotalMedicaid;
-            D = j;
+            A = j;
             return Json(new { tm = TotalMedicaid }, JsonRequestBehavior.AllowGet);
         }
         int E = 0;
@@ -410,7 +427,7 @@ namespace WebApplication2.Controllers
         public object totalMCO_Contracted()
         {
 
-            string query = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
+            string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and[Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies";//"select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where [insurance name] = [Payer Name] and [Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' ";// "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid_contracted = (int)command.ExecuteScalar();
             k = TotalMedicaid_contracted;
@@ -443,7 +460,11 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            decimal perMCOContracted = ((decimal)E / (decimal)D) * 100;
+            string query = "select count(distinct [order id]) from SpectrumEscriptData ";
+            var command = new SqlCommand(query, connectionString);
+            int totalErxs = (int)command.ExecuteScalar();
+
+            decimal perMCOContracted = ((decimal)A / (decimal)totalErxs) * 100;
             m = (decimal)Math.Round(perMCOContracted, 2);
             return Json(new { PercMCO_Con = perMCOContracted }, JsonRequestBehavior.AllowGet);
         }
@@ -459,7 +480,7 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            decimal perMCO_nonContracted = ((decimal)F / (decimal)D) * 100;
+            decimal perMCO_nonContracted = ((decimal)F / (decimal)E) * 100;
             n = (decimal)Math.Round(perMCO_nonContracted, 2);
             return Json(new { PercMCO_nonCon = perMCO_nonContracted }, JsonRequestBehavior.AllowGet);
         }
@@ -468,13 +489,26 @@ namespace WebApplication2.Controllers
         public object totalMCO_ContractedExcWalgreen()
         {
 
-            string query = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL and CHAIN_NOT_FILLING_MCMO = 'N' and ChainPharmacy = 'y')";
+            string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and[Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' and[CHAIN_NOT_FILLING_MCMO] = 'N'";//"select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL and CHAIN_NOT_FILLING_MCMO = 'N' and ChainPharmacy = 'y')";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid_contracted = (int)command.ExecuteScalar();
 
             o = TotalMedicaid_contracted;
-            G = o;
+            C = o;
             return Json(new { tm_Con = TotalMedicaid_contracted }, JsonRequestBehavior.AllowGet);
+        }
+        int notchained_public = 0;
+        [HttpPost]
+        public object totalMCO_notChainPharmacy()
+        {
+
+            string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and[Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'N'";//"select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL and CHAIN_NOT_FILLING_MCMO = 'N' and ChainPharmacy = 'y')";
+            var command = new SqlCommand(query, connectionString);
+            int TotalMedicaid_notChain = (int)command.ExecuteScalar();
+
+            notchained = TotalMedicaid_notChain;
+            notchained_public = notchained;
+            return Json(new { tm_Con = notchained }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -489,11 +523,20 @@ namespace WebApplication2.Controllers
             //var command_B = new SqlCommand(query_B, connectionString);
             //int B = (int)command_B.ExecuteScalar();
             //
-            decimal perMCO_excWalgreen = ((decimal)G / (decimal)D) * 100;
+            decimal perMCO_excWalgreen = ((decimal)C / (decimal)E) * 100;
             p = (decimal)Math.Round(perMCO_excWalgreen, 2);
             return Json(new { perMCO_Walgreen = perMCO_excWalgreen }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public object PerMCo_notchained()
+        {
+            
+            decimal perMCO_excWalgreen = ((decimal)notchained_public / (decimal)E) * 100;
+            
+            p_notchained = (decimal)Math.Round(perMCO_excWalgreen, 2);
+            return Json(new { perMCO_notchaned = p_notchained }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public object UniquePatients_EscriptRec()

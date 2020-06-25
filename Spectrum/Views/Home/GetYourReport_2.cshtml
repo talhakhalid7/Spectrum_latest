@@ -26,36 +26,26 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <link href="~/Content/custom_css/loader.css" rel="stylesheet" />
-
+    
     <script src="~/Content/custom_js/script.js"></script>
     <style>
-        /* added on 06/23/2020 */
-        .cs-flex-19 .search-input {
-            padding: 8px 12px;
-            border: 1px solid #ccc !important;
-            outline: none;
-            border-radius: 3px;
-        }
-        /* ----------- */
-        .filter {
-            position: absolute;
-            border: solid 1px;
-            top: 20px;
-            background-color: white;
-            width: 100px;
-            right: 0;
-            display: none;
-        }
-
+        .filter{
+  position:absolute;
+  border: solid 1px;
+  top : 20px;
+  background-color : white;
+  width:100px;
+  right:0;
+  display:none;
+}
         .my-custom-scrollbar {
             position: relative;
             height: 600px;
             overflow: auto;
-        }
-
+            }
         .table-wrapper-scroll-y {
             display: block;
-        }
+            }
 
 
         .select2-search--dropdown {
@@ -248,10 +238,6 @@
             .ButtonDefault:hover {
                 background: #87b6ff;
             }
-
-        .Headcolor {
-            background: #eaeaea !important;
-        }
     </style>
 </head>
 <body>
@@ -337,12 +323,13 @@
                             <option value="Total5" data-value="2">Percentage of ERxs Filled at Contracted Pharmacies </option>
                         </select>
                         <select name="select_4" id="select_4" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="MCO1" data-value="3">  ERx Filled at Contracted Pharmacies</option>
-                            <option value="MCO2" data-value="3">  ERx MCO Medicaid Filled at Contracted Pharmacies </option>
-                            <option value="MCO3" data-value="3">  ERx MCO Medicaid Filled at Chain Contracted Pharmacies</option>
-                            <option value="MCO4" data-value="3">ERx MCO Medicaid Filled at Non-Chain Contracted Pharmacies</option>
-                            <option value="MCO5" data-value="3"> Percentage MCO Medicaid ERxs Filled at Contracted Chain Pharmacy</option>
-
+                            <option value="MCO1" data-value="3">  MCO Medicaid ERxs</option>
+                            <option value="MCO2" data-value="3">  MCO Medicaid ERxs Filled at Contracted Pharmacy </option>
+                            <option value="MCO3" data-value="3">  ERxs Filled at non- Contracted Pharmacies</option>
+                            <option value="MCO4" data-value="3">Percentage MCO Medicaid ERxs Filled at Contracted Pharmacies</option>
+                            <option value="MCO5" data-value="3">Percentage of ERxs Filled at non-Contracted Pharmacies</option>
+                            <option value="MCO6" data-value="3">  MCO Medicaid ERxs Filled at Contracted Chain Pharmacies</option>
+                            <option value="MCO7" data-value="3">Percentage of ERxs Filled at non-Contracted PharmaciePercentage MCO Medicaid ERxs Filled at Contracted Chain Pharmacy</option>
                         </select>
                         <select name="pp" id="pp" class="js-example-basic-single multipleSelect2" multiple="true">
                             <option value="pp1" data-value="4">  Unique Patients Received an ERxs</option>
@@ -409,14 +396,14 @@
                         </select>
 
                         <select name="DDR" id="DDR" class="js-example-basic-single multipleSelect2" multiple="true">
-                            <option value="DDR1" data-value="10">Unique Patients on Diabetic Brand Meds</option>
-                            <option value="DDR2" data-value="10">Patients Diabetic Brand Meds Filled at Contracted Pharmacies </option>
-                            <option value="DDR3" data-value="10">Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
+                            <option value="DDR1" data-value="10">  Unique Patients on Diabetic Brand Meds</option>
+                            <option value="DDR2" data-value="10">  Patients Diabetic Brand Meds Filled at Contracted Pharmacies </option>
+                            <option value="DDR3" data-value="10">  Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
                             <option value="DDR4" data-value="10">Percentage of Patients Diabetic Brand Meds Filled at Contracted Pharmacies</option>
                             <option value="DDR5" data-value="10">Percentage of Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies</option>
-                            <option value="DDR6" data-value="10">Diabetic Brand Escripts Count</option>
-                            <option value="DDR7" data-value="10">Diabetic Brand ERxs Sent to contracted Pharmacies</option>
-                            <option value="DDR8" data-value="10">Diabetic Brand ERxs Sent non-Contracted Pharmacy</option>
+                            <option value="DDR6" data-value="10">  Diabetic Brand Escripts Count</option>
+                            <option value="DDR7" data-value="10">  Diabetic Brand ERxs Sent to contracted Pharmacies</option>
+                            <option value="DDR8" data-value="10">  Diabetic Brand ERxs Sent non-Contracted Pharmacy</option>
                             <option value="DDR9" data-value="10">Percentage Diabetic Brand ERxs Sent to Contracted Pharmacies</option>
                             <option value="DDR10" data-value="10">Percentage of Diabetic Brand ERxs Sent to non-Contracted Pharmacies</option>
                         </select>
@@ -455,38 +442,13 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <!--<th class="Headcolor">Percentage</th>-->
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
                                 </div>
                                 <hr class="BottomBorder">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="ContentHeading">
-                                        <h2>Patient Profile</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="piechart">
-                                        <div id="canvas-holder">
-                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="chart-area_pp" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_pp" class="table table-bordered DataTable">
-                                        <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                                <hr class="BottomBorder">
+
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="ContentHeading">
                                         <h2>E-Rx Profile</h2>
@@ -503,39 +465,35 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_1" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                                <hr class="BottomBorder">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="ContentHeading">
-                                        <h2>Medicaid MCO Analysis</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="piechart">
-                                        <div id="canvas-holder">
-                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="chart-area_2" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_2" class="table table-bordered DataTable">
-                                        <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
                                 </div>
                                 <hr class="BottomBorder">
 
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Patient Profile</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_pp" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_pp" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
                             </div>
                         </div>
                     </div>
@@ -568,9 +526,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_ep" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -579,7 +535,30 @@
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="ContentHeading">
-                                        <h2>ERx Payer Profile</h2>
+                                        <h2>Medicaid MCO Analysis</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_2" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_2" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Medicaid View</h2>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -593,9 +572,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_eci" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -617,56 +594,6 @@
                         <div style="overflow: hidden;">
                             <div class="row BottomPadding">
 
-
-
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="ContentHeading">
-                                        <h2>Targeted Drug Patient View (HIV & Brand Diabetic Meds)</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="piechart">
-                                        <div id="canvas-holder">
-                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="chart-area_TTD" style="display: block; width: 515px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_TTD" class="table table-bordered DataTable">
-                                        <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                                <hr class="BottomBorder">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="ContentHeading">
-                                        <h2>Targeted Drug ERx View (HIV & Brand Diabetic Meds)</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <div class="piechart">
-                                        <div id="canvas-holder">
-                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                            <canvas id="chart-area_TTD_2" style="display: block; width: 515px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_TTD_2" class="table table-bordered DataTable">
-                                        <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                                <hr class="BottomBorder">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="ContentHeading">
                                         <h2>Targeted Drug Medicaid Carve In</h2>
@@ -683,13 +610,35 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_TDMC" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
                                 </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Targeted Drug View (HIV & Brand Diabetic Meds)</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TTD" style="display: block; width: 515px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TTD" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
 
                             </div>
                         </div>
@@ -724,9 +673,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_HIV" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -749,9 +696,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_HDMC" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -791,9 +736,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_DDR" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -816,9 +759,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                     <table id="table_TDMCDDR" class="table table-bordered DataTable">
                                         <thead>
-                                        <th class="Headcolor">Category</th>
-                                        <th class="Headcolor">Count</th>
-                                        <th class="Headcolor">Percentage</th>
+
                                         </thead>
                                         <tbody></tbody>
                                     </table>
@@ -856,7 +797,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <table id="table_EQPTR_2" class="table table-bordered DataTable QLOTable">
+                                    <table id="table_EQPTR" class="table table-bordered DataTable QLOTable">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Metric</th>
@@ -941,62 +882,56 @@
                     <div class="replicate">
                         <div style="overflow: hidden;">
                             <div class="row BottomPadding">
-                                @* <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="ContentHeading">
-                                            <h2>Diabetic Target Drug View</h2>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div class="piechart">
-                                            <div id="canvas-holder">
-                                                <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                                <canvas id="chart-area_PS" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <table id="table_PS" class="table table-bordered DataTable">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ICD10 Code</th>
-                                                    <th scope="col">Patients Count</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-                                    </div>
-                                    <hr class="BottomBorder">*@
+                               @* <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="ContentHeading">
+            <h2>Diabetic Target Drug View</h2>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="piechart">
+            <div id="canvas-holder">
+                <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="chart-area_PS" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <table id="table_PS" class="table table-bordered DataTable">
+            <thead>
+                <tr>
+                    <th scope="col">ICD10 Code</th>
+                    <th scope="col">Patients Count</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <hr class="BottomBorder">*@
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <!-- modified cs-flex-19 class added on 06/23/2020 -->
-                                    <div class="ContentHeading clearfix cs-flex-19">
+                                    <div class="ContentHeading">
                                         <h2>Target Diagnosis Code Report</h2>
-                                        <!-- added div added on 06/23/2020 -->
-                                        <div style="float: left;">
-                                            <label style="font-weight: bold; padding-top: 30px;">Filter Records by ICD10 Code:</label>
-                                            <input type="text" class="search-input">
-                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                        <table id="table_EQPTR" class="table tbl-filter-001 table-bordered DataTable QLOTable grid">
+                                        <table id="table_EQPTR" class="table table-bordered DataTable QLOTable grid">
                                             <thead>
                                                 <tr>
                                                     <th scope="col" index=0>Patient Name<div class="filter"></div></th>
                                                     <th scope="col" index=1>DOB<div class="filter"></div></th>
-                                                    <th scope="col">ICD10 Code Description</th>
                                                     <th scope="col" index=2>ICD10 Code<div class="filter"></div></th>
-
+                                                    @*<th scope="col">ICD10 Code Description</th>
+                                                    <th scope="col">Patient ID</th>*@
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
                                         </table>
 
                                     </div>
-
-
+                                    
+                                   
                                 </div>
                                 <!-- <hr class="BottomBorder">-->
 
@@ -1041,11 +976,7 @@
                                                 <th scope="col">Opportunity of Revenue</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <th scope="col">Diabetes Medications(DM)</th>
-                                        <th scope="col">HIV</th>
-
-                                        </tbody>
+                                        <tbody></tbody>
                                     </table>
                                 </div>
                                 <hr class="BottomBorder">
@@ -1116,7 +1047,6 @@
                 $.post('./result', { opts: $('#select_1').val() }, function (data) {
                     $(".lds-ring").css('display', 'none');
                     $('.box_content').hide("slide");
-                    var count = 0;
                     var graphData = [];
                     var piedata = [];
                     var bardata = [];
@@ -1132,7 +1062,6 @@
                     var PSdata = [];
                     var ORMSdata = [];
                     var ORMSdata2 = [];
-                    var ttd2data = [];
                     //console.log(data);
                     iCount = 0;
                     var html1 = '';
@@ -1151,7 +1080,6 @@
                     var html_PS = '';
                     var html_ORMS = '';
                     var html_ORMD = '';
-                    var html_ttd2 = '';
                     var function_called = $('#select_1').val();
                     if (function_called == 7) {
                         //PS
@@ -1172,27 +1100,12 @@
                         var jsonData = JSON.stringify(data.PD[0]);
                         var json2 = JSON.parse(jsonData);
                         var json3 = JSON.parse(json2.Patient_Detail);
-
-
                         //var jsonData = JSON.parse(message);
                         for (var i in json3) {
-
-                            var firstWords = '';
-                            var words1 = json3[i].PatientFirstName.split(" ");
-                            firstWords += words1[0].charAt(0);
-
-                            var SecondWords = '';
-                            var words = json3[i].PatientLastName.split(" ");
-                            for (var loop = 0; loop < words.length; loop++) {
-                                SecondWords += words[loop].charAt(0);
-                            }
-
-
                             html_PD += '<tr>';
 
-                            html_PD += '<td>' + firstWords + SecondWords + '</td>';
+                            html_PD += '<td>' + json3[i].PatientFirstName +' '+json3[i].PatientLastName +'</td>';
                             html_PD += '<td>' + json3[i].dob + '</td>';
-                            html_PD += '<td>' + json3[i].ICD10CodeDec + '</td>';
                             html_PD += '<td>' + json3[i].ICD10code + '</td>';
                             //tdmcddrdata[iCount++] = value[0][key2];
                             html_PD += '</tr>';
@@ -1201,27 +1114,17 @@
 
                     }
 
-
                     if (function_called == 9) {
                         //PS
-
                         var jsonData = JSON.stringify(data.ORMS[0]);
                         var json2 = JSON.parse(jsonData);
                         var json3 = JSON.parse(json2.ORMS);
                         //var jsonData = JSON.parse(message);
-
                         for (var i in json3) {
                             html_ORMS += '<tr>';
-                            if (count == 0 ) {
-                                html_ORMS += '<td>Diabetes Medications(DM) </td>';
-                                count++;
-                            }
-                           else if (count == 1) {
-                                html_ORMS += '<td>HIV</td>';
-                            }
-                            //html_ORMS += '<td>' + json3[i].Category + '</td>';
+                            html_ORMS += '<td>' + json3[i].Category + '</td>';
                             html_ORMS += '<td>' + json3[i].RXCount + '</td>';
-                            html_ORMS += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',minimumFractionDigits: '0' }).format(Math.round(json3[i].OpportunityRev)) + '</td>';
+                            html_ORMS += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(json3[i].OpportunityRev) + '</td>';
                             //ORMSdata[iCount++] = json3[i].RXCount;
                             ORMSdata2[iCount++] = json3[i].OpportunityRev;
                             html_ORMS += '</tr>';
@@ -1240,7 +1143,7 @@
                             html_ORMD += '<td>' + json3[i].RXCount + '</td>';
                             html_ORMD += '<td>' + json3[i].Price340B+'</td>';
                             html_ORMD += '<td>' + json3[i].PaidClaimPrice + '</td>';
-                            html_ORMD += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: '0' }).format(Math.round(json3[i].OppourtunityofRevenue)) + '</td>';
+                            html_ORMD += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(json3[i].OppourtunityofRevenue) + '</td>';
                             //html_ORMD += '<td>' + json3[i].PatientFirstName + '</td>';
                             //html_ORMD += '<td>' + json3[i].PatientFirstName + '</td>';
                             //alert(html3);
@@ -1288,27 +1191,12 @@
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
                                     //alert(value[0][key2]);
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        html3 += '<tr>';
-                                        html3 += '<th>' + $('#select_3 option[value="' + key2 + '"]').text() + '</th>';
-                                        html3 += '<td>' + value[0][key2] + '</td>';
-                                        html3 += '<td style="text-align:center">-</td>';
-                                        //alert(html3);
-                                        piedata[iCount++] = value[0][key2];
-                                        html3 += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-
-                                        html3 += '<tr>';
-                                        html3 += '<th>' + $('#select_3 option[value="' + key2 + '"]').text() + '</th>';
-                                        html3 += '<td>' + splitValue[0] + '</td>';
-                                        html3 += '<td>' + splitValue[1] + '</td>';
-                                        //alert(html3);
-                                        piedata[iCount++] = splitValue[0];
-                                        html3 += '</tr>';
-                                    }
-
+                                    html3 += '<tr>';
+                                    html3 += '<th>' + $('#select_3 option[value="' + key2 + '"]').text() + '</th>';
+                                    html3 += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    piedata[iCount++] = value[0][key2];
+                                    html3 += '</tr>';
                                 }
                             }
 
@@ -1317,29 +1205,12 @@
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
                                     //alert(value[0][key2]);
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        html_pp += '<tr>';
-                                        html_pp += '<th>' + $('#pp option[value="' + key2 + '"]').text() + '</th>';
-                                        html_pp += '<td>' + value[0][key2] + '</td>';
-                                        html_pp += '<td style="text-align:center">-</td>';
-
-                                        //alert(html5);
-                                        chart_pp[iCount++] = value[0][key2];
-                                        html_pp += '</tr>';
-                                    }
-
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        html_pp += '<tr>';
-                                        html_pp += '<th>' + $('#pp option[value="' + key2 + '"]').text() + '</th>';
-                                        html_pp += '<td>' + splitValue[0] + '</td>';
-                                        html_pp += '<td>' + splitValue[1] + '</td>';
-
-                                        //alert(html5);
-                                        chart_pp[iCount++] = splitValue[0];
-                                        html_pp += '</tr>';
-                                    }
-
+                                    html_pp += '<tr>';
+                                    html_pp += '<th>' + $('#pp option[value="' + key2 + '"]').text() + '</th>';
+                                    html_pp += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html5);
+                                    chart_pp[iCount++] = value[0][key2];
+                                    html_pp += '</tr>';
                                 }
                             }
 
@@ -1349,30 +1220,13 @@
                         if (key == 'MCO') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        html5 += '<tr>';
-                                        html5 += '<th>' + $('#select_4 option[value="' + key2 + '"]').text() + '</th>';
-                                        html5 += '<td>' + value[0][key2] + '</td>';
-                                        html5 += '<td style="text-align:center">-</td>';
-
-                                        //alert(html5);
-                                        bardata[iCount++] = value[0][key2];
-                                        html5 += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        html5 += '<tr>';
-                                        html5 += '<th>' + $('#select_4 option[value="' + key2 + '"]').text() + '</th>';
-                                        html5 += '<td>' + splitValue[0] + '</td>';
-                                        html5 += '<td>' + splitValue[1] + '</td>';
-
-                                        //alert(html5);
-                                        bardata[iCount++] = splitValue[0];
-                                        html5 += '</tr>';
-
-                                    }
                                     //alert(value[0][key2]);
-
+                                    html5 += '<tr>';
+                                    html5 += '<th>' + $('#select_4 option[value="' + key2 + '"]').text() + '</th>';
+                                    html5 += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html5);
+                                    bardata[iCount++] = value[0][key2];
+                                    html5 += '</tr>';
                                 }
                             }
 
@@ -1381,29 +1235,12 @@
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
                                     //alert(value[0][key2]);
-                                    if (value[0][key2].indexOf('|') == -1) {
-
-                                        html_ep += '<tr>';
-                                        html_ep += '<th>' + $('#EP option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ep += '<td>' + value[0][key2] + '</td>';
-                                        html_ep += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        epdata[iCount++] = value[0][key2];
-                                        html_ep += '</tr>';
-
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        html_ep += '<tr>';
-                                        html_ep += '<th>' + $('#EP option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ep += '<td>' + splitValue[0] + '</td>';
-                                        html_ep += '<td>' + splitValue[1]+ '</td>';
-
-                                        //alert(html3);
-                                        epdata[iCount++] = splitValue[0];
-                                        html_ep += '</tr>';
-                                    }
+                                    html_ep += '<tr>';
+                                    html_ep += '<th>' + $('#EP option[value="' + key2 + '"]').text() + '</th>';
+                                    html_ep += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    epdata[iCount++] = value[0][key2];
+                                    html_ep += '</tr>';
                                 }
                             }
 
@@ -1411,29 +1248,13 @@
                         if (key == 'EIC') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        html_eci += '<tr>';
-                                        html_eci += '<th>' + $('#EIC option[value="' + key2 + '"]').text() + '</th>';
-                                        html_eci += '<td>' + value[0][key2] + '</td>';
-                                        html_eci += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        ecidata[iCount++] = value[0][key2];
-                                        html_eci += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        //alert(value[0][key2]);
-                                        html_eci += '<tr>';
-                                        html_eci += '<th>' + $('#EIC option[value="' + key2 + '"]').text() + '</th>';
-                                        html_eci += '<td>' + splitValue[0] + '</td>';
-                                        html_eci += '<td>' + splitValue[1] + '</td>';
-
-                                        //alert(html3);
-                                        ecidata[iCount++] = splitValue[0];
-                                        html_eci += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_eci += '<tr>';
+                                    html_eci += '<th>' + $('#EIC option[value="' + key2 + '"]').text() + '</th>';
+                                    html_eci += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    ecidata[iCount++] = value[0][key2];
+                                    html_eci += '</tr>';
                                 }
                             }
 
@@ -1442,61 +1263,13 @@
                         if (key == 'TTD') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        //alert(value[0][key2]);
-                                        html_ttd += '<tr>';
-                                        html_ttd += '<th>' + $('#TTD option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ttd += '<td>' + value[0][key2] + '</td>';
-                                        html_ttd += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        ttddata[iCount++] = value[0][key2];
-                                        html_ttd += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        //alert(value[0][key2]);
-                                        html_ttd += '<tr>';
-                                        html_ttd += '<th>' + $('#TTD option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ttd += '<td>' + splitValue[0] + '</td>';
-                                        html_ttd += '<td>' + splitValue[1] + '</td>';
-
-                                        //alert(html3);
-                                        ttddata[iCount++] = splitValue[0];
-                                        html_ttd += '</tr>';
-                                    }
-
-                                }
-                            }
-
-                        }
-                        if (key == 'TTD2') {
-                            for (key2 in value[0]) {
-                                if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        //alert(value[0][key2]);
-                                        html_ttd2 += '<tr>';
-                                        html_ttd2 += '<th>' + $('#TTD option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ttd2 += '<td>' + value[0][key2] + '</td>';
-                                        html_ttd2 += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        ttd2data[iCount++] = value[0][key2];
-                                        html_ttd2 += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        //alert(value[0][key2]);
-                                        html_ttd2 += '<tr>';
-                                        html_ttd2 += '<th>' + $('#TTD option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ttd2 += '<td>' + splitValue[0] + '</td>';
-                                        html_ttd2 += '<td>' + splitValue[1] + '</td>';
-
-                                        //alert(html3);
-                                        ttd2data[iCount++] = splitValue[0];
-                                        html_ttd2 += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_ttd += '<tr>';
+                                    html_ttd += '<th>' + $('#TTD option[value="' + key2 + '"]').text() + '</th>';
+                                    html_ttd += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    ttddata[iCount++] = value[0][key2];
+                                    html_ttd += '</tr>';
                                 }
                             }
 
@@ -1504,37 +1277,13 @@
                         if (key == 'TDMC') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        //alert(value[0][key2]);
-                                        html_tdmc += '<tr>';
-                                        html_tdmc += '<th>' + $('#TDMC option[value="' + key2 + '"]').text() + '</th>';
-                                        html_tdmc += '<td>' + value[0][key2] + '</td>';
-                                        html_tdmc += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        tdmcdata[iCount++] = value[0][key2];
-                                        html_tdmc += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-
-                                        //alert(value[0][key2]);
-                                        html_tdmc += '<tr>';
-                                        html_tdmc += '<th>' + $('#TDMC option[value="' + key2 + '"]').text() + '</th>';
-                                        html_tdmc += '<td>' + splitValue[0] + '</td>';
-                                        //html_tdmc += '<td>' + splitValue[1] + '</td>';
-
-                                        var total_val = splitValue[1];
-                                        total_val = parseFloat(total_val.replace("%"));
-
-                                        var new_value = parseFloat((parseFloat(splitValue[0]) / total_val) * 100.0).toFixed(2);
-                                        html_tdmc += '<td>' + new_value + '%</td>';
-
-                                        //alert(html3);
-                                        tdmcdata[iCount++] = splitValue[0];
-                                        html_tdmc += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_tdmc += '<tr>';
+                                    html_tdmc += '<th>' + $('#TDMC option[value="' + key2 + '"]').text() + '</th>';
+                                    html_tdmc += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    tdmcdata[iCount++] = value[0][key2];
+                                    html_tdmc += '</tr>';
                                 }
                             }
 
@@ -1543,36 +1292,13 @@
                         if (key == 'HDMC') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        //alert(value[0][key2]);
-                                        html_hdmc += '<tr>';
-                                        html_hdmc += '<th>' + $('#HDMC option[value="' + key2 + '"]').text() + '</th>';
-                                        html_hdmc += '<td>' + value[0][key2] + '</td>';
-                                        html_hdmc += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        hdmcdata[iCount++] = value[0][key2];
-                                        html_hdmc += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-
-                                        //alert(value[0][key2]);
-                                        html_hdmc += '<tr>';
-                                        html_hdmc += '<th>' + $('#HDMC option[value="' + key2 + '"]').text() + '</th>';
-                                        html_hdmc += '<td>' + splitValue[0] + '</td>';
-
-                                        //html_hdmc += '<td>' + splitValue[1] + '</td>';
-                                        var total_val = splitValue[1];
-                                        total_val = parseFloat(total_val.replace("%"));
-
-                                        var new_value = parseFloat((parseFloat(splitValue[0]) / total_val) * 100.0).toFixed(2);
-                                        html_hdmc += '<td>' + new_value + '%</td>';
-
-                                        hdmcdata[iCount++] = splitValue[0];
-                                        html_hdmc += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_hdmc += '<tr>';
+                                    html_hdmc += '<th>' + $('#HDMC option[value="' + key2 + '"]').text() + '</th>';
+                                    html_hdmc += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    hdmcdata[iCount++] = value[0][key2];
+                                    html_hdmc += '</tr>';
                                 }
                             }
 
@@ -1580,32 +1306,13 @@
                         if (key == 'HIV') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        //alert(value[0][key2]);
-                                        html_hiv += '<tr>';
-                                        html_hiv += '<th>' + $('#HIV option[value="' + key2 + '"]').text() + '</th>';
-                                        html_hiv += '<td>' + value[0][key2] + '</td>';
-                                        html_hiv += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        hivdata[iCount++] = value[0][key2];
-                                        html_hiv += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-
-                                        //alert(value[0][key2]);
-                                        html_hiv += '<tr>';
-                                        html_hiv += '<th>' + $('#HIV option[value="' + key2 + '"]').text() + '</th>';
-                                        html_hiv += '<td>' + splitValue[0] + '</td>';
-                                        html_hiv += '<td>' + splitValue[1] + '</td>';
-
-
-                                        //alert(html3);
-                                        hivdata[iCount++] = splitValue[0];
-                                        html_hiv += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_hiv += '<tr>';
+                                    html_hiv += '<th>' + $('#HIV option[value="' + key2 + '"]').text() + '</th>';
+                                    html_hiv += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    hivdata[iCount++] = value[0][key2];
+                                    html_hiv += '</tr>';
                                 }
                             }
 
@@ -1614,31 +1321,13 @@
                         if (key == 'DDR') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-                                        html_ddr += '<tr>';
-                                        html_ddr += '<th>' + $('#DDR option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ddr += '<td>' + value[0][key2] + '</td>';
-                                        html_ddr += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        ddrdata[iCount++] = value[0][key2];
-                                        html_ddr += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-
-                                        //alert(value[0][key2]);
-                                        html_ddr += '<tr>';
-                                        html_ddr += '<th>' + $('#DDR option[value="' + key2 + '"]').text() + '</th>';
-                                        html_ddr += '<td>' + splitValue[0] + '</td>';
-                                        html_ddr += '<td>' + splitValue[1] + '</td>';
-
-
-                                        //alert(html3);
-                                        ddrdata[iCount++] = splitValue[0];
-                                        html_ddr += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_ddr += '<tr>';
+                                    html_ddr += '<th>' + $('#DDR option[value="' + key2 + '"]').text() + '</th>';
+                                    html_ddr += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    ddrdata[iCount++] = value[0][key2];
+                                    html_ddr += '</tr>';
                                 }
                             }
 
@@ -1646,39 +1335,13 @@
                         if (key == 'TDMCDDR') {
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-
-                                        //alert(value[0][key2]);
-                                        html_tdmcddr += '<tr>';
-                                        html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
-                                        html_tdmcddr += '<td>' + value[0][key2] + '</td>';
-                                        html_tdmcddr += '<td>&nbsp</td>';
-
-                                        //alert(html3);
-                                        tdmcddrdata[iCount++] = value[0][key2];
-                                        html_tdmcddr += '</tr>';
-
-
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-
-                                        //alert(value[0][key2]);
-                                        html_tdmcddr += '<tr>';
-                                        html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
-                                        html_tdmcddr += '<td>' + splitValue[0] + '</td>';
-                                        //html_tdmcddr += '<td>' + splitValue[1] + '</td>';
-
-                                        var total_val = splitValue[1];
-                                        total_val = parseFloat(total_val.replace("%"));
-
-                                        var new_value = parseFloat((parseFloat(splitValue[0]) / total_val) * 100.0).toFixed(2);
-                                        html_tdmcddr += '<td>' + new_value + '%</td>';
-
-                                        //alert(html3);
-                                        tdmcddrdata[iCount++] = splitValue[0];
-                                        html_tdmcddr += '</tr>';
-                                    }
+                                    //alert(value[0][key2]);
+                                    html_tdmcddr += '<tr>';
+                                    html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
+                                    html_tdmcddr += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    tdmcddrdata[iCount++] = value[0][key2];
+                                    html_tdmcddr += '</tr>';
                                 }
                             }
 
@@ -1687,32 +1350,13 @@
 
                             for (key2 in value[0]) {
                                 if (value[0].hasOwnProperty(key2)) {
-                                    if (value[0][key2].indexOf('|') == -1) {
-
-
-                                        //alert(value[0][key2]);
-                                        html_tdmcddr += '<tr>';
-                                        html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
-                                        html_tdmcddr += '<td>' + value[0][key2] + '</td>';
-                                        html_tdmcddr += '<td style="text-align:center">-</td>';
-
-                                        //alert(html3);
-                                        tdmcddrdata[iCount++] = value[0][key2];
-                                        html_tdmcddr += '</tr>';
-                                    }
-                                    else {
-                                        var splitValue = value[0][key2].split('|');
-                                        //alert(value[0][key2]);
-                                        html_tdmcddr += '<tr>';
-                                        html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
-                                        html_tdmcddr += '<td>' + splitValue[0] + '</td>';
-                                        html_tdmcddr += '<td>' + splitValue[1] + '</td>';
-
-                                        //alert(html3);
-                                        tdmcddrdata[iCount++] = splitValue[0];
-                                        html_tdmcddr += '</tr>';
-                                    }
-
+                                    //alert(value[0][key2]);
+                                    html_tdmcddr += '<tr>';
+                                    html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
+                                    html_tdmcddr += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html3);
+                                    tdmcddrdata[iCount++] = value[0][key2];
+                                    html_tdmcddr += '</tr>';
                                 }
                             }
 
@@ -1742,28 +1386,25 @@
                             $('#table_1 tbody').html(html3);
                             //$('#table_2 thead').html(html3);
                             $('#table_pp tbody').html(html_pp);
-                            $('#table_2 tbody').html(html5);
 
                             createPie(graphData);
                             createPie2(piedata);
                             createPie_pp(chart_pp);
-                            createPie3(bardata);
-
                             $('.box_content').show("slide");
                         }
                         if (function_called == 2) {
                             $('#table_ep tbody').html(html_ep);
+                            $('#table_2 tbody').html(html5);
                             $('#table_eci tbody').html(html_eci);
                             createPie_ep(epdata);
+                            createPie3(bardata);
                             createPie_eci(ecidata);
                             $('.box_content2').show("slide");
                         }
                         if (function_called == 3) {
                             $('#table_TTD tbody').html(html_ttd);
-                            $('#table_TTD_2 tbody').html(html_ttd2);
                             $('#table_TDMC tbody').html(html_tdmc);
                             createPie_ttd(ttddata);
-                            createPie_ttd2(ttd2data);
                             createPie_tdmc(tdmcdata);
                             $('.box_content3').show("slide");
                         }
@@ -1774,7 +1415,6 @@
                             createPie_hdmc(hdmcdata);
                             $('.box_content4').show("slide");
                         }
-
                         if (function_called == 5) {
                             $('#table_DDR tbody').html(html_ddr);
                             $('#table_TDMCDDR tbody').html(html_tdmcddr);
@@ -1892,8 +1532,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -2019,8 +1658,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -2084,10 +1722,10 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                       ['ERx Filled ','at Contracted',' Pharmacies'] ,
-                        ['ERx MCO ','Medicaid Filled at ','Contracted Pharmacies'],
-                        ['ERx MCO', ' Medicaid Filled at ', 'Chain Contracted ', 'Pharmacies'],
-                        ['ERx MCO',' Medicaid Filled',' at Not Chain',' Contracted Pharmacies'],
+                       ['MCO','Medicaid ERxs'] ,
+                        ['MCO',' Medicaid ERxs',' Filled at ','Contracted',' Pharmacies'],
+                        ['ERxs',' Filled at ','non- Contracted',' Pharmacies'],
+                        ['MCO ','Medicaid ERxs',' Filled at',' Contracted',' Chain Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2095,10 +1733,10 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[10],
-                            chartData[11],
-                            chartData[12],
-                            chartData[13],
+                            chartData[16],
+                            chartData[17],
+                            chartData[18],
+                            chartData[21],
                     ]
                 }]
 
@@ -2149,8 +1787,8 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 9,
-                                  fontStyle: "bold",
+                                fontSize: 10
+
                             }
 
                         }]
@@ -2232,9 +1870,9 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[7],
-                            chartData[8],
                             chartData[9],
+                            chartData[10],
+                            chartData[11],
                     ]
                 }]
 
@@ -2284,8 +1922,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -2354,8 +1991,8 @@
             var mydata = {
                 labels: [
                         ['# of ERxs'],
-                        ['# ERxs Insurance',' Covered'],
-                        ['# ERxs Cash',' Covered'],
+                        ['ERxs Insurance',' Covered'],
+                        ['ERxs Cash',' Covered'],
                 ],
                 datasets: [{
                     label: '',
@@ -2418,8 +2055,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -2482,28 +2118,28 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# ERxs'],
-                        ['# Medicaid',' ERxs'],
-                        ['# Commercial',' ERxs'],
-                        ['# Medicare',' ERx'],
-                        ['# Tricare',' ERxs'],
-                        ['# Cash'],
+                        ['ERxs'],
+                        ['Medicaid',' ERxs'],
+                        ['Commercial',' ERxs'],
+                        ['Medicare',' ERx'],
+                        ['Tricare',' ERxs'],
+                        ['Cash'],
                 ],
                 datasets: [{
                     label: '',
                     backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString(), color(window.chartColors.yellow).alpha(0.5).rgbString(), color(window.chartColors.grey).alpha(0.5).rgbString()],
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
                     borderWidth: 1,
-                    data: [chartData[3],
-                            chartData[4],
-                            //chartData[7],
-                            chartData[5],
-                            // chartData[9],
+                    data: [chartData[5],
                             chartData[6],
-                            //chartData[11],
-                            chartData[7],
-                            //chartData[13],
+                            //chartData[7],
                             chartData[8],
+                            // chartData[9],
+                            chartData[10],
+                            //chartData[11],
+                            chartData[12],
+                            //chartData[13],
+                            chartData[14],
                             //chartData[15],
                     ]
                 }]
@@ -2545,7 +2181,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'ERx Payer Profile'
+                        text: 'E-Rx Medicaid View'
                     },
                     scales: {
                         yAxes: [{
@@ -2555,8 +2191,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -2631,10 +2266,12 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# Unique  Patients',' Has Escript',' for a',' Target Drug'],
-                        ['# Patients on',' Target Drug',' Filled at ','Contracted',' Pharmacies '],
-                        ['# Patients on',' Target Meds',' filled at ','Non-Contracted ','Pharmacies'],
-
+                        ['Unique  Patients',' Has Escript',' for a',' Target Drug'],
+                        ['Patients on',' Target Drug',' Filled at ','Contracted',' Pharmacies '],
+                        ['Patients on',' Target Meds',' filled at ','Non-Contracted ','Pharmacies'],
+                        ['Target ERxs',' Count'],
+                        ['Target ERxs','Sent to ','Contracted',' Pharmacies'],
+                        ['Target ERxs',' Sent to ','Non-Contracted',' Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2645,7 +2282,9 @@
                             chartData[0],
                             chartData[1],
                             chartData[2],
-
+                            chartData[5],
+                            chartData[6],
+                            chartData[7],
 
                     ]
                 }]
@@ -2687,20 +2326,19 @@
                     },
                     title: {
                         display: true,
-                        text: 'Targeted Drug Patient View (HIV & Brand Diabetic Meds)'
+                        text: 'Targeted Drug View (HIV & Brand Diabetic Meds)'
                     },
                     scales: {
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true,
-                                suggestedMax: 600,
+                                suggestedMax: 1300,
 
                             }
                         }],
                         xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -2750,8 +2388,7 @@
             var ctx = document.getElementById('chart-area_TTD').getContext('2d');
             window.myPie = new Chart(ctx, config);*/
         }
-        var newvalue ='';
-        function createPie_ttd2(chartData) {
+        function createPie_tdmc(chartData) {
             for (var i = 0; i < chartData.length; i++) {
                 if (!chartData[i])
                     continue;
@@ -2765,15 +2402,10 @@
             }
 
 
-
-
-            newvalue = chartData[4];
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# Target ERxs', ' Count'],
-                        ['# Target ERxs', 'Sent to ', 'Contracted', ' Pharmacies'],
-                        ['# Target ERxs', ' Sent to ', 'Non-Contracted', ' Pharmacies'],
+                    ['Number of ','Target Med ERxs',' Filled at ','Contract Chain ','Pharmacies Not',' Doing MCO ','Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -2781,16 +2413,16 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
                     borderWidth: 1,
                     data: [
-                            chartData[3],
-                            chartData[4],
-                            chartData[5],
+
+                            chartData[10],
+                            // chartData[11],
 
                     ]
                 }]
 
             };
 
-            var Ctx = document.getElementById('chart-area_TTD_2').getContext('2d');
+            var Ctx = document.getElementById('chart-area_TDMC').getContext('2d');
             var UserVsMyApps = new Chart(Ctx, {
                 type: 'bar',
                 data: mydata,
@@ -2825,113 +2457,8 @@
                     },
                     title: {
                         display: true,
-                        text: 'Targeted Drug ERx View (HIV & Brand Diabetic Meds)'
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                suggestedMax: 1300,
-
-                            }
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
-
-                            }
-
-                        }]
-                    },
-                }
-            });
-        }
-        function createPie_tdmc(chartData) {
-            for (var i = 0; i < chartData.length; i++) {
-                if (!chartData[i])
-                    continue;
-                var str = chartData[i];
-                if (str.indexOf("%") == -1) {
-                    var a = chartData[i];
-                    a = a.replace(/\,/g, ''); // 1125, but a string, so convert it to number
-                    a = parseInt(a);
-                    chartData[i] = a;
-                }
-            }
-
-
-            var newvalue2 = chartData[6];
-            var display = newvalue - newvalue2;
-            var color = Chart.helpers.color;
-            var mydata = {
-                labels: [
-                    ['Number of ', 'Target Med ERxs', ' Filled at ', 'Contract Chain ', 'Pharmacies Not', ' Doing MCO ', 'Medicaid Carve in.'],
-                    ['Target ERxs Filled at Contracted Pharmies Doing MCO Medicaid Carve in'],
-                ],
-                datasets: [{
-                    label: '',
-                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString(), color(window.chartColors.yellow).alpha(0.5).rgbString(), color(window.chartColors.grey).alpha(0.5).rgbString()],
-                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
-                    borderWidth: 1,
-                    data: [
-
-                            chartData[6],
-                            display,
-                            // chartData[11],
-
-                    ]
-                }]
-
-            };
-
-            var Ctx = document.getElementById('chart-area_TDMC').getContext('2d');
-            var UserVsMyApps = new Chart(Ctx, {
-                type: 'pie',
-                data: mydata,
-                options: {
-                    responsive: true,
-                    legend: {
-                        position: 'top',
-                        display: false,
-
-                    },
-                    "hover": {
-                        "animationDuration": 0
-                    },
-                    "animation": {
-                        "duration": 1,
-                        "onComplete": function () {
-                            var chartInstance = this.chart,
-                                ctx = chartInstance.ctx;
-
-                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-                            ctx.textAlign = 'absolute';
-                            ctx.textBaseline = 'bottom';
-
-                            this.data.datasets.forEach(function (dataset, i) {
-                                var meta = chartInstance.controller.getDatasetMeta(i);
-                                var counter = 0;
-                                meta.data.forEach(function (bar, index) {
-                                    var data = dataset.data[index];
-                                    if (counter == 0) {
-                                        ctx.fillText(data, bar._model.x + 35, bar._model.y - 30);
-
-                                    }
-                                    else {
-                                        ctx.fillText(data, bar._model.x - 50, bar._model.y + 50);
-
-                                    }
-                                    counter++;
-                                });
-                            });
-                        }
-                    },
-                    title: {
-                        display: true,
                         text: 'Targeted Drug Medicaid Carve In'
                     },
-                    /*
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -2946,7 +2473,6 @@
 
                         }]
                     }
-                    */
                 }
             });
 
@@ -3008,7 +2534,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                   [ 'Number of HIV Drug ERxs Filled at Contract ','Chain Pharmacies Not Doing MCO Medicaid Carve in.'],
+                   [ 'Number of ','HIV Drug ERxs',' Filled at Contract',' Chain Pharmacies',' Not Doing MCO',' Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -3017,7 +2543,7 @@
                     borderWidth: 1,
                     data: [
 
-                            chartData[6],
+                            chartData[10],
                             // chartData[11],
 
                     ]
@@ -3070,8 +2596,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -3132,12 +2657,12 @@
             var mydata = {
                 labels: [
 
-                        ['# Unique Patients',' on Diabetic ','Brand Meds'],
-                        ['# Patients ','Diabetic Brand',' Meds Filled ','at Contracted ','Pharmacies'],
-                        ['# Patients ','Diabetic',' Brand Meds',' Filled at',' non-Contracted',' Pharmacies'],
-                        ['# Diabetic Brand',' Escripts Count'],
-                        ['# Diabetic Brand',' ERxs Sent ','to contracted ','Pharmacies'],
-                        ['# Diabetic',' Brand',' ERxs ','Sent ','non-Contracted ','Pharmacy'],
+                        ['Unique Patients',' on Diabetic ','Brand Meds'],
+                        ['Patients ','Diabetic Brand',' Meds Filled ','at Contracted ','Pharmacies'],
+                        ['Patients ','Diabetic',' Brand Meds',' Filled at',' non-Contracted',' Pharmacies'],
+                        ['Diabetic Brand',' Escripts Count'],
+                        ['Diabetic Brand',' ERxs Sent ','to contracted ','Pharmacies'],
+                        ['Diabetic',' Brand',' ERxs ','Sent ','non-Contracted ','Pharmacy'],
                 ],
                 datasets: [{
                     label: '',
@@ -3149,9 +2674,9 @@
                             chartData[0],
                             chartData[1],
                             chartData[2],
-                            chartData[3],
-                            chartData[4],
                             chartData[5],
+                            chartData[6],
+                            chartData[7],
 
                     ]
                 }]
@@ -3203,8 +2728,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 8,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -3281,7 +2805,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                    ['Number of Diabetic Drug ERxs Filled at Contract Chain',' Pharmacies Not Doing MCO Medicaid Carve in.'],
+                    ['Number of ','Diabetic Drug',' ERxs Filled ','at Contract Chain',' Pharmacies Not',' Doing MCO ','Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -3290,7 +2814,7 @@
                     borderWidth: 1,
                     data: [
 
-                          chartData[6],
+                          chartData[10],
 
                     ]
                 }]
@@ -3342,8 +2866,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 10,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -3399,12 +2922,12 @@
             var mydata = {
                 labels: [
 
-                        ['# Unique HIV',' Patients'],
-                        ['# Patients',' HIV',' Meds ERxs',' filled',' at ','Contracted',' Pharmacies '],
-                        ['# Patients',' HIV',' Meds Filled ','at',' non-Contracted',' Pharmacies'],
-                        ['# HIV ERxs ','Count'],
-                        ['# HIV ERxs ','Sent to ','Contracted',' Pharmacies'],
-                        ['# HIV ERxs',' Sent to ','non-Contracted ','Pharmacies'],
+                        ['Unique HIV',' Patients'],
+                        ['Patients',' HIV',' Meds ERxs',' filled',' at ','Contracted',' Pharmacies '],
+                        ['Patients',' HIV',' Meds Filled ','at',' non-Contracted',' Pharmacies'],
+                        ['HIV ERxs ','Count'],
+                        ['HIV ERxs ','Sent to ','Contracted',' Pharmacies'],
+                        ['HIV ERxs',' Sent to ','non-Contracted ','Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -3416,9 +2939,9 @@
                             chartData[0],
                             chartData[1],
                             chartData[2],
-                            chartData[3],
-                            chartData[4],
                             chartData[5],
+                            chartData[6],
+                            chartData[7],
 
 
                     ]
@@ -3471,8 +2994,7 @@
                             }
                         }],xAxes: [{
                             ticks: {
-                                fontSize: 9,
-                                 fontStyle: "bold",
+                                fontSize: 10
 
                             }
 
@@ -3685,19 +3207,26 @@
 
         function createchart9(chartData2) {
 
-            var data1 = parseFloat(chartData2[0]).toFixed(0);
-            var data2 = parseFloat(chartData2[1]).toFixed(0);
+            var data1 = parseFloat(chartData2[0]).toFixed(2);
+            var data2 = parseFloat(chartData2[1]).toFixed(2);
 
             var color = Chart.helpers.color;
             var UserVsMyAppsData = {
-                labels: ['DM', 'HIV'],
+                labels: [''],
                 datasets: [{
-                    label: 'DM',
-                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString()],
-                    borderColor: [window.chartColors.red, window.chartColors.blue],
+                    label: 'DIB',
+                    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.red,
                     borderWidth: 1,
                     data: [
-                        data1, data2
+                        data1 ,
+                            ]
+                }, {
+                    label: 'HIV',
+                    backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.blue,
+                    borderWidth: 1,
+                    data: [data2,
                     ]
                 }]
 
@@ -3711,7 +3240,7 @@
                     responsive: true,
                     legend: {
                         position: 'bottom',
-                        display: false,
+                        display: true,
 
                     },
                     "hover": {
@@ -3747,10 +3276,6 @@
                                 suggestedMax: 750000,
 
                             }
-                        }],
-                        xAxis:[{
-
-                            fontStyle: "bold",
                         }]
                     }
                 }
@@ -3833,28 +3358,6 @@
 
         });
 
-        /* added on 06/23/2020 */
-        $(function () {
-            try {
-                $(document).on('keyup', '.cs-flex-19 .search-input', function () {
-                    var val = $(this).val().toLowerCase();
-                    var tbl = $('table.tbl-filter-001');
-                    tbl.find('tbody tr.no-rec-row').remove();
-                    tbl.find('tbody tr').each(function () {
-                        $(this).show();
-                        var col = $(this).find('td:last');
-                        if (col.text().toLowerCase().indexOf(val) < 0) {
-                            $(this).hide();
-                        }
-                    });
-                    if (tbl.find('tbody tr:visible').length == 0) {
-                        tbl.find('tbody').append('<tr class="no-rec-row"><td colspan="' + (tbl.find('tbody tr td').length) + '" align="center">No records found!</td></tr>');
-                    }
-                });
-            } catch (e) {
-                console.log(e.message);
-            }
-        });
     </script>
 </body>
 </html>
