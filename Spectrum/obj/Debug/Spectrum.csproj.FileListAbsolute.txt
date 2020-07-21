@@ -230,6 +230,8 @@ C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\bin\System.Web.WebPages
 C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\bin\Newtonsoft.Json.xml
 C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\bin\Antlr3.Runtime.pdb
 C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\obj\Debug\Spectrum.csprojResolveAssemblyReference.cache
 C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\obj\Debug\Spectrum.dll
 C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\obj\Debug\Spectrum.pdb
+C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\obj\Debug\Spectrum.csprojAssemblyReference.cache
+C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\obj\Debug\Spectrum.csproj.CoreCompileInputs.cache
+C:\Users\talha\Documents\GitHub\Spectrum_latest\Spectrum\obj\Debug\Spectrum.csproj.CopyComplete

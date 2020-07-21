@@ -1,0 +1,687 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spectrum Health Services, Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/Content/custom_css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="/Content/custom_css/sidemenu.css">
+    <link rel="stylesheet" type="text/css" href="/Content/custom_css/media.css">
+    <script src="/Content/bootstrap/js/bootstrap.js"></script>
+    <script src="/Content/custom_js/main.js"></script>
+    <script src="/Content/custom_js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="/Content/custom_js/Chart.min.js"></script>
+    <script src="/Content/custom_js/utils.js"></script>
+    <script src="/Content/custom_js/jQuery-v3.3.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link href="~/Content/custom_css/loader.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <style>
+
+        .select2-search--dropdown {
+            display: none;
+        }
+
+        #wrapper {
+            overflow: hidden;
+            padding-left: 50px;
+            min-height: 100vh;
+        }
+
+        #header {
+            background: #fff;
+            overflow: hidden;
+            padding: 5px 20px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            float: left;
+            width: 170px;
+            height: auto;
+            margin: -5px;
+        }
+
+            .logo a {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        #nav {
+            text-align: right;
+            padding: 25px 0 0;
+            float: right;
+        }
+
+            #nav ul {
+                margin: 0;
+            }
+
+            #nav li {
+                display: inline-block;
+                vertical-align: middle;
+                font-family: 'Avian';
+            }
+
+                #nav li a {
+                    color: #7b7d81;
+                    /*font-size: 25px;*/
+                    padding-right: 20px;
+                    font-weight: 500;
+                }
+
+                    #nav li a:hover {
+                        color: #00293f;
+                        text-decoration: none;
+                    }
+
+                    #nav li a.btn-signout {
+                        color: #fff;
+                        padding: 5px 10px;
+                        font-weight: 500;
+                        font-size: 15px;
+                        border-radius: 4px;
+                    }
+
+        .filter-form {
+            width: 420px;
+            background: #fff;
+            position: absolute;
+            top: 30%;
+            left: 30px;
+            right: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+        }
+
+            .filter-form h2 {
+                margin: 0 0 20px;
+                font-weight: bold;
+                font-size: 40px;
+            }
+
+            .filter-form .btn-primary {
+                border-radius: 4px;
+                font-weight: 500;
+                font-size: 16px;
+                min-width: 140px;
+            }
+
+                .filter-form .btn-primary:focus {
+                    box-shadow: none;
+                    outline: none;
+                }
+
+        .visual {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            height: calc(79vh - 102px);
+            background-image: url("../Content/images/Report-Page-Graphic.png");
+            background-repeat: no-repeat;
+            background-position: right;
+            background-size: 70%;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #ccc !important;
+        }
+
+        .table-bordered th {
+            font-weight: 500;
+            background: #d9e2f3;
+        }
+
+        .table-bordered td {
+            background: #fff2cc;
+            min-width: 80px;
+            font-size: 20px;
+        }
+
+        .PageContent {
+            margin: 40px 30px 0;
+            border-top: 2px solid black;
+        }
+
+        .ContentHeading {
+            padding: 60px 0;
+        }
+
+            .ContentHeading h2 {
+                font-size: 40px;
+                color: black;
+                padding-bottom: 0;
+            }
+
+        .BottomBorder {
+            background-image: url(../Content/images/sp3.png);
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            width: 100%;
+            height: 2px;
+            border: transparent;
+            margin: 40px 0 0;
+        }
+        /*.BottomBorder {
+            background-image: url(../Content/images/sp1.png);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            width: 100%;
+            height: 80px;
+            border: transparent;
+            margin: 40px 0 0;
+        }*/
+        /*.BottomBorder {
+            background-image: url(../Content/images/sp2.png);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            width: 100%;
+            height: 80px;
+            border: transparent;
+            margin: 40px 0 0;
+        }*/
+        .replicate {
+            padding-bottom: 30px;
+        }
+
+        .BottomPadding {
+            padding-bottom: 350px;
+        }
+    </style>
+</head>
+<body>
+    <!--<div class="se-pre-con"></div>--> <div class="lds-ring" style="width: 100%;height: 100vh; top: 0px; background: rgba(0, 0, 0, 0.1); position:absolute; z-index:2; display:none"><div class="lds-ring"></div></div>
+    <div class="primary-nav">
+        <button href="#" class="hamburger open-panel nav-toggle">
+            <span class="screen-reader-text">Menu</span>
+        </button>
+        <nav role="navigation" class="menu">
+            <div class="overflow-container">
+                <ul class="menu-dropdown">
+                    <li><a href="#">Dashboard</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
+                    <li class="menu-hasdropdown">
+                        <a href="#">Settings</a><span class="icon"><i class="fa fa-gear"></i></span>
+                        <label title="toggle menu" for="settings">
+                            <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+                        </label>
+                        <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+                        <ul class="sub-menu-dropdown">
+                            <li><a href="">Profile</a></li>
+                            <li><a href="">Security</a></li>
+                            <li><a href="">Account</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Favourites</a><span class="icon"><i class="fa fa-heart"></i></span></li>
+                    <li><a href="#">Messages</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <header id="header">
+            <div class="logo">
+                <a href="index.html">
+                    <img class="img-fluid" style="max-width:50%;" src="/Content/resources/images/apovia.png" alt="logo description">
+                </a>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#">Sabrina Testbot</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#" class="btn-signout btn btn-primary">Sign Out</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent border-0">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart_div" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Page Content End Here-->
+        <div style="display: none;" class="row box_content2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Profile</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_ep" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_ep" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Insurance Category</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_2" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_2" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>E-Rx Medicaid View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_eci" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_eci" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+
+        <div style="display: none;" class="row box_content3">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Targeted Drug Medicaid Carve In</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TDMC" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TDMC" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Targeted Drug View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TTD" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TTD" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+
+        <div style="display: none;" class="row box_content4">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>HIV Targeted Drug View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_HIV" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_HIV" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>HIV Targeted Drug View for Medicaid</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_HDMC" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_HDMC" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+
+        <div style="display: none;" class="row box_content5">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ReportBg">
+                <div class="PageContent">
+                    <!--Page Content Here-->
+                    <div class="replicate">
+                        <div style="overflow: hidden;">
+                            <div class="row BottomPadding">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Diabetic Target Drug View</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_DDR" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_DDR" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <hr class="BottomBorder">
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="ContentHeading">
+                                        <h2>Diabetic Targeted Drug View for Medicaid</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="piechart">
+                                        <div id="canvas-holder">
+                                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                            <canvas id="chart-area_TDMCDDR" style="display: block; width: 506px; height: 253px;" width="506" height="253" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <table id="table_TDMCDDR" class="table table-bordered DataTable">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!--<hr class="BottomBorder">-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--Page Content End Here-->
+    </div>
+
+    <script>
+
+        function createPie_hiv22() {
+
+            var color = Chart.helpers.color;
+            var UserVsMyAppsData = {
+                labels: ['29 Sep 2019', '30 Sep 2019', '01 Oct 2019', '02 Oct 2019', '03 Oct 2019', '04 Oct 2019', '05 Oct 2019'],
+                datasets: [{
+                    label: 'Users',
+                    backgroundColor: [color(window.chartColors.red).alpha(0.5).rgbString(), color(window.chartColors.blue).alpha(0.5).rgbString(), color(window.chartColors.green).alpha(0.5).rgbString(), color(window.chartColors.orange).alpha(0.5).rgbString()],
+                    borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
+                    borderWidth: 1,
+                    data: [53, 117, 79, 56, 45, 89, 61]
+                }]
+
+            };
+
+            var Ctx = document.getElementById('chart-area').getContext('2d');
+            var UserVsMyApps = new Chart(Ctx, {
+                type: 'line',
+                data: UserVsMyAppsData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                        display: false,
+
+                    },
+                    "hover": {
+                        "animationDuration": 0
+                    },
+                    "animation": {
+                        "duration": 1,
+                        "onComplete": function () {
+                            var chartInstance = this.chart,
+                                ctx = chartInstance.ctx;
+
+                            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+
+                            this.data.datasets.forEach(function (dataset, i) {
+                                var meta = chartInstance.controller.getDatasetMeta(i);
+                                meta.data.forEach(function (bar, index) {
+                                    var data = dataset.data[index];
+                                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                                });
+                            });
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'This is Title'
+                    },
+                }
+            });
+        }
+
+        function newchart() {
+            google.load("visualization", "1", { packages: ["corechart"] });
+            google.setOnLoadCallback(drawChart);
+
+            var chart;
+            var data;
+            var options;
+
+            function drawChart() {
+                dataTable = google.visualization.arrayToDataTable([
+                    ['Year', 'Sales', 'Expenses'],
+                    ['2004', 1000, 400],
+                    ['2005', 1170, 460],
+                    ['2006', 660, 1120],
+                    ['2007', 1030, 540]
+                ]);
+
+                options = {
+                    title: 'Company Performance',
+                    hAxis: { title: 'Year', titleTextStyle: { color: 'red' } }
+                };
+
+                chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                chart.draw(dataTable, options);
+            }
+
+          }
+
+       
+
+        $(window).on("load", function () {
+            // Animate loader off screen
+            createPie_hiv22();
+            function updateChart() {
+
+                dataTable = new google.visualization.DataTable();
+
+                var newData = [['Year', 'Sales', 'Expenses', 'Other'],
+                ['2004', 1000, 400, 232],
+                ['2005', 1170, 460, 421],
+                ['2006', 660, 1120, 4324],
+                ['2007', 1030, 540, 4234],
+                ['2008', 1530, 50, 234]];
+
+                // determine the number of rows and columns.
+                //var numRows = newData.length;
+                // var numCols = newData[0].length;
+
+                // in this case the first column is of type 'string'.
+                dataTable.addColumn('string', newData[0][0]);
+
+                // all other columns are of type 'number'.
+                for (var i = 1; i < newData[0].length; i++)
+                    dataTable.addColumn('number', newData[0][i]);
+
+                // now add the rows.
+                for (var i = 1; i < newData.length; i++)
+                    dataTable.addRow(newData[i]);
+
+                // redraw the chart.
+
+                chart.draw(dataTable, options);
+
+            }
+
+
+
+
+            
+        });
+
+    </script>
+</body>
+</html>

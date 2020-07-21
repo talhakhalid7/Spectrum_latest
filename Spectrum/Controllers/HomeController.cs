@@ -30,7 +30,7 @@ namespace WebApplication2.Controllers
         decimal p_notchained;
 
         decimal h, i, n, m, p, percent_UPERNCP, uper_float, upercp_float, result_UPER_float, percent_UPER = 0, SecRep1_float = 0, SecRep3_float = 0, SecRep4_float = 0;
-         SqlConnection connectionString = new SqlConnection(@"Data Source=talhaserver.database.windows.net;Initial Catalog=spectrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
+        SqlConnection connectionString = new SqlConnection(@"Data Source=SQL5063.site4now.net;Initial Catalog=DB_A64CC0_apovia;User Id=DB_A64CC0_apovia_admin;Password=2020@Arshad");//(@"Data Source=talhaserver.database.windows.net;Initial Catalog=spectrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
         //SqlConnection connectionString = new SqlConnection(@"Data Source =.; Initial Catalog = spectrum; Integrated Security = True");
         public ActionResult Index()
         {
@@ -409,7 +409,7 @@ namespace WebApplication2.Controllers
             i = (decimal)Math.Round(perContracted, 2);
             return Json(new { Perc_Con = perContracted }, JsonRequestBehavior.AllowGet);
         }
-        int D = 0;
+        //int D = 0;
         [HttpPost]
         public object totalMCOMedicaid()
         {

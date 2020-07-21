@@ -1,0 +1,96 @@
+﻿.wrap{
+            min-height: 100vh;
+        }
+        .logo{
+            background-image: url("resources/images/btop.jpg");
+            background-repeat: no-repeat;
+            background-position: bottom left;
+            padding: 10px 0;
+            background-size: 80%;
+        }
+        .WelcomeMSG{
+            padding: 40px 0px;
+        }
+        .WelcomeMSG h2{
+            font-size: 65px;
+            text-transform: uppercase;
+            margin-bottom: 0;
+            color: #1b1464;
+        }
+        .WelcomeMSG h1{
+            font-size: 75px;
+            font-weight: bold;
+            margin-bottom: 0;
+            color: #1b1464;
+        }
+        .WelcomeMSG h3{
+            font-size: 30px;
+            margin-bottom: 0;
+            color: #676767;
+        }
+        .Loginview{
+            padding: 30px 30px 120px 30px;
+            background-image:url("resources/images/login_btm_img.png") ;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: contain;
+            margin-bottom: 100px;
+        }
+        .Loginview .LoginIcon{
+            background:#1b1464 ;
+            padding: 40px;
+            color: white;
+            font-size: 60px;
+            border-radius: 50%;
+        }
+        .Loginview h4{
+            font-size: 20px;
+            margin-bottom: 0;
+            color: #676767;
+            padding: 15px 0;
+        }
+        .form-control{
+            background: #f1f1f1;
+            border: 0;
+            border-radius: 7px;
+            color: #a0a0a0;
+            padding: 10px;
+        }
+        .form-control::placeholder{
+            color: #a0a0a0;
+        }
+        .IconBtnBG{
+            background: #f1f1f1;
+            border: 0;
+        }
+        .Mainbg{
+            background-size: 80% !important;
+        }
+        .form-control:not([size]):not([multiple]) {
+            height: calc(45px + 2px) !important;
+        }
+        .form-control:focus {
+            color: #495057;
+            background-color: #f1f1f1;
+            border-color: 0;
+            outline: 0;
+            box-shadow:none !important;
+        }
+        .ButtonDefault{
+            background: #1b1464;
+            color: white;
+            border: 0;
+        }
+        .ButtonDefault:hover{
+            background: #110164;
+        }
+        @media screen and (max-width: 767px) {
+            .Mainbg {
+                background-size: 40% !important;
+            }
+        }
+        @media screen and (min-width: 1480px) {
+            .Mainbg {
+                background-size: 70% !important;
+            }
+        }

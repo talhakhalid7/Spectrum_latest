@@ -1,51 +1,126 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Spectrum Health Services, Inc.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/resources/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/resources/custom_css/spectrum.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/resources/custom_css/media.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap/css/bootstrap.css">
+    <link href="~/Content/custom_css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/custom_css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/custom_css/media.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script src="~/Content/resources/bootstrap/js/bootstrap.js"></script>
-    <script src="~/Content/resources/custom_js/main.js"></script>
-    <script src="~/Content/resources/custom_js/fontawesome.js" crossorigin="anonymous"></script>
-    <script src="~/Content/resources/custom_js/jQuery-v3.3.1.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/custom_js/main.js"></script>
+    <script src="~/Content/custom_js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="~/Content/custom_js/jQuery-v3.3.1.js"></script>
+    <style>
+    </style>
 </head>
-<body class="Mainbg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="LandingTopMenu">
-                    <a href="#">Sabrina Testbot</a>
-                    <a href="#">Settings</a>
-                    <button type="button" class="btn btn-primary btn-lg TopButton">Sign Out</button>
+
+<body>
+    <div class="wrap Mainbg">
+        <div class="container-fluid">
+            <div class="row pl-5">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="logo">
+                        <a href="index.html"><img class="img-fluid" style="max-width: 85px;" src="~/Content/images/apovia.png" alt=""></a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                <a href="Home/Index"><img class="img-fluid" src="~/Content/resources/images/logo.jpg" alt=""></a>
-                <div class="LeftHeading">
-                    <h2>Welcome To Q-LO</h2>
-                    <h3>Your home for advanced analytics and reports.</h3>
-                    <button type="button" class="btn btn-primary btn-lg TopButton" onclick="location.href='@Url.Action("GetYourReport", "Home")'">Get Reports</button>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="WelcomeMSG">
+                        <h2>Welcome To</h2>
+                        <h1>Q-LOG</h1>
+                        <h3>Your home for advanced analytics and Reports.</h3>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="PoweredBy">
-                    <h4>Powered By: <img src="~/Content/resources/images/apovia.png" alt=""></h4>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 text-center">
+                    <div class="Loginview">
+                        <i class="fa fa-user LoginIcon" aria-hidden="true"></i>
+                        <h4>User Log In</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="1">Select FQHC</option>
+                                <option value="2">CORNERSTONE CARE, INC.</option>
+                                <option value="3">COVENANT HOUSE HEALTH SERVICES, INC.</option>
+                                <option value="4">COMMUNITY HEALTHCARE NETWORK INC.</option>
+                                <option value="5">DELAWARE VALLEY COMMUNITY HEALTH, INC</option>
+                                <option value="6">EAST LIBERTY FAMILY HEALTH CARE CENTER</option>
+                                <option value="7">ESPERANZA HEALTH CENTER, INC.</option>
+                                <option value="8">FAMILY FIRST HEALTH</option>
+                                <option value="9">FAMILY PRACTICE & COUNSELING NETWORK</option>
+                                <option value="10">GLENDALE AREA MEDICAL ASSOCIATION, INC.</option>
+                                <option value="12">GREATER PHILADELPHIA HEALTH ACTION, INC.</option>
+                                <option value="13">HAMILTON HEALTH CENTER, INC.</option>
+                                <option value="14">HYNDMAN AREA HEALTH CENTER, INC.</option>
+                                <option value="15">KEYSTONE HEALTH CENTER</option>
+                                <option value="16">KEYSTONE RURAL HEALTH CONSORTIA, INC.</option>
+                                <option value="17">LA COMUNIDAD HISPANA</option>
+                                <option value="18">LANCASTER HEALTH CENTER</option>
+                                <option value="19">NEIGHBORHOOD HEALTH CENTERS OF THE LEHIGH VALLEY</option>
+                                <option value="20">NEPA COMMUNITY HEALTH CARE</option>
+                                <option value="21">NEW YORK CITY HEALTH AND HOSPITALS CORPORATION</option>
+                                <option value="22">NORTH PENN COMPREHENSIVE HEALTH SERVICES</option>
+                                <option value="23">d.b.a. LAUREL HEALTH CENTERS</option>
+                                <option value="24">NORTH SIDE CHRISTIAN HEALTH CENTER</option>
+                                <option value="25">PHILADELPHIA FIGHT</option>
+                                <option value="26">PRIMARY CARE HEALTH SERVICES, INC.</option>
+                                <option value="27">PRIMARY HEALTH NETWORK</option>
+                                <option value="28">PROJECT H.O.M.E.</option>
+                                <option value="29">PUBLIC HEALTH MANAGEMENT CORP.</option>
+                                <option value="30">QUALITY COMMUNITY HEALTH CARE, INC.</option>
+                                <option value="31">RIVER VALLEY HEALTH & DENTAL CENTER</option>
+                                <option value="32">RURAL HEALTH CORPORATION OF NORTHEASTERN PA</option>
+                                <option value="33">SADLER HEALTH CENTER</option>
+                                <option value="34">SAYRE HEALTH CENTER</option>
+                                <option value="35">SCRANTON PRIMARY HEALTH CARE CENTER, INC.</option>
+                                <option value="36">SPECTRUM HEALTH SERVICES, INC.</option>
+                                <option value="37">SQUIRREL HILL HEALTH CENTER</option>
+                                <option value="38">STO-ROX NEIGHBORHOOD HEALTH CENTER</option>
+                                <option value="39">TRI-STATE COMMUNITY HEALTH CENTER</option>
+
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" id="user" class="form-control" placeholder="User ID">
+                            <div class="input-group-append">
+                                <span class="input-group-text IconBtnBG"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" id="password" class="form-control" placeholder="Password">
+                            <div class="input-group-append">
+                                <span class="input-group-text IconBtnBG"><i class="fa fa-key" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                        <button type="button"id="buttonlogin" class="btn btn-primary btn-lg btn-block ButtonDefault">LOGIN</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#buttonlogin').click(function () {
+                var user = document.getElementById('user').value;
+                var password = document.getElementById('password').value;
+                var select = document.getElementById('exampleFormControlSelect1').value;
+                if (user == 'admin' && password == 'admin' && select == '36') {
+                    window.location.href = '@Url.Action("GetYourReport", "Home")';
+                    return true;
+
+                }
+                else {
+                    alert('Wrong username or password');
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
