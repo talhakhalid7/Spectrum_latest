@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,7 @@ namespace WebApplication2.Controllers
     public class HomeController : Controller
     {
         int a, b, c, d, e, f, g, j, k, l, o, UPER, UPERCP, result_UPER, notchained = 0,
-        SecRep = 0, SecRep1 = 0, SecRep2 = 0, /*SecRep3, SecRep4,*/ SecRep2a1 = 0, SecRep2a3 = 0, SecRep2a5 = 0, SecRep2a7 = 0, SecRep2a9 = 0;
+        SecRep = 0, SecRep1 = 0, SecRep2 = 0, SecRep2a1 = 0, SecRep2a3 = 0, SecRep2a5 = 0, SecRep2a7 = 0, SecRep2a9 = 0;
         decimal SecRep2a2 = 0, SecRep2a4 = 0, SecRep2a6 = 0, SecRep2a8 = 0, SecRep2a10 = 0;
         int ThirdRep1a, ThirdRep1b, ThirdRep1c, ThirdRep1f, ThirdRep1g, ThirdRep1h;
         decimal ThirdRep1d, ThirdRep1e, ThirdRep1i, ThirdRep1j;
@@ -30,8 +31,8 @@ namespace WebApplication2.Controllers
         decimal p_notchained;
 
         decimal h, i, n, m, p, percent_UPERNCP, uper_float, upercp_float, result_UPER_float, percent_UPER = 0, SecRep1_float = 0, SecRep3_float = 0, SecRep4_float = 0;
-        SqlConnection connectionString = new SqlConnection(@"Data Source=SQL5063.site4now.net;Initial Catalog=DB_A64CC0_apovia;User Id=DB_A64CC0_apovia_admin;Password=2020@Arshad");//(@"Data Source=talhaserver.database.windows.net;Initial Catalog=spectrum;Persist Security Info=True;User ID=demo;Password=Admin@123");
-        //SqlConnection connectionString = new SqlConnection(@"Data Source =.; Initial Catalog = spectrum; Integrated Security = True");
+        //ConnectionString
+        SqlConnection connectionString = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
         public ActionResult Index()
         {
             return View();
@@ -103,7 +104,7 @@ namespace WebApplication2.Controllers
 
                 PerMCo_ExcWalgreen();
                 PerMCo_notchained();
-                //totalMCO_nonContracted();
+                
                 percentMCO_con();
                 percentMCO_noncon();
 
@@ -118,8 +119,6 @@ namespace WebApplication2.Controllers
                 totalEscriptInsuranceCashCovered();
                 totalEscriptInsuranceCoveredPer();
                 totalEscriptInsuranceCashCoveredPer();
-
-                //                totalEscripts();    // e
                 totalERxSecReport2Mediacaid();
                 totalERxSecReport2MediacaidPer();
                 totalERxSecReport2Commercial();
@@ -130,18 +129,6 @@ namespace WebApplication2.Controllers
                 totalERxSecReport2TricarePer();
                 totalERxSecReport2Cash();
                 totalERxSecReport2CashPer();
-
-
-
-                //totalMCOMedicaid();
-                //totalMCO_Contracted();
-                //totalMCO_ContractedExcWalgreen();
-                ////totalMCO_nonContracted();
-                //percentMCO_con();
-                //percentMCO_noncon();
-
-                //PerMCo_ExcWalgreen();
-
                 connectionString.Close();
 
                 return Json(new { EP = new[] { new { EP1 = String.Format("{0:n0}", SecRep) + '|' + "100%", EP2 = String.Format("{0:n0}", SecRep2) + '|' + Math.Round(SecRep4_float, 2) + "%", EP3 = String.Format("{0:n0}", SecRep1) + '|' + Math.Round(SecRep3_float, 2) + "%"/*, EP4 = Math.Round(SecRep4_float, 2) + "%", EP5 = Math.Round(SecRep3_float, 2) + "%"*/ } }, EIC = new[] { new { EIC1 = String.Format("{0:n0}", SecRep) + '|' + "100%", EIC2 = String.Format("{0:n0}", SecRep2a1) + '|' + Math.Round(SecRep2a2, 2) + "%" /*, EIC3 = Math.Round(SecRep2a2, 2) + "%"*/, EIC4 = String.Format("{0:n0}", SecRep2a3) + '|' + Math.Round(SecRep2a4, 2) + "%"/*, EIC5 = Math.Round(SecRep2a4, 2) + "%"*/, EIC6 = String.Format("{0:n0}", SecRep2a5) + '|' + Math.Round(SecRep2a6, 2) + "%"/*, EIC7 = Math.Round(SecRep2a6, 2) + "%"*/, EIC8 = String.Format("{0:n0}", SecRep2a7) + '|' + Math.Round(SecRep2a8, 2) + "%"/*, EIC9 = Math.Round(SecRep2a8, 2) + "%"*/, EIC10 = String.Format("{0:n0}", SecRep2a9) + '|' + Math.Round(SecRep2a10, 2) + "%"/*, EIC11 = Math.Round(SecRep2a10, 2) + "%"*/ } } });
@@ -166,21 +153,7 @@ namespace WebApplication2.Controllers
 
                 }
                 Result.Close();
-                /*
-                TotalTargetDrugsReport3a();
-                TotalTargetDrugsReport3b();
-                TotalTargetDrugsReport3c();
-                TotalTargetDrugsReport3d();
-                TotalTargetDrugsReport3e();
-                TotalTargetDrugsReport3f();
-                TotalTargetDrugsReport3g();
-                TotalTargetDrugsReport3h();
-                TotalTargetDrugsReport3i();
-                TotalTargetDrugsReport3j();
-
-                TargetDrugMedicaidReport3a();
-                TargetDrugMedicaidReport3b();
-                */
+               
                 connectionString.Close();
 
                 return Json(new { TTD = new[] { new { TTD1 = String.Format("{0:n0}", ThirdRep1a) + '|' + "100%", TTD2 = String.Format("{0:n0}", ThirdRep1b) + '|' + Math.Round(ThirdRep1d, 2) + "%", TTD3 = String.Format("{0:n0}", ThirdRep1c) + '|' + Math.Round(ThirdRep1e, 2) + "%" /*, TTD4 = Math.Round(ThirdRep1d, 2) + "%", TTD5 = Math.Round(ThirdRep1e, 2) + "%"*/  } }, TTD2 = new[] { new { TTD6 = String.Format("{0:n0}" + '|' + "100%", ThirdRep1f), TTD7 = String.Format("{0:n0}", ThirdRep1g) + '|' + Math.Round(ThirdRep1i, 2) + "%", TTD8 = String.Format("{0:n0}", ThirdRep1h) + '|' + Math.Round(ThirdRep1j, 2) + "%"/*, TTD9 = Math.Round(ThirdRep1i, 2) + "%", TTD10 = Math.Round(ThirdRep1j, 2) + "%" */} }, TDMC = new[] { new { TDMC1 = String.Format("{0:n0}", ThirdRepMedicaid3a) + '|' + Math.Round(ThirdRepMedicaid3b, 2) + "%"/*, TDMC2 = Math.Round(ThirdRepMedicaid3b, 2) + "%"*/ } } });
@@ -188,21 +161,7 @@ namespace WebApplication2.Controllers
             }
             else if (opts.Equals("4"))
             {
-                /*
-                                HivTargetDrugsReport3a();
-                                HivTargetDrugsReport3b();
-                                HivTargetDrugsReport3c();
-                                HivTargetDrugsReport3d();
-                                HivTargetDrugsReport3e();
-                                HivTargetDrugsReport3f();
-                                HivTargetDrugsReport3g();
-                                HivTargetDrugsReport3h();
-                                HivTargetDrugsReport3i();
-                                HivTargetDrugsReport3j();
-
-                                HivDrugMedicaidReport4a();
-                                HivDrugMedicaidReport4b();
-                */
+               
                 SqlDataReader Result = fetch4thReport();
                 if (Result.Read())
                 {
@@ -229,21 +188,7 @@ namespace WebApplication2.Controllers
             }
             else if (opts.Equals("5"))
             {
-                /*
-                                DibTargetDrugsReport3a();
-                                DibTargetDrugsReport3b();
-                                DibTargetDrugsReport3c();
-                                DibTargetDrugsReport3d();
-                                DibTargetDrugsReport3e();
-                                DibTargetDrugsReport3f();
-                                DibTargetDrugsReport3g();
-                                DibTargetDrugsReport3h();
-                                DibTargetDrugsReport3i();
-                                DibTargetDrugsReport3j();
-
-                                DibDrugMedicaidReport4a();
-                                DibDrugMedicaidReport4b();
-                */
+                
                 SqlDataReader Result = fetch5thReport();
                 if (Result.Read())
                 {
@@ -274,7 +219,7 @@ namespace WebApplication2.Controllers
             else if (opts.Equals("7"))
             {
                 var result = PDCR_Detail();
-                //var result2 = PDCR_sum();
+               
                 return Json(new { PD = new[] { new { Patient_Detail = result } } }); //, PS = new[] { new {PS = result2 } }
             }
             else if (opts.Equals("9"))
@@ -376,15 +321,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object PercNonContractedPharma()
         {
-            //
-            //string query_A = "select count(distinct [order id]) from SpectrumEscriptData";
-            //string query_B = "select count(distinct [order id]) from SpectrumEscriptData where pharmacy not in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
-
-            //var command_A = new SqlCommand(query_A, connectionString);
-            //int A = (int)command_A.ExecuteScalar();
-            //var command_B = new SqlCommand(query_B, connectionString);
-            //int B = (int)command_B.ExecuteScalar();
-            //
             decimal perNonContracted = ((decimal)B / (decimal)A) * 100;
             h = (decimal)Math.Round(perNonContracted, 2);
 
@@ -395,25 +331,14 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object PercentContractedPharma()
         {
-            //
-            //string query_A = "select count(distinct [order id]) from SpectrumEscriptData";
-            //string query_B = "select count(distinct [order id]) from SpectrumEscriptData where pharmacy in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
-
-            //var command_A = new SqlCommand(query_A, connectionString);
-            //int A = (int)command_A.ExecuteScalar();
-            //var command_B = new SqlCommand(query_B, connectionString);
-            //int B = (int)command_B.ExecuteScalar();
-
-            //
             decimal perContracted = ((decimal)C / (decimal)A) * 100;
             i = (decimal)Math.Round(perContracted, 2);
             return Json(new { Perc_Con = perContracted }, JsonRequestBehavior.AllowGet);
         }
-        //int D = 0;
+        
         [HttpPost]
         public object totalMCOMedicaid()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and pharmacy = ActiveContractedPharmacies";//"select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid')";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid = (int)command.ExecuteScalar();
@@ -426,7 +351,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object totalMCO_Contracted()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and[Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies";//"select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where [insurance name] = [Payer Name] and [Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' ";// "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid_contracted = (int)command.ExecuteScalar();
@@ -439,7 +363,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object totalMCO_nonContracted()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  not in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid_noncontracted = (int)command.ExecuteScalar();
@@ -451,15 +374,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object percentMCO_con()
         {
-            //
-            //string query_A = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid')";
-            //string query_B = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
-
-            //var command_A = new SqlCommand(query_A, connectionString);
-            //int A = (int)command_A.ExecuteScalar();
-            //var command_B = new SqlCommand(query_B, connectionString);
-            //int B = (int)command_B.ExecuteScalar();
-            //
             string query = "select count(distinct [order id]) from SpectrumEscriptData ";
             var command = new SqlCommand(query, connectionString);
             int totalErxs = (int)command.ExecuteScalar();
@@ -471,15 +385,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object percentMCO_noncon()
         {
-            //
-            //string query_A = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid')";
-            //string query_B = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  not in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL)";
-
-            //var command_A = new SqlCommand(query_A, connectionString);
-            //int A = (int)command_A.ExecuteScalar();
-            //var command_B = new SqlCommand(query_B, connectionString);
-            //int B = (int)command_B.ExecuteScalar();
-            //
             decimal perMCO_nonContracted = ((decimal)F / (decimal)E) * 100;
             n = (decimal)Math.Round(perMCO_nonContracted, 2);
             return Json(new { PercMCO_nonCon = perMCO_nonContracted }, JsonRequestBehavior.AllowGet);
@@ -488,7 +393,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object totalMCO_ContractedExcWalgreen()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and[Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' and[CHAIN_NOT_FILLING_MCMO] = 'N'";//"select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL and CHAIN_NOT_FILLING_MCMO = 'N' and ChainPharmacy = 'y')";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid_contracted = (int)command.ExecuteScalar();
@@ -501,7 +405,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object totalMCO_notChainPharmacy()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType, ContractPharmaciesFillingExs where[insurance name] = [Payer Name] and[Payer Type] = 'Medicaid' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'N'";//"select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL and CHAIN_NOT_FILLING_MCMO = 'N' and ChainPharmacy = 'y')";
             var command = new SqlCommand(query, connectionString);
             int TotalMedicaid_notChain = (int)command.ExecuteScalar();
@@ -514,15 +417,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object PerMCo_ExcWalgreen()
         {
-            //
-            //string query_A = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid')";
-            //string query_B = "select count(distinct [order id]) from SpectrumEscriptData where [insurance name] in (select [Payer Name] from PayerType where [Payer Type] = 'Medicaid') and pharmacy  in (select ActiveContractedPharmacies from ContractPharmaciesFillingExs where ActiveContractedPharmacies is not NULL and filling='N')";
-
-            //var command_A = new SqlCommand(query_A, connectionString);
-            //int A = (int)command_A.ExecuteScalar();
-            //var command_B = new SqlCommand(query_B, connectionString);
-            //int B = (int)command_B.ExecuteScalar();
-            //
             decimal perMCO_excWalgreen = ((decimal)C / (decimal)E) * 100;
             p = (decimal)Math.Round(perMCO_excWalgreen, 2);
             return Json(new { perMCO_Walgreen = perMCO_excWalgreen }, JsonRequestBehavior.AllowGet);
@@ -531,9 +425,7 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object PerMCo_notchained()
         {
-
             decimal perMCO_excWalgreen = ((decimal)notchained_public / (decimal)E) * 100;
-
             p_notchained = (decimal)Math.Round(perMCO_excWalgreen, 2);
             return Json(new { perMCO_notchaned = p_notchained }, JsonRequestBehavior.AllowGet);
         }
@@ -541,12 +433,10 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object UniquePatients_EscriptRec()
         {
-
             string query = "select Count(Distinct patientid) from SpectrumEscriptData";
             var command = new SqlCommand(query, connectionString);
             UPER = (int)command.ExecuteScalar();
             uper_float = (decimal)UPER;
-
             return Json(new { uper = UPER }, JsonRequestBehavior.AllowGet);
         }
 
@@ -554,19 +444,18 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object UniquePatients_EscriptRecConPharma()
         {
-
             string query = "select Count(Distinct patientid) from SpectrumEscriptData, ContractPharmaciesFillingExs where pharmacy = ActiveContractedPharmacies and filling like '%y%'";
             var command = new SqlCommand(query, connectionString);
             UPERCP = (int)command.ExecuteScalar();
             upercp_float = (decimal)UPERCP;
-
             return Json(new { uper = UPERCP }, JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpPost]
         public object UniquePatients_EscriptRecNonConPharma()
-        {   //A-B
+        {   
+            //A-B
             result_UPER = UPER - UPERCP;
             result_UPER_float = (decimal)result_UPER;
             return Json(new { uper_result = result_UPER }, JsonRequestBehavior.AllowGet);
@@ -574,7 +463,8 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         public object Perc_UniquePatients_EscriptRecCon()
-        {   //(B/A)*100
+        {   
+            //(B/A)*100
             decimal res_uper = (upercp_float / uper_float) * 100;
             percent_UPER = (decimal)Math.Round(res_uper, 2);
             return Json(new { uper_percentage = percent_UPER }, JsonRequestBehavior.AllowGet);
@@ -582,7 +472,8 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         public object Perc_UniquePatients_EscriptNonRecCon()
-        {   //(C/A)*100
+        {  
+            //(C/A)*100
             decimal res_uoer = (result_UPER_float / uper_float) * 100;
             percent_UPERNCP = (decimal)Math.Round(res_uoer, 2);
             return Json(new { uper_percentage = percent_UPERNCP }, JsonRequestBehavior.AllowGet);
@@ -590,7 +481,6 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public object totalEscriptInsuranceCovered()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Cash'";
             var command = new SqlCommand(query, connectionString);
             SecRep1 = (int)command.ExecuteScalar();
@@ -626,8 +516,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Medicaid'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a1 = (int)command.ExecuteScalar();
-            //SecRep2a1_float = (decimal)SecRep2a1;
-
             return Json(new { uper = SecRep2a1 }, JsonRequestBehavior.AllowGet);
         }
 
@@ -637,8 +525,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Commercial'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a3 = (int)command.ExecuteScalar();
-            //SecRep2a3_float = (decimal)SecRep2a3;
-
             return Json(new { uper = SecRep2a3 }, JsonRequestBehavior.AllowGet);
         }
 
@@ -648,8 +534,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Medicare'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a5 = (int)command.ExecuteScalar();
-            //SecRep2a5_float = (decimal)SecRep2a5;
-
             return Json(new { uper = SecRep2a5 }, JsonRequestBehavior.AllowGet);
         }
 
@@ -659,8 +543,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Tricare'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a7 = (int)command.ExecuteScalar();
-            //SecRep2a7_float = (decimal)SecRep2a7;
-
             return Json(new { uper = SecRep2a7 }, JsonRequestBehavior.AllowGet);
         }
 
@@ -670,8 +552,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, PayerType where [insurance name] = [Payer Name] and [Payer Type] = 'Cash'";
             var command = new SqlCommand(query, connectionString);
             SecRep2a9 = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (decimal)SecRep2a9;
-
             return Json(new { uper = SecRep2a9 }, JsonRequestBehavior.AllowGet);
         }
         public object totalERxSecReport2MediacaidPer()
@@ -706,7 +586,6 @@ namespace WebApplication2.Controllers
 
         public object TotalTargetDrugsReport3a()
         {
-
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList where[Drug name] like '%' + [Brand Tragetted Drug] + '%'";
             var command = new SqlCommand(query, connectionString);
             ThirdRep1a = (int)command.ExecuteScalar();
@@ -716,11 +595,9 @@ namespace WebApplication2.Controllers
         }
         public object TotalTargetDrugsReport3b()
         {
-
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs  where[Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies";
             var command = new SqlCommand(query, connectionString);
             ThirdRep1b = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (decimal)SecRep2a9;
             B = ThirdRep1b;
 
             return Json(new { uper = ThirdRep1b }, JsonRequestBehavior.AllowGet);
@@ -747,12 +624,10 @@ namespace WebApplication2.Controllers
 
         public object TotalTargetDrugsReport3f()
         {
-
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList where [Drug name] like '%' + [Brand Tragetted Drug] + '%'";
             var command = new SqlCommand(query, connectionString);
             ThirdRep1f = (int)command.ExecuteScalar();
             F = ThirdRep1f;
-
             return Json(new { uper = ThirdRep1f }, JsonRequestBehavior.AllowGet);
         }
         public object TotalTargetDrugsReport3g()
@@ -762,7 +637,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             ThirdRep1g = (int)command.ExecuteScalar();
             G = ThirdRep1g;
-
             return Json(new { uper = ThirdRep1g }, JsonRequestBehavior.AllowGet);
         }
 
@@ -790,9 +664,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs where[Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' and CHAIN_NOT_FILLING_MCMO = 'N'";
             var command = new SqlCommand(query, connectionString);
             ThirdRepMedicaid3a = (int)command.ExecuteScalar();
-            //F = ThirdRep1f;
             A = ThirdRepMedicaid3a;
-
             return Json(new { uper = ThirdRepMedicaid3a }, JsonRequestBehavior.AllowGet);
         }
         public object TargetDrugMedicaidReport3b()
@@ -801,9 +673,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs where [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies and filling = 'Y'";
             var command = new SqlCommand(query, connectionString);
             ThirdRepMedicaid3b = (int)command.ExecuteScalar();
-            //G = ThirdRep1g;
             ThirdRepMedicaid3b = ((decimal)A / (decimal)ThirdRepMedicaid3b) / 100;
-
             return Json(new { uper = ThirdRepMedicaid3b }, JsonRequestBehavior.AllowGet);
         }
 
@@ -816,7 +686,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FourRep1a = (int)command.ExecuteScalar();
             A = FourRep1a;
-
             return Json(new { uper = FourRep1a }, JsonRequestBehavior.AllowGet);
         }
         public object HivTargetDrugsReport3b()
@@ -825,9 +694,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs  where TargetDrugList.Type = 'HIV' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies";
             var command = new SqlCommand(query, connectionString);
             FourRep1b = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (decimal)SecRep2a9;
             B = FourRep1b;
-
             return Json(new { uper = FourRep1b }, JsonRequestBehavior.AllowGet);
         }
 
@@ -857,7 +724,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FourRep1f = (int)command.ExecuteScalar();
             F = FourRep1f;
-
             return Json(new { uper = FourRep1f }, JsonRequestBehavior.AllowGet);
         }
         public object HivTargetDrugsReport3g()
@@ -867,7 +733,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FourRep1g = (int)command.ExecuteScalar();
             G = FourRep1g;
-
             return Json(new { uper = FourRep1g }, JsonRequestBehavior.AllowGet);
         }
 
@@ -895,7 +760,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs where TargetDrugList.Type = 'HIV' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' and CHAIN_NOT_FILLING_MCMO = 'N'";
             var command = new SqlCommand(query, connectionString);
             FourRepMedicaid4a = (int)command.ExecuteScalar();
-            //F = FourRep1f;
             A = FourRepMedicaid4a;
 
             return Json(new { uper = FourRepMedicaid4a }, JsonRequestBehavior.AllowGet);
@@ -906,7 +770,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs where TargetDrugList.Type = 'HIV' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies and filling = 'Y'";
             var command = new SqlCommand(query, connectionString);
             FourRepMedicaid4b = (int)command.ExecuteScalar();
-            //G = FourRep1g;
             FourRepMedicaid4b = ((decimal)A / (decimal)FourRepMedicaid4b) * 100;
 
             return Json(new { uper = FourRepMedicaid4b }, JsonRequestBehavior.AllowGet);
@@ -925,7 +788,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FiveRep1a = (int)command.ExecuteScalar();
             A = FiveRep1a;
-
             return Json(new { uper = FiveRep1a }, JsonRequestBehavior.AllowGet);
         }
         public object DibTargetDrugsReport3b()
@@ -934,9 +796,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct[patientid]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs  where TargetDrugList.Type = 'DIB' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies";
             var command = new SqlCommand(query, connectionString);
             FiveRep1b = (int)command.ExecuteScalar();
-            //SecRep2a9_float = (decimal)SecRep2a9;
             B = FiveRep1b;
-
             return Json(new { uper = FiveRep1b }, JsonRequestBehavior.AllowGet);
         }
 
@@ -966,7 +826,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FiveRep1f = (int)command.ExecuteScalar();
             F = FiveRep1f;
-
             return Json(new { uper = FiveRep1f }, JsonRequestBehavior.AllowGet);
         }
         public object DibTargetDrugsReport3g()
@@ -976,7 +835,6 @@ namespace WebApplication2.Controllers
             var command = new SqlCommand(query, connectionString);
             FiveRep1g = (int)command.ExecuteScalar();
             G = FiveRep1g;
-
             return Json(new { uper = FiveRep1g }, JsonRequestBehavior.AllowGet);
         }
 
@@ -1004,7 +862,6 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs where TargetDrugList.Type = 'DIB' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies and ChainPharmacy = 'Y' and CHAIN_NOT_FILLING_MCMO = 'N'";
             var command = new SqlCommand(query, connectionString);
             FiveRepMedicaid5a = (int)command.ExecuteScalar();
-            //F = FiveRep1f;
             A = FiveRepMedicaid5a;
 
             return Json(new { uper = FiveRepMedicaid5a }, JsonRequestBehavior.AllowGet);
@@ -1015,9 +872,7 @@ namespace WebApplication2.Controllers
             string query = "select count(distinct [order id]) from SpectrumEscriptData, TargetDrugList, ContractPharmaciesFillingExs where TargetDrugList.Type = 'DIB' and [Drug name] like '%' + [Brand Tragetted Drug] + '%' and pharmacy = ActiveContractedPharmacies and filling = 'Y'";
             var command = new SqlCommand(query, connectionString);
             FiveRepMedicaid5b = (int)command.ExecuteScalar();
-            //G = FiveRep1g;
             FiveRepMedicaid5b = ((decimal)A / (decimal)FiveRepMedicaid5b) * 100;
-
             return Json(new { uper = FiveRepMedicaid5b }, JsonRequestBehavior.AllowGet);
         }
 
@@ -1031,7 +886,6 @@ namespace WebApplication2.Controllers
             string query = "select [FirstCol],[SecondCol],[ThirdCol],[FourCol],[FiveCol],[SixCol],[SevenCol],[EightCol],[NineCol],[TenCol],[ElevenCol],[TwelveCol] from Drugs_Reports where ReportType= 'Total'";
             var command = new SqlCommand(query, connectionString);
             SqlDataReader ThirdReport = command.ExecuteReader();
-            //F = FiveRep1f;
             return ThirdReport;
         }
         //New function for 4rd Report
@@ -1041,7 +895,6 @@ namespace WebApplication2.Controllers
             string query = "select [FirstCol],[SecondCol],[ThirdCol],[FourCol],[FiveCol],[SixCol],[SevenCol],[EightCol],[NineCol],[TenCol],[ElevenCol],[TwelveCol] from Drugs_Reports where ReportType= 'HIV'";
             var command = new SqlCommand(query, connectionString);
             SqlDataReader ThirdReport = command.ExecuteReader();
-            //F = FiveRep1f;
             return ThirdReport;
         }
         //New function for 5th Report
@@ -1051,7 +904,6 @@ namespace WebApplication2.Controllers
             string query = "select [FirstCol],[SecondCol],[ThirdCol],[FourCol],[FiveCol],[SixCol],[SevenCol],[EightCol],[NineCol],[TenCol],[ElevenCol],[TwelveCol] from Drugs_Reports where ReportType= 'DIB'";
             var command = new SqlCommand(query, connectionString);
             SqlDataReader ThirdReport = command.ExecuteReader();
-            //F = FiveRep1f;
             return ThirdReport;
         }
         //report-7 Pharmacy Diagnosis Code Report
@@ -1061,10 +913,8 @@ namespace WebApplication2.Controllers
             var cols = new List<string>();
             for (var i = 0; i < reader.FieldCount; i++)
                 cols.Add(reader.GetName(i));
-
             while (reader.Read())
                 results.Add(SerializeRow(cols, reader));
-
             return results;
         }
         private Dictionary<string, object> SerializeRow(IEnumerable<string> cols,

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -285,7 +284,7 @@
     <div id="wrapper">
         <header id="header">
             <div class="logo">
-                <a href="http://spect.azurewebsites.net/">
+                <a href="http://apovia-001-site1.itempurl.com/">
                     <img class="img-fluid" style="max-width:50%;" src="/Content/resources/images/apovia.png" alt="logo description">
                 </a>
             </div>
@@ -1212,16 +1211,16 @@
 
                         for (var i in json3) {
                             html_ORMS += '<tr>';
-                            if (count == 0 ) {
+                            if (count == 0) {
                                 html_ORMS += '<td>Diabetes Medications(DM) </td>';
                                 count++;
                             }
-                           else if (count == 1) {
+                            else if (count == 1) {
                                 html_ORMS += '<td>HIV</td>';
                             }
                             //html_ORMS += '<td>' + json3[i].Category + '</td>';
                             html_ORMS += '<td>' + json3[i].RXCount + '</td>';
-                            html_ORMS += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',minimumFractionDigits: '0' }).format(Math.round(json3[i].OpportunityRev)) + '</td>';
+                            html_ORMS += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: '0' }).format(Math.round(json3[i].OpportunityRev)) + '</td>';
                             //ORMSdata[iCount++] = json3[i].RXCount;
                             ORMSdata2[iCount++] = json3[i].OpportunityRev;
                             html_ORMS += '</tr>';
@@ -1238,7 +1237,7 @@
 
                             html_ORMD += '<td>' + json3[i].RXName + '</td>';
                             html_ORMD += '<td>' + json3[i].RXCount + '</td>';
-                            html_ORMD += '<td>' + json3[i].Price340B+'</td>';
+                            html_ORMD += '<td>' + json3[i].Price340B + '</td>';
                             html_ORMD += '<td>' + json3[i].PaidClaimPrice + '</td>';
                             html_ORMD += '<td>' + Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: '0' }).format(Math.round(json3[i].OppourtunityofRevenue)) + '</td>';
                             //html_ORMD += '<td>' + json3[i].PatientFirstName + '</td>';
@@ -1269,14 +1268,14 @@
                                     //     html1 += '</tr>';
                                     // }
                                     // else {
-                                        //alert(value[0][key2]);
-                                        html1 += '<tr>'
+                                    //alert(value[0][key2]);
+                                    html1 += '<tr>'
 
-                                        html1 += '<td style="background: #d9e2f3;">' + $('#select_2 option[value="' + key2 + '"]').text() + '</td>';
-                                        html1 += '<td>' + value[0][key2] + '</td>';
-                                        //alert(html1);
-                                        graphData[iCount++] = value[0][key2];
-                                        html1 += '</tr>';
+                                    html1 += '<td style="background: #d9e2f3;">' + $('#select_2 option[value="' + key2 + '"]').text() + '</td>';
+                                    html1 += '<td>' + value[0][key2] + '</td>';
+                                    //alert(html1);
+                                    graphData[iCount++] = value[0][key2];
+                                    html1 += '</tr>';
                                     // }
 
                                 }
@@ -1398,7 +1397,7 @@
                                         html_ep += '<tr>';
                                         html_ep += '<th>' + $('#EP option[value="' + key2 + '"]').text() + '</th>';
                                         html_ep += '<td>' + splitValue[0] + '</td>';
-                                        html_ep += '<td>' + splitValue[1]+ '</td>';
+                                        html_ep += '<td>' + splitValue[1] + '</td>';
 
                                         //alert(html3);
                                         epdata[iCount++] = splitValue[0];
@@ -1652,7 +1651,7 @@
                                         html_tdmcddr += '<tr>';
                                         html_tdmcddr += '<th>' + $('#TDMCDDR option[value="' + key2 + '"]').text() + '</th>';
                                         html_tdmcddr += '<td>' + value[0][key2] + '</td>';
-                                        html_tdmcddr += '<td>&nbsp</td>';
+                                        html_tdmcddr += '<td> </td>';
 
                                         //alert(html3);
                                         tdmcddrdata[iCount++] = value[0][key2];
@@ -1734,71 +1733,71 @@
                     $('.box_content7').hide("slide");
                     $('.box_content9').hide("slide");
 
-                        if (function_called == 1) {
+                    if (function_called == 1) {
 
-                            //$('#table thead').html(html1);
-                            $('#table tbody').html(html1);
-                            //$('#table_1 thead').html(html3);
-                            $('#table_1 tbody').html(html3);
-                            //$('#table_2 thead').html(html3);
-                            $('#table_pp tbody').html(html_pp);
-                            $('#table_2 tbody').html(html5);
+                        //$('#table thead').html(html1);
+                        $('#table tbody').html(html1);
+                        //$('#table_1 thead').html(html3);
+                        $('#table_1 tbody').html(html3);
+                        //$('#table_2 thead').html(html3);
+                        $('#table_pp tbody').html(html_pp);
+                        $('#table_2 tbody').html(html5);
 
-                            createPie(graphData);
-                            createPie2(piedata);
-                            createPie_pp(chart_pp);
-                            createPie3(bardata);
+                        createPie(graphData);
+                        createPie2(piedata);
+                        createPie_pp(chart_pp);
+                        createPie3(bardata);
 
-                            $('.box_content').show("slide");
-                        }
-                        if (function_called == 2) {
-                            $('#table_ep tbody').html(html_ep);
-                            $('#table_eci tbody').html(html_eci);
-                            createPie_ep(epdata);
-                            createPie_eci(ecidata);
-                            $('.box_content2').show("slide");
-                        }
-                        if (function_called == 3) {
-                            $('#table_TTD tbody').html(html_ttd);
-                            $('#table_TTD_2 tbody').html(html_ttd2);
-                            $('#table_TDMC tbody').html(html_tdmc);
-                            createPie_ttd(ttddata);
-                            createPie_ttd2(ttd2data);
-                            createPie_tdmc(tdmcdata);
-                            $('.box_content3').show("slide");
-                        }
-                        if (function_called == 4) {
-                            $('#table_HIV tbody').html(html_hiv);
-                            $('#table_HDMC tbody').html(html_hdmc);
-                            createPie_hiv(hivdata);
-                            createPie_hdmc(hdmcdata);
-                            $('.box_content4').show("slide");
-                        }
+                        $('.box_content').show("slide");
+                    }
+                    if (function_called == 2) {
+                        $('#table_ep tbody').html(html_ep);
+                        $('#table_eci tbody').html(html_eci);
+                        createPie_ep(epdata);
+                        createPie_eci(ecidata);
+                        $('.box_content2').show("slide");
+                    }
+                    if (function_called == 3) {
+                        $('#table_TTD tbody').html(html_ttd);
+                        $('#table_TTD_2 tbody').html(html_ttd2);
+                        $('#table_TDMC tbody').html(html_tdmc);
+                        createPie_ttd(ttddata);
+                        createPie_ttd2(ttd2data);
+                        createPie_tdmc(tdmcdata);
+                        $('.box_content3').show("slide");
+                    }
+                    if (function_called == 4) {
+                        $('#table_HIV tbody').html(html_hiv);
+                        $('#table_HDMC tbody').html(html_hdmc);
+                        createPie_hiv(hivdata);
+                        createPie_hdmc(hdmcdata);
+                        $('.box_content4').show("slide");
+                    }
 
-                        if (function_called == 5) {
-                            $('#table_DDR tbody').html(html_ddr);
-                            $('#table_TDMCDDR tbody').html(html_tdmcddr);
-                            createPie_ddr(ddrdata);
-                            createPie_tdmcddr(tdmcddrdata);
-                            $('.box_content5').show("slide");
-                        }
-                        if (function_called == 6) {
-                            //createPie_EQPTR();
-                            $('.box_content6').show("slide");
-                            createchart6();
-                        }
-                        if (function_called == 7) {
-                            //$('#table_PS tbody').html(html_PS);
-                            $('#table_EQPTR tbody').html(html_PD);
-                            //createchart7(PSdata);
-                            $('.box_content7').show("slide");
-                        }
-                        if (function_called == 9) {
-                            $('#table_ORMD tbody').html(html_ORMD);
-                            $('#table_ORMS tbody').html(html_ORMS);
-                            createchart9(ORMSdata2);
-                            $('.box_content9').show("slide");
-                        }
+                    if (function_called == 5) {
+                        $('#table_DDR tbody').html(html_ddr);
+                        $('#table_TDMCDDR tbody').html(html_tdmcddr);
+                        createPie_ddr(ddrdata);
+                        createPie_tdmcddr(tdmcddrdata);
+                        $('.box_content5').show("slide");
+                    }
+                    if (function_called == 6) {
+                        //createPie_EQPTR();
+                        $('.box_content6').show("slide");
+                        createchart6();
+                    }
+                    if (function_called == 7) {
+                        //$('#table_PS tbody').html(html_PS);
+                        $('#table_EQPTR tbody').html(html_PD);
+                        //createchart7(PSdata);
+                        $('.box_content7').show("slide");
+                    }
+                    if (function_called == 9) {
+                        $('#table_ORMD tbody').html(html_ORMD);
+                        $('#table_ORMS tbody').html(html_ORMS);
+                        createchart9(ORMSdata2);
+                        $('.box_content9').show("slide");
+                    }
 
                 }, 'json');
 
@@ -1829,9 +1828,9 @@
             var mydata = {
                 labels: [
                     ['Unique Number', 'of Pharmacies', 'Filling ERxs'],
-                    ['Number of ','Unique ','non-Contracted ', 'Pharmacies Filling',' ERxs'],
-                    ['Number of ','Contracted',' Pharmacies'],
-                    ['Number of ','Unique Contracted',' Pharmacies Filling',' ERxs'],
+                    ['Number of ', 'Unique ', 'non-Contracted ', 'Pharmacies Filling', ' ERxs'],
+                    ['Number of ', 'Contracted', ' Pharmacies'],
+                    ['Number of ', 'Unique Contracted', ' Pharmacies Filling', ' ERxs'],
                 ],
                 datasets: [{
                     label: '',
@@ -1839,10 +1838,10 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[3],
+                        chartData[0],
+                        chartData[1],
+                        chartData[2],
+                        chartData[3],
                     ]
                 }]
 
@@ -1890,10 +1889,10 @@
                             ticks: {
                                 beginAtZero: true
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -1902,43 +1901,6 @@
                 }
             });
 
-
-
-
-
-            //var config = {
-            //    type: 'bar',
-            //    data: {
-            //        datasets: [{
-            //            data: [
-            //                chartData[0],
-            //                chartData[1],
-            //                chartData[2],
-            //                chartData[3],
-            //            ],
-            //            backgroundColor: [
-            //                window.chartColors.red,
-            //                window.chartColors.orange,
-            //                window.chartColors.yellow,
-            //                window.chartColors.green,
-            //                //window.chartColors.blue,
-            //            ],
-            //            label: 'Pharmacies Filling ERxs'
-            //        }],
-            //        labels: [
-            //            'Total Unique # of Pharmacies Filling ERxs',
-            //            'Total # of Unique non-Contracted Pharmacies Filling ERxs',
-            //            'Total # of Contracted Pharmacies',
-            //            'Total # of Contracted Pharmacies',
-
-            //        ]
-            //    },
-            //    options: {
-            //        responsive: true
-            //    }
-            //};
-            //var ctx = document.getElementById('chart-area').getContext('2d');
-            //window.myPie = new Chart(ctx, config);
         }
         function createPie2(chartData) {
             for (var i = 0; i < chartData.length; i++) {
@@ -1957,9 +1919,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['ERxs'],
-                        ['ERxs', 'Filled at ','Non - Contracted', 'Pharmacies'],
-                        ['ERxs', 'Filled at ','Contracted Pharmacies'],
+                    ['ERxs'],
+                    ['ERxs', 'Filled at ', 'Non - Contracted', 'Pharmacies'],
+                    ['ERxs', 'Filled at ', 'Contracted Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -1967,9 +1929,9 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[4],
-                            chartData[5],
-                            chartData[6],
+                        chartData[4],
+                        chartData[5],
+                        chartData[6],
                     ]
                 }]
 
@@ -2017,10 +1979,10 @@
                             ticks: {
                                 beginAtZero: true
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -2030,41 +1992,6 @@
             });
 
 
-
-/*
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[4],
-                            chartData[5],
-                            chartData[6],
-
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-
-                        ],
-                        label: 'Total ERxs'
-                    }],
-                    labels: [
-                        'Total ERxs',
-                        'Total ERxs Filled at Non - Contracted Pharmacies',
-                        'Total ERxs Filled at Contracted Pharmacies',
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_1').getContext('2d');
-            window.myPie = new Chart(ctx, config);
-            */
         }
 
         function createPie3(chartData) {
@@ -2084,10 +2011,10 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                       ['ERx Filled ','at Contracted',' Pharmacies'] ,
-                        ['ERx MCO ','Medicaid Filled at ','Contracted Pharmacies'],
-                        ['ERx MCO', ' Medicaid Filled at ', 'Chain Contracted ', 'Pharmacies'],
-                        ['ERx MCO',' Medicaid Filled',' at Not Chain',' Contracted Pharmacies'],
+                    ['ERx Filled ', 'at Contracted', ' Pharmacies'],
+                    ['ERx MCO ', 'Medicaid Filled at ', 'Contracted Pharmacies'],
+                    ['ERx MCO', ' Medicaid Filled at ', 'Chain Contracted ', 'Pharmacies'],
+                    ['ERx MCO', ' Medicaid Filled', ' at Not Chain', ' Contracted Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2095,10 +2022,10 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[10],
-                            chartData[11],
-                            chartData[12],
-                            chartData[13],
+                        chartData[10],
+                        chartData[11],
+                        chartData[12],
+                        chartData[13],
                     ]
                 }]
 
@@ -2147,10 +2074,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 27000
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 9,
-                                  fontStyle: "bold",
+                                fontStyle: "bold",
                             }
 
                         }]
@@ -2160,48 +2087,7 @@
 
 
 
-            /*
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[16],
-                            chartData[17],
-                            chartData[18],
-                            chartData[21],
-
-
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                            window.chartColors.grey,
-                        ],
-                        label: 'MCO Medicaid'
-                    }],
-                    labels: [
-                        'Total MCO Medicaid ERxs',
-                        'Total MCO Medicaid ERxs Filled at Contracted Pharmacies',
-                        'Total ERxs Filled at non- Contracted Pharmacies',
-
-                        'Total MCO Medicaid ERxs Filled at Contracted Chain Pharmacies (excluding Walgreens)',
-
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_2').getContext('2d');
-            window.myPie = new Chart(ctx, config);
-            */
+            
         }
 
 
@@ -2222,9 +2108,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['Unique',' Patients Received',' an ERxs'],
-                        ['Unique',' Patients ERxs','Filled at ','Contracted Pharmacies'],
-                        ['Unique',' Patients ERxs',' Filled at ','Non-Contracted Pharmacies'],
+                    ['Unique', ' Patients Received', ' an ERxs'],
+                    ['Unique', ' Patients ERxs', 'Filled at ', 'Contracted Pharmacies'],
+                    ['Unique', ' Patients ERxs', ' Filled at ', 'Non-Contracted Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2232,9 +2118,9 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[7],
-                            chartData[8],
-                            chartData[9],
+                        chartData[7],
+                        chartData[8],
+                        chartData[9],
                     ]
                 }]
 
@@ -2282,10 +2168,10 @@
                             ticks: {
                                 beginAtZero: true
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -2293,44 +2179,6 @@
                     }
                 }
             });
-
-
-
-
-/*
-
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[9],
-                            chartData[10],
-                            chartData[11],
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-
-                        ],
-                        label: 'Patient Profile'
-                    }],
-                    labels: [
-                        'Total Unique Patients Received an ERxs',
-                        'Total Unique Patients ERxs Filled at Contracted Pharmacies',
-                        'Total Unique Patients ERxs Filled at Non-Contracted Pharmacies',
-
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_pp').getContext('2d');
-            window.myPie = new Chart(ctx, config); */
         }
 
         function createPie_ep(chartData) {
@@ -2353,9 +2201,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# of ERxs'],
-                        ['# ERxs Insurance',' Covered'],
-                        ['# ERxs Cash',' Covered'],
+                    ['# of ERxs'],
+                    ['# ERxs Insurance', ' Covered'],
+                    ['# ERxs Cash', ' Covered'],
                 ],
                 datasets: [{
                     label: '',
@@ -2364,10 +2212,10 @@
                     borderWidth: 1,
                     data: [
 
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            //chartData[3],
+                        chartData[0],
+                        chartData[1],
+                        chartData[2],
+                        //chartData[3],
                     ]
                 }]
 
@@ -2416,10 +2264,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 42000
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -2429,40 +2277,6 @@
             });
 
 
-
-
-
-        /*    var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            //chartData[3],
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            //window.chartColors.green,
-                            //window.chartColors.blue,
-                        ],
-                        label: 'E-Rx Profile'
-                    }],
-                    labels: [
-                        '# of ERxs',
-                        'ERxs Insurance Covered',
-                        'ERxs Cash Covered',
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_ep').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
         }
         function createPie_eci(chartData) {
             for (var i = 0; i < chartData.length; i++) {
@@ -2482,12 +2296,12 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# ERxs'],
-                        ['# Medicaid',' ERxs'],
-                        ['# Commercial',' ERxs'],
-                        ['# Medicare',' ERx'],
-                        ['# Tricare',' ERxs'],
-                        ['# Cash'],
+                    ['# ERxs'],
+                    ['# Medicaid', ' ERxs'],
+                    ['# Commercial', ' ERxs'],
+                    ['# Medicare', ' ERx'],
+                    ['# Tricare', ' ERxs'],
+                    ['# Cash'],
                 ],
                 datasets: [{
                     label: '',
@@ -2495,16 +2309,16 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
                     borderWidth: 1,
                     data: [chartData[3],
-                            chartData[4],
-                            //chartData[7],
-                            chartData[5],
-                            // chartData[9],
-                            chartData[6],
-                            //chartData[11],
-                            chartData[7],
-                            //chartData[13],
-                            chartData[8],
-                            //chartData[15],
+                    chartData[4],
+                    //chartData[7],
+                    chartData[5],
+                    // chartData[9],
+                    chartData[6],
+                    //chartData[11],
+                    chartData[7],
+                    //chartData[13],
+                    chartData[8],
+                        //chartData[15],
                     ]
                 }]
 
@@ -2553,10 +2367,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 42000
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -2566,49 +2380,6 @@
             });
 
 
-
-           /* var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[5],
-                            chartData[6],
-                            //chartData[7],
-                            chartData[8],
-                            // chartData[9],
-                            chartData[10],
-                            //chartData[11],
-                            chartData[12],
-                            //chartData[13],
-                            chartData[14],
-                            //chartData[15],
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'piechartegory'
-                    }],
-                    labels: [
-                        'Total ERxs',
-                        'Total Medicaid ERxs',
-                        'Total Commercial ERxs',
-                        'Total Medicare ERx',
-                        'Total Tricare ERxs',
-                        'Total Cash',
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_eci').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
         }
 
         function createPie_ttd(chartData) {
@@ -2631,9 +2402,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# Unique  Patients',' Has Escript',' for a',' Target Drug'],
-                        ['# Patients on',' Target Drug',' Filled at ','Contracted',' Pharmacies '],
-                        ['# Patients on',' Target Meds',' filled at ','Non-Contracted ','Pharmacies'],
+                    ['# Unique  Patients', ' Has Escript', ' for a', ' Target Drug'],
+                    ['# Patients on', ' Target Drug', ' Filled at ', 'Contracted', ' Pharmacies '],
+                    ['# Patients on', ' Target Meds', ' filled at ', 'Non-Contracted ', 'Pharmacies'],
 
                 ],
                 datasets: [{
@@ -2642,9 +2413,9 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
                     borderWidth: 1,
                     data: [
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
+                        chartData[0],
+                        chartData[1],
+                        chartData[2],
 
 
                     ]
@@ -2700,7 +2471,7 @@
                         xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -2709,48 +2480,8 @@
                 }
             });
 
-            /*
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[5],
-                            chartData[7],
-                            chartData[8],
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'Targeted Drug View (HIV & Brand Diabetic Meds)'
-                    }],
-                    labels: [
-                        'Total Unique Patients Has Escript for a Target Drug',
-                        'Total Patients on Target Drug Filled at Contracted Pharmacies ',
-                        'Total Patients on Target Meds filled at Non-Contracted Pharmacies',
-                        'Total Target ERxs Count',
-                        'Total Target ERxs Sent to Contracted Pharmacies',
-                        'Total Target ERxs Sent to non- Contracted Pharmacies',
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_TTD').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
         }
-        var newvalue ='';
+        var newvalue = '';
         function createPie_ttd2(chartData) {
             for (var i = 0; i < chartData.length; i++) {
                 if (!chartData[i])
@@ -2771,9 +2502,9 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        ['# Target ERxs', ' Count'],
-                        ['# Target ERxs', 'Sent to ', 'Contracted', ' Pharmacies'],
-                        ['# Target ERxs', ' Sent to ', 'Non-Contracted', ' Pharmacies'],
+                    ['# Target ERxs', ' Count'],
+                    ['# Target ERxs', 'Sent to ', 'Contracted', ' Pharmacies'],
+                    ['# Target ERxs', ' Sent to ', 'Non-Contracted', ' Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -2781,9 +2512,9 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange, window.chartColors.yellow, window.chartColors.grey],
                     borderWidth: 1,
                     data: [
-                            chartData[3],
-                            chartData[4],
-                            chartData[5],
+                        chartData[3],
+                        chartData[4],
+                        chartData[5],
 
                     ]
                 }]
@@ -2838,7 +2569,7 @@
                         xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -2876,9 +2607,9 @@
                     borderWidth: 1,
                     data: [
 
-                            chartData[6],
-                            display,
-                            // chartData[11],
+                        chartData[6],
+                        display,
+                        // chartData[11],
 
                     ]
                 }]
@@ -2950,38 +2681,7 @@
                 }
             });
 
-            /*
-
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[10],
-                            // chartData[11],
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'HIV Targeted Drug View'
-                    }],
-                    labels: [
-                        'Number of Target Med ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_HDMC').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
+           
         }
 
 
@@ -3008,7 +2708,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                   [ 'Number of HIV Drug ERxs Filled at Contract ','Chain Pharmacies Not Doing MCO Medicaid Carve in.'],
+                    ['Number of HIV Drug ERxs Filled at Contract ', 'Chain Pharmacies Not Doing MCO Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -3017,8 +2717,8 @@
                     borderWidth: 1,
                     data: [
 
-                            chartData[6],
-                            // chartData[11],
+                        chartData[6],
+                        // chartData[11],
 
                     ]
                 }]
@@ -3068,10 +2768,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 50
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -3080,36 +2780,6 @@
                 }
             });
 
-
-          /*  var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[10],
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'Targeted Drug Medicaid Carve In'
-                    }],
-                    labels: [
-                        'Number of HIV Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
-
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_HDMC').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
         }
 
         function createPie_ddr(chartData) {
@@ -3132,12 +2802,12 @@
             var mydata = {
                 labels: [
 
-                        ['# Unique Patients',' on Diabetic ','Brand Meds'],
-                        ['# Patients ','Diabetic Brand',' Meds Filled ','at Contracted ','Pharmacies'],
-                        ['# Patients ','Diabetic',' Brand Meds',' Filled at',' non-Contracted',' Pharmacies'],
-                        ['# Diabetic Brand',' Escripts Count'],
-                        ['# Diabetic Brand',' ERxs Sent ','to contracted ','Pharmacies'],
-                        ['# Diabetic',' Brand',' ERxs ','Sent ','non-Contracted ','Pharmacy'],
+                    ['# Unique Patients', ' on Diabetic ', 'Brand Meds'],
+                    ['# Patients ', 'Diabetic Brand', ' Meds Filled ', 'at Contracted ', 'Pharmacies'],
+                    ['# Patients ', 'Diabetic', ' Brand Meds', ' Filled at', ' non-Contracted', ' Pharmacies'],
+                    ['# Diabetic Brand', ' Escripts Count'],
+                    ['# Diabetic Brand', ' ERxs Sent ', 'to contracted ', 'Pharmacies'],
+                    ['# Diabetic', ' Brand', ' ERxs ', 'Sent ', 'non-Contracted ', 'Pharmacy'],
                 ],
                 datasets: [{
                     label: '',
@@ -3146,12 +2816,12 @@
                     borderWidth: 1,
                     data: [
 
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[3],
-                            chartData[4],
-                            chartData[5],
+                        chartData[0],
+                        chartData[1],
+                        chartData[2],
+                        chartData[3],
+                        chartData[4],
+                        chartData[5],
 
                     ]
                 }]
@@ -3201,10 +2871,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 1500
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 8,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -3213,50 +2883,7 @@
                 }
             });
 
-/*
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[5],
-                            chartData[6],
-                            chartData[7],
-
-
-                            // chartData[11],
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'Diabetic Target Drug View'
-                    }],
-                    labels: [
-
-                        'Total Unique Patients on Diabetic Brand Meds',
-                        'Total Patients Diabetic Brand Meds Filled at Contracted Pharmacies ',
-                        'Total Patients Diabetic Brand Meds Filled at non-Contracted Pharmacies ',
-                        'Total Diabetic Brand Escripts Count',
-                        'Total Diabetic Brand ERxs Sent to contracted Pharmacies',
-                        'Total Diabetic Brand ERxs Sent non-Contracted Pharmacy',
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_DDR').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
+           
         }
 
         function createPie_tdmcddr(chartData) {
@@ -3281,7 +2908,7 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                    ['Number of Diabetic Drug ERxs Filled at Contract Chain',' Pharmacies Not Doing MCO Medicaid Carve in.'],
+                    ['Number of Diabetic Drug ERxs Filled at Contract Chain', ' Pharmacies Not Doing MCO Medicaid Carve in.'],
                 ],
                 datasets: [{
                     label: '',
@@ -3290,7 +2917,7 @@
                     borderWidth: 1,
                     data: [
 
-                          chartData[6],
+                        chartData[6],
 
                     ]
                 }]
@@ -3340,10 +2967,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 140
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 10,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -3353,33 +2980,7 @@
 
 
             });
-            /*
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-                            chartData[10],
-                        ],
-                        backgroundColor: [
-
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'Diabetic Targeted Drug View for Medicaid'
-                    }],
-                    labels: [
-                        'Number of Diabetic Drug ERxs Filled at Contract Chain Pharmacies Not Doing MCO Medicaid Carve in.',
-
-
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_TDMCDDR').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
+           
         }
 
         function createPie_hiv(chartData) {
@@ -3399,12 +3000,12 @@
             var mydata = {
                 labels: [
 
-                        ['# Unique HIV',' Patients'],
-                        ['# Patients',' HIV',' Meds ERxs',' filled',' at ','Contracted',' Pharmacies '],
-                        ['# Patients',' HIV',' Meds Filled ','at',' non-Contracted',' Pharmacies'],
-                        ['# HIV ERxs ','Count'],
-                        ['# HIV ERxs ','Sent to ','Contracted',' Pharmacies'],
-                        ['# HIV ERxs',' Sent to ','non-Contracted ','Pharmacies'],
+                    ['# Unique HIV', ' Patients'],
+                    ['# Patients', ' HIV', ' Meds ERxs', ' filled', ' at ', 'Contracted', ' Pharmacies '],
+                    ['# Patients', ' HIV', ' Meds Filled ', 'at', ' non-Contracted', ' Pharmacies'],
+                    ['# HIV ERxs ', 'Count'],
+                    ['# HIV ERxs ', 'Sent to ', 'Contracted', ' Pharmacies'],
+                    ['# HIV ERxs', ' Sent to ', 'non-Contracted ', 'Pharmacies'],
                 ],
                 datasets: [{
                     label: '',
@@ -3413,12 +3014,12 @@
                     borderWidth: 1,
                     data: [
 
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[3],
-                            chartData[4],
-                            chartData[5],
+                        chartData[0],
+                        chartData[1],
+                        chartData[2],
+                        chartData[3],
+                        chartData[4],
+                        chartData[5],
 
 
                     ]
@@ -3469,10 +3070,10 @@
                                 beginAtZero: true,
                                 suggestedMax: 160
                             }
-                        }],xAxes: [{
+                        }], xAxes: [{
                             ticks: {
                                 fontSize: 9,
-                                 fontStyle: "bold",
+                                fontStyle: "bold",
 
                             }
 
@@ -3483,52 +3084,6 @@
 
 
             });
-
-/*
-
-            var config = {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        data: [
-
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[5],
-                            chartData[6],
-                            chartData[7],
-
-
-                            // chartData[11],
-
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                            window.chartColors.pink,
-                        ],
-                        label: 'HIV Targeted Drug View for Medicaid'
-                    }],
-                    labels: [
-
-                        '  Unique HIV Patients',
-                        'Total Patients HIV Meds ERxs filled at Contracted Pharmacies ',
-                        'Total Patients HIV Meds Filled at non-Contracted Pharmacies',
-                        'Total HIV ERxs Count',
-                        'Total HIV ERxs Sent to Contracted Pharmacies',
-                        'Total HIV ERxs Sent to non-Contracted Pharmacies',
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
-            var ctx = document.getElementById('chart-area_HIV').getContext('2d');
-            window.myPie = new Chart(ctx, config);*/
         }
         function createchart7(chartData) {
 
@@ -3537,21 +3092,21 @@
             var color = Chart.helpers.color;
             var mydata = {
                 labels: [
-                        'AD', 'RA',
-                        'PS', 'MS',
-                        'CD', 'HS',
-                        'AS', 'ADF',
-                        'UC', 'ADH',
-                        'AD-P', 'AD-RA',
-                        'PA', 'P-PV',
-                        'P-PA-RA', 'P-PA-RA',
-                        'CD-P', 'CD-UC',
-                        'AD-HS', 'AD-CD',
-                        'ADS', 'AD-HS-P',
-                        'AD-ADH', 'AD-HS',
-                        'PSM', 'PV',
-                        'RA-HJ', 'RA-MJ',
-                        'RA-MJ', 'RA-HJ', 'RA-KJ',
+                    'AD', 'RA',
+                    'PS', 'MS',
+                    'CD', 'HS',
+                    'AS', 'ADF',
+                    'UC', 'ADH',
+                    'AD-P', 'AD-RA',
+                    'PA', 'P-PV',
+                    'P-PA-RA', 'P-PA-RA',
+                    'CD-P', 'CD-UC',
+                    'AD-HS', 'AD-CD',
+                    'ADS', 'AD-HS-P',
+                    'AD-ADH', 'AD-HS',
+                    'PSM', 'PV',
+                    'RA-HJ', 'RA-MJ',
+                    'RA-MJ', 'RA-HJ', 'RA-KJ',
                 ],
                 datasets: [{
                     label: '',
@@ -3559,38 +3114,38 @@
                     borderColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.green, window.chartColors.orange],
                     borderWidth: 1,
                     data: [
-                            chartData[0],
-                            chartData[1],
-                            chartData[2],
-                            chartData[3],
-                            chartData[4],
-                            chartData[5],
-                            chartData[6],
-                            chartData[7],
-                            chartData[8],
-                            chartData[9],
-                            chartData[10],
-                            chartData[11],
-                            chartData[12],
-                            chartData[13],
-                            chartData[14],
-                            chartData[15],
-                            chartData[16],
-                            chartData[17],
-                            chartData[18],
-                            chartData[19],
-                            chartData[20],
-                            chartData[21],
-                            chartData[22],
-                            chartData[23],
-                            chartData[24],
-                            chartData[25],
-                            chartData[26],
-                            chartData[27],
-                            chartData[28],
-                            chartData[29],
-                            chartData[30],
-                            chartData[31],
+                        chartData[0],
+                        chartData[1],
+                        chartData[2],
+                        chartData[3],
+                        chartData[4],
+                        chartData[5],
+                        chartData[6],
+                        chartData[7],
+                        chartData[8],
+                        chartData[9],
+                        chartData[10],
+                        chartData[11],
+                        chartData[12],
+                        chartData[13],
+                        chartData[14],
+                        chartData[15],
+                        chartData[16],
+                        chartData[17],
+                        chartData[18],
+                        chartData[19],
+                        chartData[20],
+                        chartData[21],
+                        chartData[22],
+                        chartData[23],
+                        chartData[24],
+                        chartData[25],
+                        chartData[26],
+                        chartData[27],
+                        chartData[28],
+                        chartData[29],
+                        chartData[30],
+                        chartData[31],
                     ]
                 }]
 
@@ -3644,42 +3199,6 @@
                 }
             });
 
-
-
-            /*
-                        var config = {
-                            type: 'bar',
-                            data: {
-                                datasets: [{
-                                    data: [
-                                        chartData[4],
-                                        chartData[5],
-                                        chartData[6],
-
-
-                                    ],
-                                    backgroundColor: [
-                                        window.chartColors.red,
-                                        window.chartColors.orange,
-                                        window.chartColors.yellow,
-
-                                    ],
-                                    label: 'Total ERxs'
-                                }],
-                                labels: [
-                                    'Total ERxs',
-                                    'Total ERxs Filled at Non - Contracted Pharmacies',
-                                    'Total ERxs Filled at Contracted Pharmacies',
-
-                                ]
-                            },
-                            options: {
-                                responsive: true
-                            }
-                        };
-                        var ctx = document.getElementById('chart-area_1').getContext('2d');
-                        window.myPie = new Chart(ctx, config);
-                        */
         }
 
 
@@ -3721,7 +3240,7 @@
                         "duration": 1,
                         "onComplete": function () {
                             var chartInstance = this.chart,
-                              ctx = chartInstance.ctx;
+                                ctx = chartInstance.ctx;
 
                             ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
                             ctx.textAlign = 'center';
@@ -3748,7 +3267,7 @@
 
                             }
                         }],
-                        xAxis:[{
+                        xAxis: [{
 
                             fontStyle: "bold",
                         }]
@@ -3769,7 +3288,7 @@
 
             var dataFirst = {
                 label: "Contracted Pharmacies",
-                data: [32,39.6,49,62],
+                data: [32, 39.6, 49, 62],
                 lineTension: 0,
                 fill: false,
                 borderColor: 'red'
@@ -3777,7 +3296,7 @@
 
             var dataSecond = {
                 label: "Non-Contracted Pharmacies",
-                data: [54,43,36,29],
+                data: [54, 43, 36, 29],
                 lineTension: 0,
                 fill: false,
                 borderColor: 'blue'
@@ -3799,15 +3318,15 @@
             };
 
             var speedData = {
-                labels: ["Q1","Q2","Q3","Q4"],
-                datasets: [dataFirst, dataSecond,data3,data4]
+                labels: ["Q1", "Q2", "Q3", "Q4"],
+                datasets: [dataFirst, dataSecond, data3, data4]
             };
 
             var chartOptions = {
                 title: {
-            display: true,
-            text: 'Escript Quarterly Performance Tracking Report',
-        },
+                    display: true,
+                    text: 'Escript Quarterly Performance Tracking Report',
+                },
                 legend: {
                     display: true,
                     position: 'bottom',
